@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gem Fighter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #00f3ff33;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            padding-left: 0;
+            justify-content: center;
+            margin: 0;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Jost', sans-serif;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #00f3ff;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #00f3ff;
+            text-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+        }
+
+        .footer {
+            background: linear-gradient(45deg, #001a1a, #000a1a);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid #00f3ff33;
+            position: relative;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            font-family: 'Jost', sans-serif;
+        }
+
+        .footer-text {
+            color: #00f3ff;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            animation: textGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes textGlow {
+            0%, 100% { text-shadow: 0 0 10px #00f3ff; }
+            50% { text-shadow: 0 0 20px #00f3ff; }
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            font-family: 'Jost', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .header {
+            margin-top: 60px;
+            height: calc(100vh - 60px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-video {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 20vh;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 15px #00f3ff;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #00f3ff, #0066ff);
+            color: #ffffff;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 30px;
+            font-family: 'Jost', sans-serif;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            border-bottom: 1px solid #222;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nft-card {
+            background: #111;
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid #00f3ff33;
+            transition: transform 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .nft-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .video-container {
+            position: relative;
+            padding-top: 56.25%;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glowing-text {
+            text-shadow: 0 0 10px #00f3ff;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .description {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .description p {
+            opacity: 0;
+            transform: translateY(20px);
+            margin-bottom: 1.5rem;
+        }
+
+        .description strong {
+            font-weight: 700;
+        }
+
+        .feature-list {
+            margin: 2rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .feature-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 1.1rem;
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        
+        
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes logoGlow {
+            0% { filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.5)); }
+            50% { filter: drop-shadow(0 0 20px rgba(0, 243, 255, 0.8)); }
+            100% { filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.5)); }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .logo-container {
+            animation: fadeInDown 1.5s ease-out;
+            margin-bottom: 2rem;
+            transition: transform 0.3s;
+        }
+        
+        .logo-container img {
+            height: 250px;
+            animation: logoGlow 3s infinite, float 3s ease-in-out infinite;
+        }
+
+        .header-content h1 {
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .cta-button {
+            animation: slideInRight 1s ease-out;
+        }
+
+        .logo-container:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .logo-container img {
+                height: 150px;
+            }
+            
+            .glowing-text {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .description {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#play">Play & Earn</a></li>
+            <li><a href="#nft">Mint NFT</a></li>
+        </ul>
+    </nav>
+
+    <header class="header">
+        <video class="header-video" autoplay muted loop preload="auto">
+            <source src="images/trailer.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="images/logo.png" alt="GemFighter Logo">
+            </div>
+            <h1>Where Survival Pays!</h1>
+            <button class="cta-button">Join Early Access</button>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="grid">
+            <div>
+                <h2 class="glowing-text">Earn $HODL from Play!</h2>
+                <div class="description">
+                    <p>
+                        Dive into <strong>Gem Fighter</strong>, a thrilling space combat game where <strong>skill meets rewards!</strong>
+                    </p>
+                    <p>
+                        Navigate <strong>procedurally generated levels</strong>, defeat enemies, and collect <strong>Gemstone NFTs</strong>
+                        to boost your spaceship’s power. Climb the leaderboards to earn <strong>$HODL tokens</strong> and stake NFTs for <strong>passive income.</strong>
+                    </p>
+                    <ul class="feature-list">
+                        <li><strong>Free-to-play</strong> – Compete and earn without spending!</li>
+                        <li><strong>Dynamic Battles</strong> – Every level offers new challenges</li>
+                        <li><strong>NFT Integration</strong> – Upgrade your ship and maximize rewards</li>
+                    </ul>
+                    <p>
+                        <strong>Join Gem Fighter today and conquer the cosmos!</strong>
+                    </p>
+                </div>
+            </div>
+            <div class="video-container">
+                <iframe src="images/gameplay.mp4" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="grid">
+            <div>
+                <img src="images/NFT.png" alt="NFT Preview" style="width:100%;border-radius:15px;">
+            </div>
+            <div class="nft-card">
+                <h2>Boost Earnings with Gem Fighter NFTs</h2><br>
+                <p><strong>Maximize rewards</strong> with exclusive <strong>Gem Fighter NFTs</strong> on the <strong>Binance Smart Chain</strong>. Each NFT:</p>
+                <ul class="feature-list">
+                    <li>✔️ <strong>Upgrades</strong> your attack, defense, and spells</li>
+                    <li>✔️ <strong>Increases $HODL earnings</strong> and leaderboard potential</li>
+                    <li>✔️ <strong>Can be staked</strong> for passive income</li>
+                </ul>
+                <p><strong>Dominate battles, trade NFTs, and stake for continuous rewards</strong>—power up your adventure with <strong>Gem Fighter NFTs</strong>!</p>
+                <button class="cta-button" style="margin-top: 2rem;">Mint NFT Now</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text"><br>
+                © 2025 GEM FIGHTER. ALL RIGHTS RESERVED.<br>
+                SURVIVE → EARN → HODL
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll-triggered animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Animate paragraphs
+                    const paragraphs = entry.target.querySelectorAll('p');
+                    paragraphs.forEach((p, index) => {
+                        p.style.animation = `fadeInUp 0.8s ${index * 0.2}s forwards`;
+                    });
+
+                    // Animate NFT card
+                    const nftCard = entry.target.querySelector('.nft-card');
+                    if(nftCard) {
+                        nftCard.style.animation = 'fadeInUp 0.8s 0.3s forwards';
+                    }
+
+                    // Animate list items
+                    const listItems = entry.target.querySelectorAll('li');
+                    listItems.forEach((item, index) => {
+                        item.style.animation = `slideInRight 0.6s ${index * 0.2}s forwards`;
+                    });
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Observe all sections
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
