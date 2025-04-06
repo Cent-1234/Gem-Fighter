@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gem Fighter - Terms of Service</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* Inherit all main styles */
+        * { 
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            font-family: 'Jost', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #00f3ff33;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            padding-left: 0;
+            justify-content: center;
+            margin: 0;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Jost', sans-serif;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #00f3ff;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #00f3ff;
+            text-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+        }
+
+        .footer {
+            background: linear-gradient(45deg, #001a1a, #000a1a);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid #00f3ff33;
+            position: relative;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            font-family: 'Jost', sans-serif;
+        }
+
+        .footer-text {
+            color: #00f3ff;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            animation: textGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes textGlow {
+            0%, 100% { text-shadow: 0 0 10px #00f3ff; }
+            50% { text-shadow: 0 0 20px #00f3ff; }
+        }
+
+        /* Terms specific styles */
+        .terms-container {
+            max-width: 800px;
+            margin: 100px auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid #00f3ff33;
+        }
+
+        .terms-content h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: #00f3ff;
+            text-shadow: 0 0 15px #00f3ff;
+            margin-bottom: 2rem;
+        }
+
+        .terms-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .terms-section h2 {
+            color: #00f3ff;
+            font-family: 'Orbitron', sans-serif;
+            margin: 1.5rem 0;
+            font-size: 1.4rem;
+        }
+
+        .terms-section p {
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .highlight {
+            color: #00f3ff;
+            font-weight: 500;
+        }
+
+        /* Footer links */
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: #00f3ff;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background: #00f3ff;
+            transition: width 0.3s;
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        .footer-links a:hover {
+            text-shadow: 0 0 15px rgba(0, 243, 255, 0.6);
+        }
+
+        .link-separator {
+            color: #00f3ff66;
+            font-size: 0.6rem;
+            vertical-align: middle;
+        }
+
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .social-link {
+            color: #00f3ff;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .social-link:hover {
+            color: #fff;
+            transform: translateY(-3px);
+            text-shadow: 0 0 15px rgba(0, 243, 255, 0.8);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .terms-container {
+                margin: 80px 1rem;
+                padding: 1.5rem;
+            }
+            
+            .terms-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links a {
+                font-size: 0.9rem;
+            }
+            
+            .terms-section h2 {
+                font-size: 1.2rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+        
+            }
+
+            .link-separator {
+
+                display: none;
+                
+                }
+            
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="https://hodltoken.net/gem-fighter-p2e">Play & Earn</a></li>
+            <li><a href="https://hodltoken.net/gem-fighter-nfts">Mint NFTs</a></li>
+        </ul>
+    </nav>
+
+
+    <div class="terms-container">
+        <div class="terms-content">
+            <h1>Gem Fighter Cookie Policy</h1>
+            <p style="font-size: 0.9rem; color: #ccc;">Last Updated: 04/06/2025</p>
+    
+            <div class="terms-section">
+                <h2>1. Introduction</h2>
+                <p>
+                    Gem Fighter is a play-to-earn game developed by HODL. This Cookie Policy explains how we use cookies and similar tracking technologies to enhance your experience on our game and related platforms.
+                    For more details, please visit our main Cookie Policy at 
+                    <a href="https://hodltoken.net/cookies" target="_blank" style="color: #00f3ff;">https://hodltoken.net/cookies</a>.
+                </p>
+            </div>
+    
+            <div class="terms-section">
+                <h2>2. What Are Cookies?</h2>
+                <p>
+                    Cookies are small text files stored on your device by your web browser. They help us remember your preferences, understand how you interact with our game, and improve your overall experience.
+                </p>
+            </div>
+    
+            <div class="terms-section">
+                <h2>3. How We Use Cookies</h2>
+            <p>
+                We use cookies for a variety of purposes, including:
+            </p>
+            <ul style="padding-left: 1.5rem;">
+                <li>Enhancing user experience and personalizing content.</li>
+                <li>Analyzing usage patterns to improve our game performance.</li>
+                <li>Facilitating secure authentication and transactions.</li>
+            
+            </ul>
+                
+            </div>
+    
+            <div class="terms-section">
+                <h2>4. Third-Party Cookies</h2>
+            <p>
+                In addition to our own cookies, we may also use third-party cookies to help analyze website usage, deliver personalized advertisements, and ensure functionality across integrated platforms.
+            </p>
+            </div>
+    
+            <div class="terms-section">
+                <h2>5. Your Choices</h2>
+                <p>
+                    You can manage your cookie preferences through your browser settings. Please note that disabling cookies may affect the functionality and performance of our game.
+                </p>
+            </div>
+    
+            <div class="terms-section">
+                <h2>6. Changes to This Cookie Policy</h2>
+            <p>
+                HODL reserves the right to update this Cookie Policy at any time. Updated versions will be posted on 
+                <a href="https://hodltoken.net/cookies" target="_blank" style="color: #00f3ff;">https://hodltoken.net/cookies</a> 
+                and will take effect 14 days after publication.
+            </p>
+            </div>
+    
+            <div class="terms-section">
+                <h2>7. Contact Us</h2>
+            <p>
+                If you have any questions regarding this Cookie Policy, please contact us at 
+                <a href="mailto:support@hodltoken.net" style="color: #00f3ff;">support@hodltoken.net</a> or join our official Telegram group at 
+                <a href="https://t.me/hodlinvestorgroup" target="_blank" style="color: #00f3ff;">t.me/hodlinvestorgroup</a>.
+            </p>
+            </div>
+    
+            <div class="terms-section" style="font-size: 0.8rem; color: #888; margin-top: 2rem;">
+                <p>Version 1.0</p>
+            </div>
+        </div>
+    </div>
+    
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="terms.html">Terms</a>
+                <span class="link-separator">⏺</span>
+                <a href="privacy.html">Privacy</a>
+                <span class="link-separator">⏺</span>
+                <a href="cookies.html">Cookies</a>
+                <span class="link-separator">⏺</span>
+                <a href="disclaimers.html">Disclaimers</a>
+            </div><br>
+
+
+            <!-- Add social icons -->
+    <div class="social-icons" style="margin: 1.5rem 0;">
+        <a href="https://x.com/HODL_Official" target="_blank" class="social-link">
+            <i class="fab fa-x-twitter"></i>
+        </a>
+        <a href="https://t.me/hodlinvestorgroup" target="_blank" class="social-link">
+            <i class="fab fa-telegram-plane"></i>
+        </a>
+    </div>
+
+            <p class="footer-text">
+                © 2025 GEM FIGHTER<br>
+                SURVIVE → EARN → HODL
+            </p>
+        </div>
+    </footer>
+    
+</body>
+</html>
