@@ -55,33 +55,48 @@ if (mobileToggle && socialDropdown) {
     });
 }
 
-// Dropdowns for Minting Probabilities (Updated Logic)
+// Toggle ALL Minting Probability Dropdowns open/close together
+// Responsive Dropdown Logic
 document.querySelectorAll('.probability-dropdown .dropdown-toggle').forEach(button => {
-    button.addEventListener('click', () => {
-        const parentDropdown = button.closest('.probability-dropdown');
-        const dropdownContent = button.nextElementSibling; // This is the <ul> with class dropdown-content
-        const isOpen = parentDropdown.classList.contains('open');
+  button.addEventListener('click', () => {
+    const isDesktop = window.innerWidth > 768;
+    const clickedDropdown = button.closest('.probability-dropdown');
+    const clickedContent = clickedDropdown.querySelector('.dropdown-content');
+    const isOpen = clickedDropdown.classList.contains('open');
 
-        // Close all other open dropdowns
-        document.querySelectorAll('.probability-dropdown').forEach(dropdown => {
-            if (dropdown !== parentDropdown && dropdown.classList.contains('open')) {
-                dropdown.classList.remove('open');
-                // Find the .dropdown-content inside this other dropdown and set its maxHeight to null
-                dropdown.querySelector('.dropdown-content').style.maxHeight = null;
-            }
+    if (isDesktop) {
+      const allDropdowns = document.querySelectorAll('.probability-dropdown');
+      const anyOpen = [...allDropdowns].some(d => d.classList.contains('open'));
+
+      if (anyOpen) {
+        // CLOSE ALL
+        allDropdowns.forEach(d => {
+          d.classList.remove('open');
+          d.querySelector('.dropdown-content').style.maxHeight = null;
         });
+      } else {
+        // OPEN ALL
+        allDropdowns.forEach(d => {
+          d.classList.add('open');
+          const content = d.querySelector('.dropdown-content');
+          content.style.maxHeight = content.scrollHeight + 'px';
+        });
+      }
 
-        // Toggle the clicked dropdown
-        if (isOpen) {
-            parentDropdown.classList.remove('open');
-            dropdownContent.style.maxHeight = null;
-        } else {
-            parentDropdown.classList.add('open');
-            // Set max-height to scrollHeight for smooth expansion
-            dropdownContent.style.maxHeight = dropdownContent.scrollHeight + 'px';
-        }
-    });
+    } else {
+      // Mobile: toggle only this one
+      if (isOpen) {
+        clickedDropdown.classList.remove('open');
+        clickedContent.style.maxHeight = null;
+      } else {
+        clickedDropdown.classList.add('open');
+        clickedContent.style.maxHeight = clickedContent.scrollHeight + 'px';
+      }
+    }
+  });
 });
+
+
 
 document.querySelectorAll('.accordion-header').forEach(header => {
     header.addEventListener('click', () => {
