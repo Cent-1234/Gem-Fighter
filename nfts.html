@@ -28,16 +28,32 @@
             margin: 0 auto;
             padding: 2rem 1rem 3rem;
         }
-        .hero {
+
+         .hero {
+            width: 100%;
+            padding: 6rem 1rem 5rem;
             text-align: center;
-            padding: 2rem 1rem 3rem;
-            background: linear-gradient(45deg, #001a1a, #000a1a);
-            border-radius: 15px;
-            margin-top: 80px;
-            margin-bottom: 3rem;
-            box-shadow: 0 0 30px #00f3ff44;
             position: relative;
+            overflow: hidden; /* ensures ::before stays contained */
+            background: #000000;
         }
+
+              .hero::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: url('Images/gemfigher-spaceship5.webp') center/cover no-repeat;
+          opacity: 0.3; /* start lower for visibility tuning */
+          z-index: 0;
+          pointer-events: none;
+        }
+
+        .hero > * {
+          position: relative;
+          z-index: 1;
+        }
+              
+
         .hero h1 {
             font-family: 'Orbitron', sans-serif;
             font-size: 3rem;
@@ -246,7 +262,7 @@
         }
 
         .mint-overview {
-            background: #111;
+             background: linear-gradient(45deg, #001a1a, #000a1a);
             border-radius: 15px;
             padding: 2rem 3rem;
             margin-bottom: 3rem;
@@ -428,7 +444,7 @@
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
-            gap: 2.5rem;
+            gap: 0.5rem;
             margin-bottom: 2rem;
         }
         .tier video {
@@ -445,7 +461,7 @@
             background: #222;
             border-radius: 15px;
             padding: 1rem;
-            width: 220px;
+            width: 300px;
             text-align: center;
             box-shadow: 0 0 15px #00f3ff66;
             transition: transform 0.3s;
@@ -908,11 +924,8 @@
             </li>
         </ul>
     </nav>
-    
 
-    <div class="container">
-
-        <section class="hero" aria-label="Hero section for minting Gem Fighter NFTs">
+    <section class="hero" aria-label="Hero section for minting Gem Fighter NFTs">
             <h1>Gem Fighter NFTs</h1>
             <p>Enhance your power. Earn rewards. Own a piece of the fight.</p>
             <a href="https://hodltoken.net/gem-fighter-nfts" target="_blank" style="text-decoration: none;">
@@ -934,7 +947,8 @@
               </div>
         </section>
 
-        <section class="mint-overview">
+
+         <section class="mint-overview">
             <h3>Mint Your Unique Gem Fighter NFTs</h3>
             <br>
             <p>Each gemstone attribute is randomly generated, creating millions of unique possibilities.</p>
@@ -1038,7 +1052,9 @@
                 </div>
               </section>
         </section>
+    
 
+    <div class="container">
         <section class="mint-panel" aria-label="Minting control panel">
             <div>
                 <h3>Live Mint Counter</h3>
@@ -1057,8 +1073,9 @@
             
             </div>
         </section>
+      </div>
 
-       <section class="rarity-section" aria-label="NFT attributes and rarity logic">
+    <section class="rarity-section" aria-label="NFT attributes and rarity logic">
     <h3>Gem Fighter Attributes: Why They Matter</h3>
     <p style="text-align:center; max-width: 850px; margin: 0 auto 2rem; color: #ffffff;">
       Every Gem Fighter NFTs is a powerful fusion of five core gemological traits:
@@ -1145,7 +1162,7 @@
   </section>
   
   
-
+<div class="container">
         <section class="use-cases" id="use-cases">
             <h3>Why Mint Gem Fighter NFTs?</h3>
             <div class="use-flex">
@@ -1162,6 +1179,8 @@
               </div>
             </div>
           </section>
+
+          </div>
           
 
           <!-- 4. NFT Gallery -->
