@@ -7,905 +7,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="nfts.css" />
     <link rel="icon" href="Images/logo.png" type="image/png" />
-    <style>
-        /* NFT Page Specific Styles */
-        body {
-            background-color: #0a0a0a;
-            color: #fff;
-            font-family: 'Jost', sans-serif;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
-        a {
-            color: #00f3ff;
-            text-decoration: none;
-        }
-       
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 1rem 3rem;
-        }
-
-         .hero {
-            width: 100%;
-            padding: 6rem 1rem 5rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden; /* ensures ::before stays contained */
-            background: #000000;
-        }
-
-              .hero::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background: url('Images/gemfigher-spaceship5.webp') center/cover no-repeat;
-          opacity: 0.3; /* start lower for visibility tuning */
-          z-index: 0;
-          pointer-events: none;
-        }
-
-        .hero > * {
-          position: relative;
-          z-index: 1;
-        }
-              
-
-        .hero h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 0 15px #00f3ff;
-            text-transform: uppercase;
-        }
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            letter-spacing: 1px;
-        }
-        .hero button {
-            background: linear-gradient(45deg, #00f3ff, #0066ff);
-            border: none;
-            border-radius: 30px;
-            padding: 1rem 3rem;
-            font-size: 1.4rem;
-            color: white;
-            cursor: pointer;
-            box-shadow: 0 0 25px rgba(0, 243, 255, 0.5);
-            transition: transform 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero button:hover {
-            transform: scale(1.05);
-            box-shadow:
-                0 0 35px rgba(0, 243, 255, 0.9),
-                0 0 55px rgba(0, 243, 255, 0.6),
-                inset 0 0 20px rgba(0, 243, 255, 0.5);
-        }
-        .hero button::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent 25%, rgba(0, 243, 255, 0.1) 50%, transparent 75%);
-            animation: energyBeam 4s infinite linear;
-            opacity: 0.5;
-            pointer-events: none;
-        }
-        @keyframes energyBeam {
-            0% { transform: translateX(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) rotate(45deg); }
-        }
-
-        .preview iframe {
-            max-width: 850px;
-            padding-top: 20px;
-            height: 100%;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-          }
-
-        probabilities-section {
-            text-align: center;
-            margin-top: 80px;
-            padding: 20px;
-          }
-          
-          .section-title {
-            font-family: 'Orbitron', sans-serif;
-            color: white;
-            font-size: 2rem;
-            text-shadow: 0 0 10px #00f0ff;
-            margin-bottom: 30px;
-          }
-          
-          .probability-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-          }
-          
-          .probability-dropdown {
-            background: #111;
-            border: 1px solid #00f0ff;
-            border-radius: 12px;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.08);
-            transition: all 0.3s ease;
-            overflow: hidden;
-            position: relative;
-          }
-          
-          .dropdown-toggle {
-            background: transparent;
-            border: none;
-            width: 100%;
-            padding: 12px 20px;
-            color: #00f0ff;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-          }
-          
-          .dropdown-toggle .arrow {
-            transition: transform 0.3s ease;
-          }
-          
-          .probability-dropdown.open .arrow {
-            transform: rotate(180deg);
-          }
-          
-          .dropdown-content {
-            list-style: none;
-            padding: 0 20px;
-            margin: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.3s ease;
-          }
-          
-          .probability-dropdown.open .dropdown-content {
-            padding: 10px 20px 15px;
-            
-          }
-          
-          .dropdown-content li {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 1px;
-            border-bottom: 5px solid rgba(255, 255, 255, 0.1);
-            color: #fff;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.95rem;
-          }
-          
-          .dropdown-content li span {
-            color: #00f2ff;
-          }
-          
-
-        /* Mint Panel */
-        .mint-panel {
-            background: #111;
-            border-radius: 15px;
-            padding: 2rem 3rem;
-            margin-bottom: 3rem;
-            box-shadow: 0 0 25px #00f3ff33;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 2rem;
-            align-items: center;
-        }
-        .mint-panel > div {
-            flex: 1 1 220px;
-        }
-        .mint-panel h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.4rem;
-            margin-bottom: 0.8rem;
-            text-shadow: 0 0 10px #00f3ff;
-        }
-        .mint-counter, .mint-price {
-            font-size: 1.1rem;
-            color: #00f3ff;
-        }
-        .mint-input-group {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: nowrap;
-        }
-        .mint-input-group input[type=number] {
-            width: 80px;
-            padding: 0.6rem 1rem;
-            border-radius: 10px;
-            border: none;
-            font-size: 1.2rem;
-            text-align: center;
-            background: #222;
-            color: #fff;
-        }
-        .mint-input-group button {
-            background: linear-gradient(45deg, #00f3ff, #0066ff);
-            border: none;
-            padding: 0.8rem 2rem;
-            border-radius: 30px;
-            font-size: 1.2rem;
-            color: white;
-            cursor: pointer;
-            box-shadow: 0 0 25px rgba(0, 243, 255, 0.4);
-            transition: transform 0.3s;
-        }
-        .mint-input-group button:hover {
-            transform: scale(1.05);
-        }
-        .total-price {
-            margin-top: 0.5rem;
-            font-size: 1rem;
-            color: #66ffff;
-        }
-        .gas-estimate {
-            margin-top: 0.3rem;
-            font-size: 0.9rem;
-            color: #00bbffaa;
-        }
-
-        .mint-overview {
-             background: linear-gradient(45deg, #001a1a, #000a1a);
-            border-radius: 15px;
-            padding: 2rem 3rem;
-            margin-bottom: 3rem;
-            box-shadow: 0 0 25px #00f3ff33;
-            text-align: center;
-          }
-          
-          .mint-overview h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            color: #ffffff;
-            text-shadow: 0 0 15px #00f3ff;
-          }
-          
-          .mint-overview p {
-            color: #ffffff;
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-          }
-          
-          .mint-overview-flex {
-            display: flex;
-            justify-content: center; /* Center horizontally */
-            align-items: center;     /* Center vertically */
-            gap: 1rem;               /* Space between items */
-            flex-wrap: wrap;         /* Allow wrapping on smaller screens */
-            max-width: 900px;        /* Limit width to keep elements closer */
-            margin: 0 auto;          /* Center the flex container itself */
-          }
-          
-          
-          
-          .mint-attributes {
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
-          }
-          
-          .mint-attr {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            background: #1a1a1a;
-            padding: 0.8rem 1.2rem;
-            border-radius: 10px;
-            color: #ffffff;
-            box-shadow: 0 0 10px #00f3ff22;
-            font-size: 1.1rem;
-            width: 220px;
-          }
-          
-          
-          .mint-attr i {
-            font-size: 1.4rem;
-            color: #00f3ff;
-          }
-          
-          /* 3D Card (no blue “drop-shadow”) */
-        .mint-card-3d {
-            perspective: 1200px;
-            width: 400px;
-            height: 420px;
-            margin: 0 auto 1rem; /* Adjusted margin */
-            flex-shrink: 0; /* Prevent shrinking when space is tight */
-        }
-        .card-inner {
-            width: 100%;
-            height: 100%;
-            transform-style: preserve-3d;
-            animation: rotateCard 12s infinite linear;
-        }
-        .card-inner {
-            width: 100%;
-            height: 100%;
-            transform-style: preserve-3d;
-            animation: rotateCard 12s infinite linear;
-            position: relative; /* Essential for absolute positioning of faces */
-        }
-
-        .card-face {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden; /* Hides the mirrored back of each individual face */
-            display: flex; /* To center the image within each face */
-            justify-content: center;
-            align-items: center;
-        }
-
-        .card-front {
-            transform: rotateY(0deg); /* Default front orientation */
-        }
-
-        .card-back {
-            transform: rotateY(180deg); /* Rotates the back face to be correctly oriented */
-        }
-        /* Ensure the image within the card face is styled correctly */
-        .card-face img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-            filter: drop-shadow(0 0 12px rgba(0,255,255,0.4));
-            /* Other image specific styles like width, height, filter, etc. go here */
-        }
-        @keyframes rotateCard {
-            from { transform: rotateY(0deg); }
-            to   { transform: rotateY(360deg); }
-        }
-        
-          /* Game-style Stats Panel */
-          .mint-stats {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            max-width: 400px; /* Adjust max-width as needed */
-            margin: 0; /* Remove auto margin from here */
-            flex-grow: 1; /* Allow it to grow to fill space */
-            text-align: left; /* Align text within stats */
-        }
-        .stat {
-            display: flex;
-            align-items: center;
-            background: linear-gradient(45deg, #181818, #25252a); /* Subtle gradient background */
-            border: 1px solid #00f3ff44; /* Slightly more prominent border */
-            border-radius: 8px;
-            padding: 0.9rem 0.5rem;
-            transition: all 0.3s ease;
-            box-shadow:
-                0 0 15px rgba(0, 243, 255, 0.15), /* Enhanced outer glow */
-                inset 0 0 8px rgba(0, 243, 255, 0.05); /* Subtle inner glow */
-        }
-        .stat i {
-            font-size: 1.4rem;
-            color: #00f3ff;
-            margin-right: 0.8rem;
-            transition: color 0.3s ease;
-        }
-        .stat span {
-            font-size: 1rem;
-            color: #eee;
-            font-weight: 500;
-            text-shadow: 0 0 4px #000;
-            flex-grow: 1; /* Allow the span to take available space */
-        }
-        
-        /* Hover Glow Effect */
-        .stat:hover {
-            border-color: #00f3ff88;
-            box-shadow:
-            0 0 8px #00f3ff88,
-            inset 0 0 12px #00f3ff33;
-            transform: translateX(5px);
-        }
-        .stat:hover i {
-            color: #66ffff;
-            text-shadow: 0 0 8px #66ffff;
-        }
-  
-          
-
-        /* NFT Range Overview */
-        .rarity-section {
-            background: #111;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 0 25px #00f3ff33;
-            margin-bottom: 3rem;
-        }
-        .rarity-section h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            color: #ffffff;
-            text-shadow: 0 0 15px #00f3ff;
-        }
-        .rarity-tiers {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-        }
-        .tier video {
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 0 15px #00f3ff55;
-            margin-bottom: 0.8rem;
-        }
-        .tier {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: #222;
-            border-radius: 15px;
-            padding: 1rem;
-            width: 300px;
-            text-align: center;
-            box-shadow: 0 0 15px #00f3ff66;
-            transition: transform 0.3s;
-            overflow: hidden;
-        }
-        
-        .tier:hover {
-            transform: scale(1.05);
-        }
-        .tier img {
-            width: 100px;
-            height: 100px;
-            margin-bottom: 0.8rem;
-        }
-        .tier h4 {
-            font-family: 'Orbitron', sans-serif;
-            color: #00f3ff;
-            margin-bottom: 0.3rem;
-        }
-        .attributes {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .attributes-block {
-            line-height: 1.8;
-            font-size: 0.95rem;
-            color: #ddd;
-            text-align: left;
-          }
-          
-          .attributes-block .label {
-            color: #00f3ff;
-            font-weight: 600;
-          }
-          
-          .attributes-block .value {
-            color: #ffffff;
-            font-weight: 400;
-          }
-          
-        .attr {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100px;
-            user-select: none;
-        }
-        .attr i {
-            font-size: 2rem;
-            color: #00f3ff;
-            margin-bottom: 0.3rem;
-        }
-        .attr span {
-            font-size: 0.9rem;
-            color: #66ffff;
-            text-align: center;
-        }
-
-        /* Use Cases Section */
-        .use-cases {
-            background: linear-gradient(45deg, #001a1a, #000a1a);
-            padding: 2rem 3rem;
-            border-radius: 15px;
-            margin-bottom: 3rem;
-            box-shadow: 0 0 30px #00f3ff44;
-        }
-        .use-cases h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            color: #ffffff;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            text-shadow: 0 0 15px #00f3ff;
-        }
-        .use-list {
-            list-style: none;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 0;
-            font-size: 1.2rem;
-            line-height: 1.8;
-            letter-spacing: 1px;
-            color: #ffffff;
-        }
-        .use-list li {
-            margin-bottom: 1.2rem;
-            padding-left: 2.5rem;
-            position: relative;
-            cursor: default;
-        }
-        .use-list li::before {
-            content: "🎮";
-            position: absolute;
-            left: 0;
-            top: 0;
-            font-size: 1.5rem;
-            line-height: 1;
-        }
-        
-        .use-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 2.5rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-            padding: 0 1rem;
-          }
-          
-          .use-list {
-            list-style: none;
-            font-size: 1.2rem;
-            line-height: 2;
-            color: #ffffff;
-            padding-left: 0;
-            max-width: 520px;
-            margin: 0 auto;
-            text-align: left;
-          }
-          
-          .use-list li {
-            margin-bottom: 0.6rem;
-          }
-          
-          .use-img {
-            flex-shrink: 0;
-            max-width: 420px;
-            width: 100%;
-            margin: 0 auto;
-          }
-          
-          .use-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-          }
-          
-          
-        /* We'll customize each icon with a class */
-        .use-list li:nth-child(2)::before { content: "💰"; }
-        .use-list li:nth-child(3)::before { content: "🔄"; }
-        .use-list li:nth-child(4)::before { content: "🎨"; }
-        .use-list li:nth-child(5)::before { content: "💥"; }
-
-        .gallery-preview {
-            margin-bottom: 4rem;
-            padding: 2rem 1rem;
-            background: linear-gradient(135deg, #0a0a0a, #111122);
-            border-radius: 20px;
-            box-shadow: 0 0 35px rgba(0, 243, 255, 0.1);
-        }
-        
-        .gallery-preview h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            margin-bottom: 2.5rem;
-            text-align: center;
-            color: #ffffff;
-            text-shadow: 0 0 12px #00f3ffcc;
-            letter-spacing: 1px;
-        }
-        
-        .preview-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-        
-        .preview-grid .nft {
-            background: #1a1a1a;
-            border: 2px solid #00f3ff33;
-            border-radius: 18px;
-            padding: 1.2rem;
-            box-shadow: 0 0 25px rgba(0, 243, 255, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-align: center;
-            overflow: hidden;
-        }
-        
-        .preview-grid .nft:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 0 35px rgba(0, 243, 255, 0.4);
-            border-color: #00f3ff88;
-        }
-        
-        .preview-grid .nft img {
-            width: 100%;
-            max-height: 500px;
-            object-fit: contain;
-            border-radius: 12px;
-            transition: transform 0.3s ease;
-        }
-        
-        .preview-grid .nft:hover img {
-            transform: scale(1.04);
-        }
-        
-        .preview-grid .nft p {
-            margin-top: 0.8rem;
-            font-size: 1.05rem;
-            font-weight: 500;
-            color: #66ffff;
-            letter-spacing: 0.5px;
-            text-shadow: 0 0 5px #00f3ff33;
-        }
-        
-
-        
-
-        /* FAQ Section */
-        .faq-section {
-            max-width: 1200px;
-            margin: 0 auto 5rem;
-            background: #111;
-            border-radius: 15px;
-            box-shadow: 0 0 30px #00f3ff44;
-            padding: 2rem 3rem;
-        }
-        .faq-section h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            color: #ffffff;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            text-shadow: 0 0 15px #00f3ff;
-        }
-        .accordion {
-            background: #222;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-            overflow: hidden;
-        }
-        .accordion-header {
-            cursor: pointer;
-            padding: 1rem 1.5rem;
-            font-weight: 700;
-            font-family: 'Jost', sans-serif;
-            font-size: 1.1rem;
-            color: #00f3ff;
-            position: relative;
-            user-select: none;
-        }
-        .accordion-header::after {
-            content: '\25BC';
-            position: absolute;
-            right: 1.5rem;
-            top: 50%;
-            transform: translateY(-50%);
-            transition: transform 0.3s;
-            font-size: 0.8rem;
-            color: #00f3ffcc;
-        }
-        .accordion-header.active::after {
-            transform: translateY(-50%) rotate(180deg);
-        }
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.35s ease;
-            padding: 0 1.5rem;
-            color: #66ffff;
-            font-size: 1rem;
-            line-height: 1.5;
-        }
-        .accordion-content p {
-            margin: 1rem 0;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .mint-panel {
-                flex-direction: column;
-            }
-            .mint-panel > div {
-                flex: 1 1 100%;
-            }
-            .rarity-tiers {
-                flex-direction: column;
-                align-items: center;
-            }
-            .tier {
-                width: 75%;
-            }
-            .mint-overview-flex {
-                flex-direction: column; /* Stack items vertically on small screens */
-                align-items: center; /* Center items when stacked */
-                gap: 1.5rem;
-            }
-            .mint-card-3d {
-                margin-bottom: 1rem; /* Adjust margin for stacked layout */
-            }
-            .mint-panel {
-                align-items: center;
-                text-align: center;
-              }
-            
-              .mint-panel > div {
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-              }
-            
-              .mint-input-group {
-                justify-content: center;
-              }
-            
-              .mint-input-group button {
-                width: 90%;
-                max-width: 300px;
-              }
-
-              .mint-overview-flex {
-                flex-direction: column;
-                align-items: center;
-              }
-            
-              .mint-card-3d {
-                transform: none !important;
-                margin: 0 auto;
-              }
-            
-              .mint-attributes {
-                width: 100%;
-                max-width: 100px;
-                margin-top: 1rem;
-              }
-            
-              .mint-card-3d img {
-                width: 100%;
-                height: auto;
-                display: block;
-              }
-              
-        }
-
-        @media (max-width: 580px) {
-            .mint-overview-flex {
-              flex-direction: column;
-              align-items: center;
-              text-align: center;
-              gap: 1rem; /* Increase spacing */
-              padding: 0 1rem;
-            }
-
-            .use-list li  {
-                font-size: 1rem;
-            }
-
-            .rarity-section h3 {
-                font-size: 1.8rem;
-            }
-
-            .gallery-preview h3 {
-                font-size: 1.8rem;
-            }
-
-            .faq-section h3 {
-                font-size: 1.8rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .hero h1 {
-                font-size: 2.3rem;
-            }
-
-            
-            .mint-card-3d {
-              width: 100%;
-              max-width: 400px;
-              height: auto;
-              margin: 0 auto 1.5rem; /* Add bottom margin */
-              perspective: 1000px;
-            }
-          
-            .card-inner {
-              width: 100%;
-              height: 100%;
-              position: relative;
-              transform-style: preserve-3d;
-              animation: rotateCard 12s infinite linear;
-              position: relative;
-              aspect-ratio: 3 / 4; /* Respect a fixed aspect ratio */
-            }
-          
-            .card-face {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                backface-visibility: hidden;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-          
-            .card-face img {
-                width: 200%;
-                height: auto;
-                max-height: 100%;
-                object-fit: contain;
-            }
-
-            .use-img img {
-                width: 110%;
-            }
-
-            .use-flex {
-                gap: 1rem;
-            }
-
-            .preview iframe {
-                aspect-ratio: 9/ 10; /* Taller on mobile */
-                width: 100%;
-                height: auto;
-                border-radius: 12px;
-              }
-          
-            
-          
-           
-            
-          }
-          
-        
-          
-
-      
-    </style>
 </head>
 <body>
 
-
-     <nav class="navbar">
+ <nav class="navbar">
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="https://hodltoken.net/gem-fighter-p2e">Play & Earn</a></li>
@@ -925,502 +32,382 @@
         </ul>
     </nav>
 
-    <section class="hero" aria-label="Hero section for minting Gem Fighter NFTs">
-            <h1>Gem Fighter NFTs</h1>
-            <p>Enhance your power. Earn rewards. Own a piece of the fight.</p>
-            <a href="https://hodltoken.net/gem-fighter-nfts" target="_blank" style="text-decoration: none;">
-                <button id="mintBtn" class="btn">Mint Now</button>
-              </a>
-              <br>
-              <br>
-              
-              <div class="preview" aria-label="Gem Fighter NFT video preview">
-                <iframe
-                  width="100%"
-                  src="https://www.youtube.com/embed/vhlsXtXmjDE?autoplay=1&mute=1&playsinline=1"
-                  title="Gem Fighter NFT Preview"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                  style="border-radius: 12px;"
-                ></iframe>
-              </div>
-        </section>
+<section class="hero" aria-label="Hero section for minting Gem Fighter NFTs">
+    <h1>Gem Fighter NFTs</h1>
+    <p>Enhance your power. Earn rewards. Own a piece of the fight.</p>
+    <a href="https://hodltoken.net/gem-fighter-nfts" target="_blank" style="text-decoration: none;">
+        <button id="mintBtn" class="btn">Mint Now</button>
+    </a>
+    <br><br>
+    <div class="preview" aria-label="Gem Fighter NFT video preview">
+        <iframe
+            width="100%"
+            src="https://www.youtube.com/embed/vhlsXtXmjDE?autoplay=1&mute=1&playsinline=1&loop=1&playlist=vhlsXtXmjDE"
+            title="Gem Fighter NFT Preview"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            style="border-radius: 12px;"
+        ></iframe>
+    </div>
+</section>
 
+<section class="mint-overview">
+    <h3>Mint Your Unique Gem Fighter NFTs</h3>
+    <br>
+    <p>Each gemstone attribute is randomly generated, creating millions of unique possibilities.</p>
 
-         <section class="mint-overview">
-            <h3>Mint Your Unique Gem Fighter NFTs</h3>
-            <br>
-            <p>Each gemstone attribute is randomly generated, creating millions of unique possibilities.</p>
-        
-            <div class="mint-overview-flex">
-                <div class="mint-card-3d">
-                    <div class="card-inner">
-                      <div class="card-face card-front">
-                        <img src="Images/HODLGemstone_Preview_Thunder_Princess_FL_Excellent_VeryBig_0-removebg.png" alt="3D Gem NFTs Front" />
-                      </div>
-                      <div class="card-face card-back">
-                        <img src="Images/HODLGemstone_Preview_Thunder_Princess_FL_Excellent_VeryBig_0-removebg.png" alt="3D Gem NFTs Back" />
-                      </div>
-                    </div>
+    <div class="mint-overview-flex">
+        <div class="mint-card-3d">
+            <div class="card-inner">
+                <div class="card-face card-front">
+                    <img src="Images/HODLGemstone_Preview_Thunder_Princess_FL_Excellent_VeryBig_0-removebg.png" alt="3D Gem NFTs Front" />
                 </div>
-                <div class="mint-stats">
-                    <div class="stat">
-                        <i class="fas fa-balance-scale"></i>
-                        <span>CARAT:</span><span class="stat-value">1.25</span>
-                    </div>
-                    <div class="stat">
-                        <i class="fas fa-palette"></i>
-                        <span>COLOR:</span><span class="stat-value">Thunder</span>
-                    </div>
-                    <div class="stat">
-                        <i class="fas fa-gem"></i>
-                        <span>CLARITY:</span><span class="stat-value">FL</span>
-                    </div>
-                    <div class="stat">
-                        <i class="fas fa-cut"></i>
-                        <span>CUT:</span><span class="stat-value">Excellent</span>
-                    </div>
+                <div class="card-face card-back">
+                    <img src="Images/HODLGemstone_Preview_Thunder_Princess_FL_Excellent_VeryBig_0-removebg.png" alt="3D Gem NFTs Back" />
                 </div>
-              </div>
-                <br>
-              <section id="probabilities-section">
-                <h2 >Minting Probabilities</h2>
-                <br>
-              
-                <div class="probability-grid">
-                  <!-- Color -->
-                  <div class="probability-dropdown">
-                    <button class="dropdown-toggle">Color <span class="arrow">&#9662;</span></button>
-                    <ul class="dropdown-content">
-                      <li>Fire <span>12.5%</span></li>
-                      <li>Ice <span>12.5%</span></li>
-                      <li>Wind <span>12.5%</span></li>
-                      <li>Earth <span>12.5%</span></li>
-                      <li>Thunder <span>12.5%</span></li>
-                      <li>Water <span>12.5%</span></li>
-                      <li>Light <span>12.5%</span></li>
-                      <li>Darkness <span>12.5%</span></li>
-                    </ul>
-                  </div>
-              
-                  <!-- Clarity -->
-                  <div class="probability-dropdown">
-                    <button class="dropdown-toggle">Clarity <span class="arrow">&#9662;</span></button>
-                    <ul class="dropdown-content">
-                      <li>FL <span>5%</span></li>
-                      <li>VVSI <span>10%</span></li>
-                      <li>VSI <span>15%</span></li>
-                      <li>SI <span>30%</span></li>
-                      <li>I <span>40%</span></li>
-                    </ul>
-                  </div>
-              
-                  <!-- Carat -->
-                  <div class="probability-dropdown">
-                    <button class="dropdown-toggle">Carat <span class="arrow">&#9662;</span></button>
-                    <ul class="dropdown-content">
-                      <li>1.25 <span>5%</span></li>
-                      <li>1.1 <span>10%</span></li>
-                      <li>1.0 <span>15%</span></li>
-                      <li>0.9 <span>30%</span></li>
-                      <li>0.75 <span>40%</span></li>
-                    </ul>
-                  </div>
-              
-                  <!-- Cut -->
-                  <div class="probability-dropdown">
-                    <button class="dropdown-toggle">Cut <span class="arrow">&#9662;</span></button>
-                    <ul class="dropdown-content">
-                      <li>Excellent <span>5%</span></li>
-                      <li>Very Good <span>10%</span></li>
-                      <li>Good <span>15%</span></li>
-                      <li>Fair <span>30%</span></li>
-                      <li>Poor <span>40%</span></li>
-                    </ul>
-                  </div>
-              
-                  <!-- Shape -->
-                  <div class="probability-dropdown">
-                    <button class="dropdown-toggle">Shape <span class="arrow">&#9662;</span></button>
-                    <ul class="dropdown-content">
-                      <li>Triangle <span>20%</span></li>
-                      <li>Square <span>35%</span></li>
-                      <li>Round <span>45%</span></li>
-                    </ul>
-                  </div>
-                </div>
-              </section>
-        </section>
-    
-
-    <div class="container">
-        <section class="mint-panel" aria-label="Minting control panel">
-            <div>
-                <h3>Live Mint Counter</h3>
-                <p class="mint-counter" id="mintCounter">Minted: 13,452 / 50,000</p>
             </div>
-            <div>
-                <h3>Mint Price</h3>
-                <p class="mint-price" id="mintPrice">Price: $36 in BNB (auto converted)</p>
-            </div>
-            <div>
-                <div class="mint-input-group" role="group" aria-label="Select quantity and mint">
-                    <a href="https://hodlx.exchange/nft-pools" target="_blank" style="text-decoration: none;">
-                        <button id="mintBtn" class="btn">Connect Wallet & Mint</button>
-                      </a>
+        </div>
+        <div class="mint-stats">
+            <div class="stat">
+                <i class="fas fa-balance-scale"></i>
+                <div class="stat-text">
+                    <span class="label">CARAT:</span>
+                    <span class="value">1.25</span>
                 </div>
-            
             </div>
-        </section>
-      </div>
+            <div class="stat">
+                <i class="fas fa-palette"></i>
+                <div class="stat-text">
+                    <span class="label">COLOR:</span>
+                    <span class="value">Thunder</span>
+                </div>
+            </div>
+            <div class="stat">
+                <i class="fas fa-gem"></i>
+                <div class="stat-text">
+                    <span class="label">CLARITY:</span>
+                    <span class="value">FL</span>
+                </div>
+            </div>
+            <div class="stat">
+                <i class="fas fa-cut"></i>
+                <div class="stat-text">
+                    <span class="label">CUT:</span>
+                    <span class="value">Excellent</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <section id="probabilities-section">
+        <h2>Minting Probabilities</h2>
+        <br>
 
-    <section class="rarity-section" aria-label="NFT attributes and rarity logic">
+        <div class="probability-grid">
+            <!-- Color -->
+            <div class="probability-dropdown">
+                <button class="dropdown-toggle">Color <span class="arrow">&#9662;</span></button>
+                <ul class="dropdown-content">
+                    <li>Fire <span>12.5%</span></li>
+                    <li>Ice <span>12.5%</span></li>
+                    <li>Wind <span>12.5%</span></li>
+                    <li>Earth <span>12.5%</span></li>
+                    <li>Thunder <span>12.5%</span></li>
+                    <li>Water <span>12.5%</span></li>
+                    <li>Light <span>12.5%</span></li>
+                    <li>Darkness <span>12.5%</span></li>
+                </ul>
+            </div>
+
+            <!-- Clarity -->
+            <div class="probability-dropdown">
+                <button class="dropdown-toggle">Clarity <span class="arrow">&#9662;</span></button>
+                <ul class="dropdown-content">
+                    <li>FL <span>5%</span></li>
+                    <li>VVSI <span>10%</span></li>
+                    <li>VSI <span>15%</span></li>
+                    <li>SI <span>30%</span></li>
+                    <li>I <span>40%</span></li>
+                </ul>
+            </div>
+
+            <!-- Carat -->
+            <div class="probability-dropdown">
+                <button class="dropdown-toggle">Carat <span class="arrow">&#9662;</span></button>
+                <ul class="dropdown-content">
+                    <li>1.25 <span>5%</span></li>
+                    <li>1.1 <span>10%</span></li>
+                    <li>1.0 <span>15%</span></li>
+                    <li>0.9 <span>30%</span></li>
+                    <li>0.75 <span>40%</span></li>
+                </ul>
+            </div>
+
+            <!-- Cut -->
+            <div class="probability-dropdown">
+                <button class="dropdown-toggle">Cut <span class="arrow">&#9662;</span></button>
+                <ul class="dropdown-content">
+                    <li>Excellent <span>5%</span></li>
+                    <li>Very Good <span>10%</span></li>
+                    <li>Good <span>15%</span></li>
+                    <li>Fair <span>30%</span></li>
+                    <li>Poor <span>40%</span></li>
+                </ul>
+            </div>
+
+            <!-- Shape -->
+            <div class="probability-dropdown">
+                <button class="dropdown-toggle">Shape <span class="arrow">&#9662;</span></button>
+                <ul class="dropdown-content">
+                    <li>Triangle <span>20%</span></li>
+                    <li>Square <span>35%</span></li>
+                    <li>Round <span>45%</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</section>
+
+<div class="container">
+    <section class="mint-panel" aria-label="Minting control panel">
+        <div>
+            <h3>Live Mint Counter</h3>
+            <p class="mint-counter" id="mintCounter">Minted: 13,452 / 50,000</p>
+        </div>
+        <div>
+            <h3>Mint Price</h3>
+            <p class="mint-price" id="mintPrice">Price: $36 in BNB (auto converted)</p>
+        </div>
+        <div>
+            <div class="mint-input-group" role="group" aria-label="Select quantity and mint">
+                <a href="https://hodlx.exchange/nft-pools" target="_blank" style="text-decoration: none;">
+                    <button id="mintBtn" class="btn">Connect Wallet & Mint</button>
+                </a>
+            </div>
+        </div>
+    </section>
+</div>
+
+<section class="rarity-section" aria-label="NFT attributes and rarity logic">
     <h3>Gem Fighter Attributes: Why They Matter</h3>
     <p style="text-align:center; max-width: 850px; margin: 0 auto 2rem; color: #ffffff;">
-      Every Gem Fighter NFTs is a powerful fusion of five core gemological traits:
-      <strong>Shape</strong>, <strong>Color</strong>, <strong>Clarity</strong>, <strong>Cut</strong>, and <strong>Carat</strong>.
-      These attributes aren’t just visual — they define your NFTs rarity, strength, and strategic role within the Gem Fighter game.
+        Every Gem Fighter NFTs is a powerful fusion of five core gemological traits:
+        <strong>Shape</strong>, <strong>Color</strong>, <strong>Clarity</strong>, <strong>Cut</strong>, and <strong>Carat</strong>.
+        These attributes aren’t just visual — they define your NFTs rarity, strength, and strategic role within the Gem Fighter game.
     </p>
-  
+
     <div class="rarity-tiers">
-      <div class="tier" tabindex="0">
-        <video autoplay loop muted playsinline>
-          <source src="Images/HODLGemstone_Darkness_Round_VVSI_Excellent_VeryBig.mp4" type="video/mp4" />
-        </video>
-        <h4>Darkness Round</h4>
-        <p class="attributes-block">
-          <span class="label">Shape:</span> <span class="value">Round</span><br>
-          <span class="label">Color:</span> <span class="value">Darkness</span><br>
-          <span class="label">Clarity:</span> <span class="value">VVSI</span><br>
-          <span class="label">Cut:</span> <span class="value">Excellent</span><br>
-          <span class="label">Carat:</span> <span class="value">1.25</span>
-        </p>
-      </div>
-  
-      <div class="tier" tabindex="0">
-        <video autoplay loop muted playsinline>
-          <source src="Images/HODLGemstone_Fire_Round_VSI_Excellent_VeryBig.mp4" type="video/mp4" />
-        </video>
-        <h4>Fire Round</h4>
-        <p class="attributes-block">
-          <span class="label">Shape:</span> <span class="value">Round</span><br>
-          <span class="label">Color:</span> <span class="value">Fire</span><br>
-          <span class="label">Clarity:</span> <span class="value">VSI</span><br>
-          <span class="label">Cut:</span> <span class="value">Excellent</span><br>
-          <span class="label">Carat:</span> <span class="value">1.25</span>
-        </p>
-      </div>
-  
-      <div class="tier" tabindex="0">
-        <video autoplay loop muted playsinline>
-          <source src="Images/HODLGemstone_Ice_Trillon_VSI_Poor_Medium.mp4" type="video/mp4" />
-        </video>
-        <h4>Ice Trillon</h4>
-        <p class="attributes-block">
-          <span class="label">Shape:</span> <span class="value">Trillon</span><br>
-          <span class="label">Color:</span> <span class="value">Ice</span><br>
-          <span class="label">Clarity:</span> <span class="value">VSI</span><br>
-          <span class="label">Cut:</span> <span class="value">Poor</span><br>
-          <span class="label">Carat:</span> <span class="value">1.0</span>
-        </p>
-      </div>
-  
-      <div class="tier" tabindex="0">
-        <video autoplay loop muted playsinline>
-          <source src="Images/HODLGemstone_Light_Princess_I_Good_Small.mp4" type="video/mp4" />
-        </video>
-        <h4>Light Princess</h4>
-        <p class="attributes-block">
-          <span class="label">Shape:</span> <span class="value">Princess</span><br>
-          <span class="label">Color:</span> <span class="value">Light</span><br>
-          <span class="label">Clarity:</span> <span class="value">I</span><br>
-          <span class="label">Cut:</span> <span class="value">Good</span><br>
-          <span class="label">Carat:</span> <span class="value">0.8</span>
-        </p>
-      </div>
+        <div class="tier" tabindex="0">
+            <video autoplay loop muted playsinline>
+                <source src="Images/HODLGemstone_Darkness_Round_VVSI_Excellent_VeryBig.mp4" type="video/mp4" />
+            </video>
+            <h4>Darkness Round</h4>
+            <p class="attributes-block">
+                <span class="label">Shape:</span> <span class="value">Round</span><br>
+                <span class="label">Color:</span> <span class="value">Darkness</span><br>
+                <span class="label">Clarity:</span> <span class="value">VVSI</span><br>
+                <span class="label">Cut:</span> <span class="value">Excellent</span><br>
+                <span class="label">Carat:</span> <span class="value">1.25</span>
+            </p>
+        </div>
+
+        <div class="tier" tabindex="0">
+            <video autoplay loop muted playsinline>
+                <source src="Images/HODLGemstone_Fire_Round_VSI_Excellent_VeryBig.mp4" type="video/mp4" />
+            </video>
+            <h4>Fire Round</h4>
+            <p class="attributes-block">
+                <span class="label">Shape:</span> <span class="value">Round</span><br>
+                <span class="label">Color:</span> <span class="value">Fire</span><br>
+                <span class="label">Clarity:</span> <span class="value">VSI</span><br>
+                <span class="label">Cut:</span> <span class="value">Excellent</span><br>
+                <span class="label">Carat:</span> <span class="value">1.25</span>
+            </p>
+        </div>
+
+        <div class="tier" tabindex="0">
+            <video autoplay loop muted playsinline>
+                <source src="Images/HODLGemstone_Ice_Trillon_VSI_Poor_Medium.mp4" type="video/mp4" />
+            </video>
+            <h4>Ice Trillon</h4>
+            <p class="attributes-block">
+                <span class="label">Shape:</span> <span class="value">Trillon</span><br>
+                <span class="label">Color:</span> <span class="value">Ice</span><br>
+                <span class="label">Clarity:</span> <span class="value">VSI</span><br>
+                <span class="label">Cut:</span> <span class="value">Poor</span><br>
+                <span class="label">Carat:</span> <span class="value">1.0</span>
+            </p>
+        </div>
+
+        <div class="tier" tabindex="0">
+            <video autoplay loop muted playsinline>
+                <source src="Images/HODLGemstone_Light_Princess_I_Good_Small.mp4" type="video/mp4" />
+            </video>
+            <h4>Light Princess</h4>
+            <p class="attributes-block">
+                <span class="label">Shape:</span> <span class="value">Princess</span><br>
+                <span class="label">Color:</span> <span class="value">Light</span><br>
+                <span class="label">Clarity:</span> <span class="value">I</span><br>
+                <span class="label">Cut:</span> <span class="value">Good</span><br>
+                <span class="label">Carat:</span> <span class="value">0.8</span>
+            </p>
+        </div>
     </div>
     <br>
     <div class="attributes" aria-label="NFT attribute descriptions">
-      <div class="attr" tabindex="0" title="Attack increases your damage output.">
-        <i class="fas fa-fist-raised" aria-hidden="true"></i>
-        <span>Attack</span>
-      </div>
-      <div class="attr" tabindex="0" title="Defense reduces damage taken.">
-        <i class="fas fa-shield-alt" aria-hidden="true"></i>
-        <span>Defense</span>
-      </div>
-      <div class="attr" tabindex="0" title="Spell Boost enhances your special abilities.">
-        <i class="fas fa-magic" aria-hidden="true"></i>
-        <span>Spell Boost</span>
-      </div>
-      
+        <div class="attr" tabindex="0" title="Attack increases your damage output.">
+            <i class="fas fa-fist-raised" aria-hidden="true"></i>
+            <span>Attack</span>
+        </div>
+        <div class="attr" tabindex="0" title="Defense reduces damage taken.">
+            <i class="fas fa-shield-alt" aria-hidden="true"></i>
+            <span>Defense</span>
+        </div>
+        <div class="attr" tabindex="0" title="Spell Boost enhances your special abilities.">
+            <i class="fas fa-magic" aria-hidden="true"></i>
+            <span>Spell Boost</span>
+        </div>
     </div>
-  </section>
-  
-  
+</section>
+
 <div class="container">
-        <section class="use-cases" id="use-cases">
-            <h3>Why Mint Gem Fighter NFTs?</h3>
-            <div class="use-flex">
-              <ul class="use-list">
+    <section class="use-cases" id="use-cases">
+        <h3>Why Mint Gem Fighter NFTs?</h3>
+        <div class="use-flex">
+            <ul class="use-list">
                 <li> Game Perks: Boost your ship in-game</li>
                 <li> Earn $HODL rewards from staking</li>
                 <li> Trade freely on secondary markets</li>
                 <li> Own unique, animated voxel gems</li>
                 <li> Future utility in battle passes, upgrades, etc.</li>
-              </ul>
-          
-              <div class="use-img">
+            </ul>
+
+            <div class="use-img">
                 <img src="Images/why nft.png" alt="Why Mint NFT Illustration" />
-              </div>
             </div>
-          </section>
+        </div>
+    </section>
+</div>
 
-          </div>
-          
+<!-- 4. NFT Gallery -->
+<section class="gallery-preview" aria-label="NFT preview gallery">
+    <h3 class="section-title">Gallery Preview</h3>
+    <div class="preview-grid">
+        <!-- Fire Round -->
+        <div class="nft">
+            <img src="Images/HODLGemstone_Preview_Fire_Round_FL_Excellent_VeryBig_0.png" alt="Fire Round Gem" />
+            <p class="nft-caption">Fire Round – Excellent Cut</p>
+            <p class="nft-carat">1.25 Carat</p>
+        </div>
 
-          <!-- 4. NFT Gallery -->
-          <section class="gallery-preview" aria-label="NFT preview gallery">
-            <h3 class="section-title">Gallery Preview</h3>
-            <div class="preview-grid">
-              <!-- Fire Round -->
-              <div class="nft">
-                <img src="Images/HODLGemstone_Preview_Fire_Round_FL_Excellent_VeryBig_0.png" alt="Fire Round Gem" />
-                <p class="nft-caption">Fire Round – Excellent Cut</p>
-                <p class="nft-carat">1.25 Carat</p>
-              </div>
-          
-              <!-- Fire Trillion -->
-              <div class="nft">
-                <img src="Images/HODLGemstone_Preview_Fire_Trillon_I_Excellent_Medium_0.png" alt="Fire Trillion Gem" />
-                <p class="nft-caption">Fire Trillion – Excellent Cut</p>
-                <p class="nft-carat">1.0 Carat</p>
-              </div>
-          
-              <!-- Ice Round -->
-              <div class="nft">
-                <img src="Images/HODLGemstone_Preview_Ice_Round_VVSI_Excellent_Big_0.png" alt="Ice Round Gem" />
-                <p class="nft-caption">Ice Round – Excellent Cut</p>
-                <p class="nft-carat">1.1 Carat</p>
-              </div>
-          
-              <!-- Thunder Princess -->
-              <div class="nft">
-                <img src="Images/HODLGemstone_Preview_Thunder_Princess_FL_Excellent_VeryBig_0.png" alt="Thunder Princess Gem" />
-                <p class="nft-caption">Thunder Princess – Excellent Cut</p>
-                <p class="nft-carat">1.25 Carat</p>
-              </div>
-          
-              <!-- Water Princess -->
-              <div class="nft">
-                <img src="Images/HODLGemstone_Preview_Water_Princess_FL_Fair_Big_0.png" alt="Water Princess Gem" />
-                <p class="nft-caption">Water Princess – Fair Cut</p>
-                <p class="nft-carat">1.1 Carat</p>
-              </div>
-          
-              <!-- Water Trillon -->
-              <div class="nft">
-                <img src="Images/HODLGemstone_Preview_Water_Trillon_FL_Excellent_VeryBig_0.png" alt="Water Trillon Gem" />
-                <p class="nft-caption">Water Trillon – Excellent Cut</p>
-                <p class="nft-carat">1.25 Carat</p>
-              </div>
-            </div>
-          </section>
-          
-  
+        <!-- Fire Trillion -->
+        <div class="nft">
+            <img src="Images/HODLGemstone_Preview_Fire_Trillon_I_Excellent_Medium_0.png" alt="Fire Trillion Gem" />
+            <p class="nft-caption">Fire Trillion – Excellent Cut</p>
+            <p class="nft-carat">1.0 Carat</p>
+        </div>
 
-        
+        <!-- Ice Round -->
+        <div class="nft">
+            <img src="Images/HODLGemstone_Preview_Ice_Round_VVSI_Excellent_Big_0.png" alt="Ice Round Gem" />
+            <p class="nft-caption">Ice Round – Excellent Cut</p>
+            <p class="nft-carat">1.1 Carat</p>
+        </div>
 
-        <section class="faq-section" aria-label="Frequently Asked Questions">
-            <h3>FAQs</h3>
+        <!-- Thunder Princess -->
+        <div class="nft">
+            <img src="Images/HODLGemstone_Preview_Thunder_Princess_FL_Excellent_VeryBig_0.png" alt="Thunder Princess Gem" />
+            <p class="nft-caption">Thunder Princess – Excellent Cut</p>
+            <p class="nft-carat">1.25 Carat</p>
+        </div>
 
-            <div class="accordion">
-                <div class="accordion-header" tabindex="0">What are Gem Fighter NFTs?</div>
-                <div class="accordion-content">
-                    <p>Gem Fighter NFTs are unique, animated voxel gems that upgrade your spaceship's abilities and unlock rewards within the Gem Fighter game ecosystem.</p>
-                </div>
-            </div>
+        <!-- Water Princess -->
+        <div class="nft">
+            <img src="Images/HODLGemstone_Preview_Water_Princess_FL_Fair_Big_0.png" alt="Water Princess Gem" />
+            <p class="nft-caption">Water Princess – Fair Cut</p>
+            <p class="nft-carat">1.1 Carat</p>
+        </div>
 
-            <div class="accordion">
-                <div class="accordion-header" tabindex="0">What’s the mint price?</div>
-                <div class="accordion-content">
-                    <p>The mint price is currently fixed at $36 worth of BNB per NFTs. The exact BNB amount is auto-converted based on current market rates.</p>
-                </div>
-            </div>
+        <!-- Water Trillon -->
+        <div class="nft">
+            <img src="Images/HODLGemstone_Preview_Water_Trillon_FL_Excellent_VeryBig_0.png" alt="Water Trillon Gem" />
+            <p class="nft-caption">Water Trillon – Excellent Cut</p>
+            <p class="nft-carat">1.25 Carat</p>
+        </div>
+    </div>
+</section>
 
-            <div class="accordion">
-                <div class="accordion-header" tabindex="0">How can I stake them?</div>
-                <div class="accordion-content">
-                    <p>You can stake your Gem Fighter NFTs on the staking platform to earn $HODL tokens as rewards. This increases your earnings passively while holding the NFT.</p>
-                </div>
-            </div>
+<section class="faq-section" aria-label="Frequently Asked Questions">
+    <h3>FAQs</h3>
 
-            <div class="accordion">
-                <div class="accordion-header" tabindex="0">What wallet do I need?</div>
-                <div class="accordion-content">
-                    <p>You need a web3-compatible wallet such as MetaMask or WalletConnect to connect and mint your NFTs.</p>
-                </div>
-            </div>
-
-            <div class="accordion">
-                <div class="accordion-header" tabindex="0">Are there any limits?</div>
-                <div class="accordion-content">
-                    <p>No, there is not a max mint quantity. The total supply is capped at 50,000 NFTs.</p>
-                </div>
-            </div>
-        </section>
-
+    <div class="accordion">
+        <div class="accordion-header" tabindex="0">What are Gem Fighter NFTs?</div>
+        <div class="accordion-content">
+            <p>Gem Fighter NFTs are unique, animated voxel gems that upgrade your spaceship's abilities and unlock rewards within the Gem Fighter game ecosystem.</p>
+        </div>
     </div>
 
-    <script>
-        // Wallet connect & mint simulation
-        const connectBtn = document.getElementById('connectMintBtn');
-        const mintBtn = document.getElementById('mintBtn');
-        const mintQuantityInput = document.getElementById('mintQuantity');
-        const totalPriceElem = document.getElementById('totalPrice');
-        const gasEstimateElem = document.getElementById('gasEstimate');
-        const mintCounterElem = document.getElementById('mintCounter');
-
-        let walletConnected = false;
-        const mintPriceUSD = 36;
-        let bnbPriceUSD = 320; // dummy, can update dynamically
-        let totalMinted = 13452;
-        const maxSupply = 50000;
-        const maxMintPerTx = 10;
-
-        // Function to update total price and gas estimate
-        function updatePricing() {
-            let qty = parseInt(mintQuantityInput.value);
-            if (isNaN(qty) || qty < 1) qty = 1;
-            if (qty > maxMintPerTx) qty = maxMintPerTx;
-            mintQuantityInput.value = qty;
-
-            const totalUSD = mintPriceUSD * qty;
-            const totalBNB = (totalUSD / bnbPriceUSD).toFixed(4);
-
-            totalPriceElem.textContent = `Total: ${totalBNB} BNB (~$${totalUSD.toFixed(2)})`;
-            gasEstimateElem.textContent = `Gas Estimate: ~0.005 BNB`;
-        }
-
-        // Simulate wallet connect and enable minting
-        connectBtn.addEventListener('click', () => {
-            if (!walletConnected) {
-                alert('Wallet connected (simulated). You can now mint NFTs.');
-                walletConnected = true;
-                mintBtn.disabled = false;
-                connectBtn.textContent = 'Wallet Connected';
-                connectBtn.disabled = true;
-            }
-        });
-
-        mintQuantityInput.addEventListener('input', () => {
-            updatePricing();
-        });
-
-        mintBtn.addEventListener('click', () => {
-            const qty = parseInt(mintQuantityInput.value);
-            if (!walletConnected) {
-                alert('Please connect your wallet first.');
-                return;
-            }
-            if (qty < 1 || qty > maxMintPerTx) {
-                alert(`You can mint between 1 and ${maxMintPerTx} NFTs per transaction.`);
-                return;
-            }
-            if (totalMinted + qty > maxSupply) {
-                alert('Mint quantity exceeds available supply.');
-                return;
-            }
-            // Simulate mint success
-            totalMinted += qty;
-            mintCounterElem.textContent = `Minted: ${totalMinted.toLocaleString()} / ${maxSupply.toLocaleString()}`;
-            alert(`Successfully minted ${qty} NFT(s)!`);
-        });
-
-        // Initialize pricing on page load
-        updatePricing();
-
-        // Accordion FAQ
-        document.querySelectorAll('.accordion-header').forEach(header => {
-            header.addEventListener('click', () => {
-                const active = header.classList.contains('active');
-                document.querySelectorAll('.accordion-header').forEach(h => h.classList.remove('active'));
-                document.querySelectorAll('.accordion-content').forEach(c => c.style.maxHeight = null);
-
-                if (!active) {
-                    header.classList.add('active');
-                    const content = header.nextElementSibling;
-                    content.style.maxHeight = content.scrollHeight + 'px';
-                }
-            });
-
-            // Enable keyboard accessibility
-            header.addEventListener('keydown', e => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    header.click();
-                }
-            });
-        });
-
-        // Gallery Preview Sample NFTs (Placeholder images, replace with real ones)
-    
-        const galleryData = [
-            { img: 'Images/HODLGemstone_Preview_Fire_Round_FL_Excellent_VeryBig_0.png', caption: 'Fire Round – Excellent Cut', carat: '1.25 Carat' },
-            { img: 'Images/HODLGemstone_Preview_Fire_Trillon_I_Excellent_Medium_0.png', caption: 'Fire Trillion – Excellent Cut', carat: '1.0 Carat' },
-            { img: 'Images/HODLGemstone_Preview_Ice_Round_VVSI_Excellent_Big_0.png', caption: 'Ice Round – Excellent Cut', carat: '1.1 Carat' },
-            { img: 'Images/HODLGemstone_Preview_Thunder_Princess_FL_Excellent_VeryBig_0.png', caption: 'Thunder Princess – Excellent Cut', carat: '1.25 Carat' },
-            { img: 'Images/HODLGemstone_Preview_Water_Princess_FL_Fair_Big_0.png', caption: 'Water Princess – Fair Cut', carat: '1.1 Carat' },
-            { img: 'Images/HODLGemstone_Preview_Water_Trillon_FL_Excellent_VeryBig_0.png', caption: 'Water Trillion – Excellent Cut', carat: '1.25 Carat' }
-        ];
-    
-        const galleryGrid = document.getElementById('galleryGrid');
-        galleryData.forEach(item => {
-            const div = document.createElement('div');
-            div.className = 'nft';
-            div.innerHTML = `
-                <div class="nft-media">
-                    <img src="${item.img}" alt="${item.caption}" />
-                    <p class="nft-caption">${item.caption}</p>
-                    <p class="nft-carat">${item.carat}</p>
-                </div>
-            `;
-            galleryGrid.appendChild(div);
-        });
-    </script>
-        
-
-
-     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="terms.html">Terms</a>
-                <span class="link-separator">⏺</span>
-                <a href="privacy.html">Privacy</a>
-                <span class="link-separator">⏺</span>
-                <a href="cookies.html">Cookies</a>
-                <span class="link-separator">⏺</span>
-                <a href="disclaimers.html">Disclaimers</a>
-            </div><br />
-
-            <div class="social-icons" style="margin: 1.5rem 0;">
-                <a href="https://x.com/GemFighterP2E" target="_blank" class="social-link">
-                    <i class="fab fa-x-twitter"></i>
-                </a>
-                <a href="https://t.me/GemFighterP2E" target="_blank" class="social-link">
-                    <i class="fab fa-telegram-plane"></i>
-                </a>
-            </div>
-
-            <p class="footer-text">
-                © 2025 GEM FIGHTER<br />
-                SURVIVE → EARN → HODL
-            </p>
+    <div class="accordion">
+        <div class="accordion-header" tabindex="0">What’s the mint price?</div>
+        <div class="accordion-content">
+            <p>The mint price is currently fixed at $36 worth of BNB per NFTs. The exact BNB amount is auto-converted based on current market rates.</p>
         </div>
-    </footer>
+    </div>
 
-    <script src="script.js"></script>
+    <div class="accordion">
+        <div class="accordion-header" tabindex="0">How can I stake them?</div>
+        <div class="accordion-content">
+            <p>You can stake your Gem Fighter NFTs on the staking platform to earn $HODL tokens as rewards. This increases your earnings passively while holding the NFT.</p>
+        </div>
+    </div>
+
+    <div class="accordion">
+        <div class="accordion-header" tabindex="0">What wallet do I need?</div>
+        <div class="accordion-content">
+            <p>You need a web3-compatible wallet such as MetaMask or WalletConnect to connect and mint your NFTs.</p>
+        </div>
+    </div>
+
+    <div class="accordion">
+        <div class="accordion-header" tabindex="0">Are there any limits?</div>
+        <div class="accordion-content">
+            <p>No, there is not a max mint quantity. The total supply is capped at 50,000 NFTs.</p>
+        </div>
+    </div>
+</section>
+
+
+
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-links">
+            <a href="terms.html">Terms</a>
+            <span class="link-separator">⏺</span>
+            <a href="privacy.html">Privacy</a>
+            <span class="link-separator">⏺</span>
+            <a href="cookies.html">Cookies</a>
+            <span class="link-separator">⏺</span>
+            <a href="disclaimers.html">Disclaimers</a>
+        </div><br />
+
+        <div class="social-icons" style="margin: 1.5rem 0;">
+            <a href="https://x.com/GemFighterP2E" target="_blank" class="social-link">
+                <i class="fab fa-x-twitter"></i>
+            </a>
+            <a href="https://t.me/GemFighterP2E" target="_blank" class="social-link">
+                <i class="fab fa-telegram-plane"></i>
+            </a>
+        </div>
+
+        <p class="footer-text">
+            © 2025 GEM FIGHTER<br />
+            SURVIVE → EARN → HODL
+        </p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
 
 </body>
 </html>

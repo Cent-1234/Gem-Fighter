@@ -1,0 +1,885 @@
+/* NFT Page Specific Styles */
+body {
+    background-color: #0a0a0a;
+    color: #fff;
+    font-family: 'Jost', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+a {
+    color: #00f3ff;
+    text-decoration: none;
+}
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem 3rem;
+}
+
+.hero {
+    width: 100%;
+    padding: 6rem 1rem 5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* ensures ::before stays contained */
+    background: #000000;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('Images/gemfigher-spaceship5.webp') center/cover no-repeat;
+    opacity: 0.3; /* start lower for visibility tuning */
+    z-index: 0;
+    pointer-events: none;
+}
+
+.hero > * {
+    position: relative;
+    z-index: 1;
+}
+
+.hero h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 15px #00f3ff;
+    text-transform: uppercase;
+}
+.hero p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+}
+.hero button {
+    background: linear-gradient(45deg, #00f3ff, #0066ff);
+    border: none;
+    border-radius: 30px;
+    padding: 1rem 3rem;
+    font-size: 1.4rem;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(0, 243, 255, 0.5);
+    transition: transform 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+.hero button:hover {
+    transform: scale(1.05);
+    box-shadow:
+        0 0 35px rgba(0, 243, 255, 0.9),
+        0 0 55px rgba(0, 243, 255, 0.6),
+        inset 0 0 20px rgba(0, 243, 255, 0.5);
+}
+.hero button::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent 25%, rgba(0, 243, 255, 0.1) 50%, transparent 75%);
+    animation: energyBeam 4s infinite linear;
+    opacity: 0.5;
+    pointer-events: none;
+}
+@keyframes energyBeam {
+    0% { transform: translateX(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) rotate(45deg); }
+}
+
+.preview iframe {
+    max-width: 850px;
+    padding-top: 20px;
+    height: 100%;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+}
+
+probabilities-section {
+    text-align: center;
+    margin-top: 80px;
+    padding: 20px;
+}
+
+.section-title {
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+    font-size: 2rem;
+    text-shadow: 0 0 10px #00f0ff;
+    margin-bottom: 30px;
+}
+
+.probability-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.probability-dropdown {
+    background: #111;
+    border: 1px solid #00f0ff;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.08);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative;
+}
+
+.dropdown-toggle {
+    background: transparent;
+    border: none;
+    width: 100%;
+    padding: 12px 20px;
+    color: #00f3ff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.dropdown-toggle .arrow {
+    transition: transform 0.3s ease;
+}
+
+.probability-dropdown.open .arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-content {
+    list-style: none;
+    padding: 0 20px;
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+}
+
+.probability-dropdown.open .dropdown-content {
+    padding: 10px 20px 15px;
+}
+
+.dropdown-content li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 1px;
+    border-bottom: 5px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.95rem;
+}
+
+.dropdown-content li span {
+    color: #00f2ff;
+}
+
+/* Mint Panel */
+.mint-panel {
+    background: #111;
+    border-radius: 15px;
+    padding: 2rem 3rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 0 25px #00f3ff33;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+}
+.mint-panel > div {
+    flex: 1 1 220px;
+}
+.mint-panel h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    text-shadow: 0 0 10px #00f3ff;
+}
+.mint-counter, .mint-price {
+    font-size: 1.1rem;
+    color: #00f3ff;
+}
+.mint-input-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: nowrap;
+}
+.mint-input-group input[type=number] {
+    width: 80px;
+    padding: 0.6rem 1rem;
+    border-radius: 10px;
+    border: none;
+    font-size: 1.2rem;
+    text-align: center;
+    background: #222;
+    color: #fff;
+}
+.mint-input-group button {
+    background: linear-gradient(45deg, #00f3ff, #0066ff);
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(0, 243, 255, 0.4);
+    transition: transform 0.3s;
+}
+.mint-input-group button:hover {
+    transform: scale(1.05);
+}
+.total-price {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: #66ffff;
+}
+.gas-estimate {
+    margin-top: 0.3rem;
+    font-size: 0.9rem;
+    color: #00bbffaa;
+}
+
+.mint-overview {
+    background: linear-gradient(45deg, #001a1a, #000a1a);
+    border-radius: 15px;
+    padding: 2rem 3rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 0 25px #00f3ff33;
+    text-align: center;
+}
+
+.mint-overview h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+    text-shadow: 0 0 15px #00f3ff;
+}
+
+.mint-overview p {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.mint-overview-flex {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;     /* Center vertically */
+    gap: 1rem;               /* Space between items */
+    flex-wrap: wrap;         /* Allow wrapping on smaller screens */
+    max-width: 900px;        /* Limit width to keep elements closer */
+    margin: 0 auto;          /* Center the flex container itself */
+}
+
+.mint-attributes {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.mint-attr {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: #1a1a1a;
+    padding: 0.8rem 1.2rem;
+    border-radius: 10px;
+    color: #ffffff;
+    box-shadow: 0 0 10px #00f3ff22;
+    font-size: 1.1rem;
+    width: 220px;
+}
+
+.mint-attr i {
+    font-size: 1.4rem;
+    color: #00f3ff;
+}
+
+/* 3D Card (no blue “drop-shadow”) */
+.mint-card-3d {
+    perspective: 1200px;
+    width: 400px;
+    height: 420px;
+    margin: 0 auto 1rem; /* Adjusted margin */
+    flex-shrink: 0; /* Prevent shrinking when space is tight */
+}
+.card-inner {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    animation: rotateCard 12s infinite linear;
+    position: relative; /* Essential for absolute positioning of faces */
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Hides the mirrored back of each individual face */
+    display: flex; /* To center the image within each face */
+    justify-content: center;
+    align-items: center;
+}
+
+.card-front {
+    transform: rotateY(0deg); /* Default front orientation */
+}
+
+.card-back {
+    transform: rotateY(180deg); /* Rotates the back face to be correctly oriented */
+}
+/* Ensure the image within the card face is styled correctly */
+.card-face img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 12px rgba(0,255,255,0.4));
+}
+
+@keyframes rotateCard {
+    from { transform: rotateY(0deg); }
+    to   { transform: rotateY(360deg); }
+}
+
+/* Game-style Stats Panel */
+.mint-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 400px; /* Adjust max-width as needed */
+    margin: 0; /* Remove auto margin from here */
+    flex-grow: 1; /* Allow it to grow to fill space */
+    text-align: left; /* Align text within stats */
+}
+.stat {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(45deg, #181818, #25252a); /* Subtle gradient background */
+    border: 1px solid #00f3ff44; /* Slightly more prominent border */
+    border-radius: 8px;
+    padding: 0.9rem 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow:
+        0 0 15px rgba(0, 243, 255, 0.15), /* Enhanced outer glow */
+        inset 0 0 8px rgba(0, 243, 255, 0.05); /* Subtle inner glow */
+}
+
+.stat-text {
+    display: flex;
+    justify-content: space-between;
+    min-width: 140px; /* optional */
+    gap: 1rem;
+}
+
+.stat-text .label {
+    font-weight: 700;
+    color: #00f3ff;
+    flex-shrink: 0;
+    width: 80px; /* fixed width */
+    text-align: left;
+}
+
+.stat-text .value {
+    font-weight: 500;
+    color: #eee;
+    flex-grow: 1;
+    text-align: left;
+    padding-left: 30px;
+}
+.stat i {
+    font-size: 1.4rem;
+    color: #00f3ff;
+    margin-right: 0.8rem;
+    transition: color 0.3s ease;
+}
+.stat span {
+    font-size: 1rem;
+    color: #eee;
+    font-weight: 500;
+    text-shadow: 0 0 4px #000;
+    flex-grow: 1; /* Allow the span to take available space */
+}
+
+/* Hover Glow Effect */
+.stat:hover {
+    border-color: #00f3ff88;
+    box-shadow:
+    0 0 8px #00f3ff88,
+    inset 0 0 12px #00f3ff33;
+    transform: translateX(5px);
+}
+.stat:hover i {
+    color: #66ffff;
+    text-shadow: 0 0 8px #66ffff;
+}
+
+/* NFT Range Overview */
+.rarity-section {
+    background: #111;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 0 25px #00f3ff33;
+    margin-bottom: 3rem;
+}
+.rarity-section h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #ffffff;
+    text-shadow: 0 0 15px #00f3ff;
+}
+.rarity-tiers {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+.tier video {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 0 15px #00f3ff55;
+    margin-bottom: 0.8rem;
+}
+.tier {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #222;
+    border-radius: 15px;
+    padding: 1rem;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 0 15px #00f3ff66;
+    transition: transform 0.3s;
+    overflow: hidden;
+}
+
+.tier:hover {
+    transform: scale(1.05);
+}
+.tier img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 0.8rem;
+}
+.tier h4 {
+    font-family: 'Orbitron', sans-serif;
+    color: #00f3ff;
+    margin-bottom: 0.3rem;
+}
+.attributes {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.attributes-block {
+    line-height: 1.8;
+    font-size: 0.95rem;
+    color: #ddd;
+    text-align: left;
+}
+
+.attributes-block .label {
+    color: #00f3ff;
+    font-weight: 600;
+}
+
+.attributes-block .value {
+    color: #ffffff;
+    font-weight: 400;
+}
+
+.attr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100px;
+    user-select: none;
+}
+.attr i {
+    font-size: 2rem;
+    color: #00f3ff;
+    margin-bottom: 0.3rem;
+}
+.attr span {
+    font-size: 0.9rem;
+    color: #66ffff;
+    text-align: center;
+}
+
+/* Use Cases Section */
+.use-cases {
+    background: linear-gradient(45deg, #001a1a, #000a1a);
+    padding: 2rem 3rem;
+    border-radius: 15px;
+    margin-bottom: 3rem;
+    box-shadow: 0 0 30px #00f3ff44;
+}
+.use-cases h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    text-shadow: 0 0 15px #00f3ff;
+}
+.use-list {
+    list-style: none;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+.use-list li {
+    margin-bottom: 1.2rem;
+    padding-left: 2.5rem;
+    position: relative;
+    cursor: default;
+}
+.use-list li::before {
+    content: "🎮";
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.use-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    padding: 0 1rem;
+}
+
+.use-list {
+    list-style: none;
+    font-size: 1.2rem;
+    line-height: 2;
+    color: #ffffff;
+    padding-left: 0;
+    max-width: 520px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.use-list li {
+    margin-bottom: 0.6rem;
+}
+
+.use-img {
+    flex-shrink: 0;
+    max-width: 420px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.use-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* We'll customize each icon with a class */
+.use-list li:nth-child(2)::before { content: "💰"; }
+.use-list li:nth-child(3)::before { content: "🔄"; }
+.use-list li:nth-child(4)::before { content: "🎨"; }
+.use-list li:nth-child(5)::before { content: "💥"; }
+
+.gallery-preview {
+    margin-bottom: 4rem;
+    padding: 2rem 1rem;
+    background: linear-gradient(135deg, #0a0a0a, #111122);
+    border-radius: 20px;
+    box-shadow: 0 0 35px rgba(0, 243, 255, 0.1);
+}
+
+.gallery-preview h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    color: #ffffff;
+    text-shadow: 0 0 12px #00f3ffcc;
+    letter-spacing: 1px;
+}
+
+.preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.preview-grid .nft {
+    background: #1a1a1a;
+    border: 2px solid #00f3ff33;
+    border-radius: 18px;
+    padding: 1.2rem;
+    box-shadow: 0 0 25px rgba(0, 243, 255, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+    overflow: hidden;
+}
+
+.preview-grid .nft:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 35px rgba(0, 243, 255, 0.4);
+    border-color: #00f3ff88;
+}
+
+.preview-grid .nft img {
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.preview-grid .nft:hover img {
+    transform: scale(1.04);
+}
+
+/* FAQ Section */
+.faq-section {
+    max-width: 1200px;
+    margin: 0 auto 5rem;
+    background: #111;
+    border-radius: 15px;
+    box-shadow: 0 0 30px #00f3ff44;
+    padding: 2rem 3rem;
+}
+.faq-section h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    text-shadow: 0 0 15px #00f3ff;
+}
+.accordion {
+    background: #222;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+.accordion-header {
+    cursor: pointer;
+    padding: 1rem 1.5rem;
+    font-weight: 700;
+    font-family: 'Jost', sans-serif;
+    font-size: 1.1rem;
+    color: #00f3ff;
+    position: relative;
+    user-select: none;
+}
+.accordion-header::after {
+    content: '\25BC';
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s;
+    font-size: 0.8rem;
+    color: #00f3ffcc;
+}
+.accordion-header.active::after {
+    transform: translateY(-50%) rotate(180deg);
+}
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+    padding: 0 1.5rem;
+    color: #66ffff;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+.accordion-content p {
+    margin: 1rem 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .mint-panel {
+        flex-direction: column;
+    }
+    .mint-panel > div {
+        flex: 1 1 100%;
+    }
+    .rarity-tiers {
+        flex-direction: column;
+        align-items: center;
+    }
+    .tier {
+        width: 75%;
+    }
+    .mint-overview-flex {
+        flex-direction: column; /* Stack items vertically on small screens */
+        align-items: center; /* Center items when stacked */
+        gap: 1.5rem;
+    }
+    .mint-card-3d {
+        margin-bottom: 1rem; /* Adjust margin for stacked layout */
+    }
+    .mint-panel {
+        align-items: center;
+        text-align: center;
+      }
+    
+      .mint-panel > div {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    
+      .mint-input-group {
+        justify-content: center;
+      }
+    
+      .mint-input-group button {
+        width: 90%;
+        max-width: 300px;
+      }
+
+      .mint-overview-flex {
+        flex-direction: column;
+        align-items: center;
+      }
+    
+      .mint-card-3d {
+        transform: none !important;
+        margin: 0 auto;
+      }
+    
+      .mint-attributes {
+        width: 100%;
+        max-width: 100px;
+        margin-top: 1rem;
+      }
+    
+      .mint-card-3d img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      
+}
+
+@media (max-width: 580px) {
+    .mint-overview-flex {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1rem; /* Increase spacing */
+      padding: 0 1rem;
+    }
+
+    .use-list li  {
+        font-size: 1rem;
+    }
+
+    .rarity-section h3 {
+        font-size: 1.8rem;
+    }
+
+    .gallery-preview h3 {
+        font-size: 1.8rem;
+    }
+
+    .faq-section h3 {
+        font-size: 1.8rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .hero h1 {
+        font-size: 2.3rem;
+    }
+     .stat-text .value {
+        font-weight: 500;
+        color: #eee;
+        flex-grow: 1;
+        text-align: left;
+        padding-left: 10px;
+    }
+
+    
+    .mint-card-3d {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      margin: 0 auto 1.5rem; /* Add bottom margin */
+      perspective: 1000px;
+    }
+  
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: rotateCard 12s infinite linear;
+      position: relative;
+      aspect-ratio: 3 / 4; /* Respect a fixed aspect ratio */
+    }
+  
+    .card-face {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+  
+    .card-face img {
+        width: 200%;
+        height: auto;
+        max-height: 100%;
+        object-fit: contain;
+    }
+
+    .use-img img {
+        width: 110%;
+    }
+
+    .use-flex {
+        gap: 1rem;
+    }
+
+    .preview iframe {
+        aspect-ratio: 9/ 10; /* Taller on mobile */
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+      }
+}
