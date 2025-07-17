@@ -1,0 +1,373 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0a0a0a;
+    color: #fff;
+    font-family: 'Jost', sans-serif;
+    overflow-x: hidden;
+    /* Subtle animated background */
+    background: #0a0a0a; /* Fallback */
+    background-image:
+        radial-gradient(circle at top left, rgba(0, 243, 255, 0.05) 0%, transparent 30%),
+        radial-gradient(circle at bottom right, rgba(0, 102, 255, 0.05) 0%, transparent 30%);
+    background-size: cover; /* Ensure gradients cover the body */
+    animation: background-pulse 60s linear infinite alternate; /* Slow, gentle pulse */
+}
+
+@keyframes background-pulse {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+
+/* Hero Section */
+#hero {
+    background-image: url('Images/sample.jpg'); /* Default hero image */
+    background-size: cover;
+    background-position: center;
+    padding: 8rem 2rem 0rem;
+    text-align: center;
+    color: #ffffff;
+    transition: background-image 1s ease-in-out; /* For dynamic hero background */
+}
+
+#hero h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 4rem;
+    text-shadow: 0 0 15px #00f3ff;
+}
+
+#hero p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.cta-button {
+    background: linear-gradient(45deg, #00f3ff, #0066ff);
+    border: none;
+    padding: 1rem 3rem;
+    font-size: 1.6rem;
+    color: white;
+    cursor: pointer;
+    border-radius: 30px;
+    box-shadow: 0 0 25px rgba(0, 243, 255, 0.5);
+    transition: transform 0.3s, box-shadow 0.3s; /* Added box-shadow transition */
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 35px rgba(0, 243, 255, 0.8); /* Enhanced glow on hover */
+}
+
+
+/* Story Slider */
+.slider-container {
+    position: relative;
+    width: 100%;
+    padding: 0 50px; /* Adjust space for arrows */
+}
+
+.slider {
+    position: relative; /* Essential for absolute positioning of slides */
+    height: auto; /* Allow height to be determined by active slide content */
+    overflow: hidden; /* Hide inactive slides outside the view */
+    width: 100%;
+    padding: 0;
+    transition: height 0.5s ease-in-out; /* Smooth height transition */
+}
+
+.slider::-webkit-scrollbar {
+    display: none;
+}
+
+.slide {
+    position: absolute; /* Take out of normal flow */
+    top: 0;
+    left: 0;
+    width: 100%; /* Take full width of the slider */
+    height: auto; /* Crucial for dynamic height */
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #1a1a1a;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+    
+    /* Transitions for fade and slide effect */
+    opacity: 0;
+    pointer-events: none; /* Prevent interaction when hidden */
+    transform: translateX(0); /* Default state for active slide */
+    transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+    pointer-events: all; /* Enable interaction when active */
+    position: static; /* Bring back to normal flow to dictate parent height */
+    transform: translateX(0); /* Ensure active is in place */
+}
+
+/* Slide exit animations */
+.slide.slide-exit-left {
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
+.slide.slide-exit-right {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+/* Slide enter animations (initial state before becoming active) */
+.slide.slide-enter-left {
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
+.slide.slide-enter-right {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+
+.slide img {
+    max-width: 60%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.3); /* Subtle image glow */
+}
+
+.chapter-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    color: #ffffff;
+    text-shadow: 0 0 15px #00f3ff;
+    margin-bottom: 1.5rem;
+}
+
+.chapter-description {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #ddd;
+    width: 90%;
+    margin-bottom: 1.5rem;
+    /* Removed Typewriter/reveal effect for text */
+}
+
+
+/* Arrows */
+.slider-arrow {
+    position: absolute;
+    top: 50%;/* Position at the top */
+    font-size: 1.2rem; /* Smaller font size for minimalist text */
+    color: #00f3ff;
+    cursor: pointer;
+    border: 1px solid #00f3ff; /* Minimalist border */
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    padding: 0.5rem 0.5rem;
+    border-radius: 5px;
+    transition: all 0.3s ease; /* Smooth transitions for all properties */
+    z-index: 100;
+    text-transform: uppercase; /* Make text uppercase */
+    font-family: 'Orbitron', sans-serif; /* Apply Orbitron font */
+    letter-spacing: 1px;
+}
+
+.slider-arrow:hover {
+    background: #00f3ff; /* Solid background on hover */
+    color: #0a0a0a; /* Dark text on hover */
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.6); /* Glow on hover */
+    transform: translateY(0) scale(1.05); /* Slight scale on hover */
+}
+
+.top-left-arrow { /* Specific class for top-left */
+    left: 10px;
+}
+
+.top-right-arrow { /* Specific class for top-right */
+    right: 10px;
+}
+
+/* Chapter Indicator (Gemstone Dots) */
+.chapter-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+    position: relative;
+    z-index: 50;
+}
+
+.gemstone-track {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 1rem;
+}
+
+.gemstone-dot {
+    width: 15px;
+    height: 15px;
+    background-color: rgba(0, 243, 255, 0.2); /* Faded color */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.gemstone-dot:hover {
+    background-color: rgba(0, 243, 255, 0.6);
+    transform: scale(1.1);
+}
+
+.gemstone-dot.active {
+    background-color: #00f3ff; /* Active color */
+    box-shadow: 0 0 10px #00f3ff, 0 0 20px rgba(0, 243, 255, 0.5); /* Glowing effect */
+    transform: scale(1.2);
+}
+
+.chapter-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem;
+    color: #ddd;
+}
+
+
+/* Footer */
+.footer {
+    background: linear-gradient(45deg, #001a1a, #000a1a);
+    padding: 2rem;
+    text-align: center;
+    border-top: 1px solid #00f3ff33;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-links a {
+    color: #00f3ff;
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    text-shadow: 0 0 15px rgba(0, 243, 255, 0.6);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    #hero {
+        padding: 5rem 2rem 0rem;
+    }
+
+    #hero h1  {
+        font-size: 2.1rem;
+        line-height: 1.2;
+        margin: 1rem 0;
+    }
+
+    .cta-button {
+        font-size: 1.2rem;
+        padding: 1rem 2rem;
+    }
+
+    .slider-container {
+        padding: 0 30px;
+    }
+
+    .slider {
+        width: 100%;
+    }
+
+    .slide {
+        padding: 1.5rem;
+    }
+
+    .chapter-title {
+        font-size: 2rem;
+    }
+
+    .chapter-description {
+        font-size: 1rem;
+    }
+
+    .slider-arrow {
+        font-size: 1.2rem; /* Adjusted for mobile */
+        padding: 0.4rem 0.8rem; /* Adjusted for mobile */
+    }
+
+    .slide img {
+        max-width: 100%;
+    }
+
+    .footer-content {
+        padding: 0 1rem;
+    }
+
+    .gemstone-dot {
+        width: 12px;
+        height: 12px;
+        gap: 10px;
+    }
+
+    .chapter-label {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .slider-arrow {
+        font-size: 1rem; /* Adjusted for smaller mobile */
+        padding: 0.3rem 0.6rem 0rem; /* Adjusted for smaller mobile */
+    }
+
+    #hero h1  {
+        font-size: 2.1rem;
+    }
+
+    .slide {
+        padding: 1rem;
+    }
+
+    .slide img {
+        max-width: 100%;
+    }
+
+    .chapter-title {
+        font-size: 1.8rem;
+    }
+
+    .chapter-description {
+        font-size: 0.9rem;
+    }
+
+    .cta-button {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
+
+    .footer-content {
+        padding: 0 1rem;
+    }
+
+    .gemstone-dot {
+        width: 10px;
+        height: 10px;
+        gap: 8px;
+    }
+
+    .chapter-label {
+        font-size: 0.8rem;
+    }
+}
