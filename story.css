@@ -167,18 +167,26 @@ body {
 .slider-arrow {
     position: absolute;
     top: 50%;/* Position at the top */
-    font-size: 1.2rem; /* Smaller font size for minimalist text */
+    font-size: 1.5rem; /* Slightly larger font size */
     color: #00f3ff;
     cursor: pointer;
     border: 1px solid #00f3ff; /* Minimalist border */
     background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    padding: 0.5rem 0.5rem;
+    padding: 0.7rem 0.8rem; /* Slightly more padding */
     border-radius: 5px;
     transition: all 0.3s ease; /* Smooth transitions for all properties */
     z-index: 100;
     text-transform: uppercase; /* Make text uppercase */
     font-family: 'Orbitron', sans-serif; /* Apply Orbitron font */
     letter-spacing: 1px;
+    transform: scale(1); /* Initial scale for pulsing */
+    animation: pulse-arrow 2s ease-in-out infinite alternate; /* Apply pulsing animation */
+}
+
+@keyframes pulse-arrow {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
 }
 
 .slider-arrow:hover {
