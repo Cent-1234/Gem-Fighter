@@ -21,7 +21,7 @@ body {
 
 @keyframes background-pulse {
     0% { background-position: 0% 0%; }
-    100% { background-position: 100% 100%; }
+    50% { background-position: 100% 100%; }
 }
 
 
@@ -204,6 +204,53 @@ body {
     right: 10px;
 }
 
+/* Character Gallery */
+.character-gallery {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    justify-content: center; /* Center items horizontally */
+    gap: 30px; /* Increased space between character cards */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%; /* Take full width of the slide */
+}
+
+.character-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 240px; /* Increased max-width for each card */
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.character-card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+}
+
+.character-card img {
+    width: 100%; /* Make image fill its parent card */
+    height: 200px; /* Set a fixed height for the image */
+    object-fit: cover; /* Crop images to fit */
+    border-radius: 8px; /* Square images with slight rounding */
+    border: 3px solid #00f3ff; /* Border around image */
+    margin-bottom: 10px;
+    box-shadow: 0 0 8px rgba(0, 243, 255, 0.5); /* Glow around image */
+    max-width: none; /* Override the general .slide img max-width */
+}
+
+.character-card p {
+    font-size: 1.05rem; /* Slightly increased font size for description */
+    line-height: 1.4;
+    color: #ccc;
+}
+
+
 /* Chapter Indicator (Gemstone Dots) */
 .chapter-indicator {
     display: flex;
@@ -332,6 +379,21 @@ body {
     .chapter-label {
         font-size: 0.9rem;
     }
+
+    .character-card {
+        max-width: 180px; /* Adjusted for larger images on tablet */
+        padding: 12px;
+    }
+
+    .character-card img {
+        width: 100%; /* Adjusted for larger images on tablet */
+        height: 140px; /* Adjusted for larger images on tablet */
+        border-radius: 6px; /* Slightly rounded square */
+    }
+
+    .character-card p {
+        font-size: 0.95rem; /* Adjusted for larger images on tablet */
+    }
 }
 
 @media (max-width: 480px) {
@@ -377,5 +439,20 @@ body {
 
     .chapter-label {
         font-size: 0.8rem;
+    }
+
+    .character-card {
+        max-width: 200px; /* Adjusted for smaller mobile */
+        padding: 10px;
+    }
+
+    .character-card img {
+        width: 100%; /* Adjusted for smaller mobile */
+        height: 180px; /* Adjusted for smaller mobile */
+        border-radius: 5px; /* Slightly rounded square */
+    }
+
+    .character-card p {
+        font-size: 0.9rem; /* Adjusted for smaller mobile */
     }
 }
