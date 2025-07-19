@@ -8,11 +8,9 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="story.css" />
     <link rel="icon" href="Images/logo.png" type="image/png" />
-    <!-- Font Awesome for icons (replace 'your-fontawesome-kit.js' with your actual kit if you have one) -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <!-- Navigation Bar -->
     <nav class="navbar">
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
@@ -22,17 +20,14 @@
         </ul>
     </nav>
 
-    <!-- Hero Section -->
     <section id="hero">
         <h1>Gem Fighter: FRACTURED ORIGINS</h1>
         <p>What broke us may save us.</p>
     </section>
 
-    <!-- Story Slider Section -->
     <section id="story" class="section">
         <div class="slider-container">
             <div class="slider" id="story-slider">
-                <!-- Slide 1: Prologue -->
                 <div class="slide active">
                     <h2 class="chapter-title">Earth, Year 4420 — cradle of life, tomb of hope</h2><br>
                     <img src="Images/chap0.png" alt="Earth, Year 4420"><br>
@@ -43,7 +38,6 @@
                     </p>
                 </div>
 
-                <!-- Slide 2: Chapter 1 -->
                 <div class="slide">
                     <h2 class="chapter-title">The Breach</h2><br>
                     <img src="Images/chap1.png" alt="The Breach"><br>
@@ -56,7 +50,6 @@
                     </p>
                 </div>
 
-                <!-- Slide 3: Chapter 2 -->
                 <div class="slide">
                     <h2 class="chapter-title">The Gemstones</h2><br>
                     <img src="Images/chap2.png" alt="The Gemstones"><br>
@@ -74,7 +67,6 @@
                     </p>
                 </div>
 
-                <!-- Slide 4: Chapter 3 -->
                 <div class="slide">
                     <h2 class="chapter-title">The Cost</h2><br>
                     <img src="Images/chap3.png" alt="The Cost"><br>
@@ -87,7 +79,6 @@
                     </p>
                 </div>
 
-                <!-- Slide 5: Chapter 4 -->
                 <div class="slide">
                     <h2 class="chapter-title">The Captain</h2><br>
                     <img src="Images/chap4.png" alt="The Captain"><br>
@@ -103,8 +94,7 @@
 
                 </div>
 
-           <!-- Slide 6: Bound for the Breach - with character images -->
-            <div class="slide">
+           <div class="slide">
                     <h2 class="chapter-title">Bound for the Breach</h2><br>
                     
                     <p class="chapter-description">
@@ -148,15 +138,9 @@
                     <strong>Risk the breach. Bring hope to billions. Find something worth dying for</strong>
                 </p>
                 </div>
-
-                </div>
-
-            <!-- Changed to text buttons -->
-            <button class="slider-arrow top-left-arrow" id="prev-slide-btn"><</button>
-            <button class="slider-arrow top-right-arrow" id="next-slide-btn">></button>
+            </div>
         </div>
 
-        <!-- Chapter Indicator (Gemstone Dots) -->
         <div class="chapter-indicator">
             <div class="gemstone-track">
                 <div class="gemstone-dot active" data-chapter="0"></div>
@@ -168,6 +152,11 @@
                 <div class="gemstone-dot" data-chapter="6"></div>
             </div>
             <span class="chapter-label">Pages <span id="current-chapter-num">1</span> of <span id="total-chapters-num">7</span></span>
+        </div>
+
+        <div class="slider-navigation">
+            <button class="slider-nav-btn" id="prev-slide-btn">Prev Page</button>
+            <button class="slider-nav-btn" id="next-slide-btn">Next Page</button>
         </div>
     </section>
 
