@@ -1,307 +1,438 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Gem Fighter Story - Shards of Creation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&family=Orbitron:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="story.css" />
     <link rel="icon" href="Images/logo.png" type="image/png" />
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-</head>
-<body>
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
     <nav class="navbar">
-        <ul class="nav-links">
+        <!-- Hamburger menu for mobile, hidden on desktop by CSS -->
+        <div class="hamburger-menu" id="hamburger-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <!-- Main navigation links -->
+        <ul class="nav-links" id="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="https://hodltoken.net/gem-fighter-p2e">Play & Earn</a></li>
             <li><a href="nfts.html">NFTs</a></li>
             <li><a href="story.html">Story</a></li>
         </ul>
+
+        <!-- Single "Connect" button and social icons.
+             Visibility and positioning controlled by CSS for desktop/mobile. -->
+        <ul class="social-nav">
+            <li><button id="connectWallet" class="cta-button walletconnect">Connect</button></li>
+            
+        </ul>
     </nav>
 
     <section id="hero">
-        <h1>Gem Fighter: FRACTURED ORIGINS</h1>
-        <p>What broke us may save us.</p>
+      <h1>Gem Fighter: FRACTURED ORIGINS</h1>
+      <p>What broke us may save us.</p>
     </section>
 
     <section id="story" class="section">
-        <div class="slider-container">
-            <div class="slider" id="story-slider">
-                <div class="slide active">
-                    <h2 class="chapter-title">Earth, Year 4420 — cradle of life, tomb of hope</h2><br>
-                    <img src="Images/chap0.png" alt="Earth, Year 4420"><br>
-                    <p class="chapter-description">
-                        Sky towers pierce the choking haze — sealed palaces for the few who rule from above.
-                <br>Below, billions scrape by in ration lines and cracked slums, forced to look up — tortured daily by the sight of a life of luxury they’ll never taste.
-                <br>Some fled: Mars’s furnace cities, Venus’s storm citadels, Mercury’s mines, even outlaw colonies drifting beyond Neptune’s edge. But out there, the same power brokers guard the warmth, the water, the light — and they guard it mercilessly.
-                    </p>
-                </div>
+      <div class="slider-container">
+        <div class="slider" id="story-slider">
+          <div class="slide active">
+            <h2 class="chapter-title">
+              Earth, Year 4420 — cradle of life, tomb of hope
+            </h2>
+            <br />
+            <img src="Images/chap0.png" alt="Earth, Year 4420" /><br />
+            <p class="chapter-description">
+              Sky towers pierce the choking haze — sealed palaces for the few
+              who rule from above.
+              <br />Below, billions scrape by in ration lines and cracked slums,
+              forced to look up — tortured daily by the sight of a life of
+              luxury they’ll never taste. <br />Some fled: Mars’s furnace
+              cities, Venus’s storm citadels, Mercury’s mines, even outlaw
+              colonies drifting beyond Neptune’s edge. But out there, the same
+              power brokers guard the warmth, the water, the light — and they
+              guard it mercilessly.
+            </p>
+          </div>
 
-                <div class="slide">
-                    <h2 class="chapter-title">The Breach</h2><br>
-                    <img src="Images/chap1.png" alt="The Breach"><br>
-                    <p class="chapter-description">
-                        When even advances in nuclear fusion couldn’t satisfy the elites’ endless greed, they forced the universe open in the pursuit of more.
-                    <br>They split spacetime with photon convergence — forging the first portal, a wound that births a temporary dimension, sustained only by a conscious mind observing it.
-                    <br>The breach gave back one miracle: <strong>Gemstone Alpha</strong>  — a flawless, perfect-cut gem with fire flickering endlessly at its core. When triggered, it doesn’t just fuel reactors — it births pure flame from nothing, an eternal spark hoarded by the elite to tighten their grip on everyone below.
-                    <br>No drone ever returned. No AI survives the passage. Only life — only conscious minds — can steady the fracture long enough to steal from it.
-                    <br>Some whisper these stones echo ancient myths — relics of forgotten civilizations that once shaped worlds with shards of creation.
-                    </p>
-                </div>
+          <div class="slide">
+            <h2 class="chapter-title">The Breach</h2>
+            <br />
+            <img src="Images/chap1.png" alt="The Breach" /><br />
+            <p class="chapter-description">
+              When even advances in nuclear fusion couldn’t satisfy the elites’
+              endless greed, they forced the universe open in the pursuit of
+              more.
+              <br />They split spacetime with photon convergence — forging the
+              first portal, a wound that births a temporary dimension, sustained
+              only by a conscious mind observing it. <br />The breach gave back
+              one miracle: <strong>Gemstone Alpha</strong> — a flawless,
+              perfect-cut gem with fire flickering endlessly at its core. When
+              triggered, it doesn’t just fuel reactors — it births pure flame
+              from nothing, an eternal spark hoarded by the elite to tighten
+              their grip on everyone below. <br />No drone ever returned. No AI
+              survives the passage. Only life — only conscious minds — can
+              steady the fracture long enough to steal from it. <br />Some
+              whisper these stones echo ancient myths — relics of forgotten
+              civilizations that once shaped worlds with shards of creation.
+            </p>
+          </div>
 
-                <div class="slide">
-                    <h2 class="chapter-title">The Gemstones</h2><br>
-                    <img src="Images/chap2.png" alt="The Gemstones"><br>
-                    <p class="chapter-description">
-                    <strong>Dimension Stones — the universe’s ultimate prize.</strong>  
-                    <br>Each one is pure power: fuel for cores, warmth for cities, water for wastelands, food for barren soil.
-                    <br>One could terraform Mars, thaw Europa, seed green in vacuum — and set the masses free.
+          <div class="slide">
+            <h2 class="chapter-title">The Gemstones</h2>
+            <br />
+            <img src="Images/chap2.png" alt="The Gemstones" /><br />
+            <p class="chapter-description">
+              <strong>Dimension Stones — the universe’s ultimate prize.</strong>
+              <br />Each one is pure power: fuel for cores, warmth for cities,
+              water for wastelands, food for barren soil. <br />One could
+              terraform Mars, thaw Europa, seed green in vacuum — and set the
+              masses free.
 
-                    <br><br>After Gemstone Alpha, the elites and their corporate hounds tore open fracture after fracture. Seven more stones were dragged back — each paid for in blood. They should have fed the hungry and shattered the chains below.
-                    <br>Instead, they vanished into vaults — hoarded to keep the palaces burning bright while billions stayed in the dark.
+              <br /><br />After Gemstone Alpha, the elites and their corporate
+              hounds tore open fracture after fracture. Seven more stones were
+              dragged back — each paid for in blood. They should have fed the
+              hungry and shattered the chains below. <br />Instead, they
+              vanished into vaults — hoarded to keep the palaces burning bright
+              while billions stayed in the dark.
 
-                    <br><br>Every breach births a realm of extremes — firestorms, frozen voids, crystalline mazes — each unique, never to be repeated.
-                    <br>Step through the swirling haze and the dimension throws its worst first: swarms of crystalline attack ships, storms of blades and lightning. Survive that, and you face the guardian — a towering mechanical beast with the stone socketed deep in its heart.
-                    <br>Some say these guardians aren’t just machines — but watchers, testing intruders for reasons no one understands.
-                    </p>
-                </div>
+              <br /><br />Every breach births a realm of extremes — firestorms,
+              frozen voids, crystalline mazes — each unique, never to be
+              repeated. <br />Step through the swirling haze and the dimension
+              throws its worst first: swarms of crystalline attack ships, storms
+              of blades and lightning. Survive that, and you face the guardian —
+              a towering mechanical beast with the stone socketed deep in its
+              heart. <br />Some say these guardians aren’t just machines — but
+              watchers, testing intruders for reasons no one understands.
+            </p>
+          </div>
 
-                <div class="slide">
-                    <h2 class="chapter-title">The Cost</h2><br>
-                    <img src="Images/chap3.png" alt="The Cost"><br>
-                    <p class="chapter-description">
-                        First, the Elite sent their best: highly decorated crews with iron nerves. But the breach devours pride and training alike.
-                    <br>For every fifty crews that cross, one returns — and only if they succeed. You either rescue a stone — or you never leave.
-                    <br>When the trained died and the flow slowed to a trickle, they turned to the desperate: criminals, outcasts, the reckless driven by greed. But the breach didn’t care. Most never returned — and the rest learned not to try.
-                    <br>Now they have ships. They have tech. But they have no one left willing to cross.
-                    <br>Behind the scenes, factions within the Prosperity Group and hidden dynasties war for control — each stone means power, and the power to hoard more.
-                    </p>
-                </div>
+          <div class="slide">
+            <h2 class="chapter-title">The Cost</h2>
+            <br />
+            <img src="Images/chap3.png" alt="The Cost" /><br />
+            <p class="chapter-description">
+              First, the Elite sent their best: highly decorated crews with iron
+              nerves. But the breach devours pride and training alike.
+              <br />For every fifty crews that cross, one returns — and only if
+              they succeed. You either rescue a stone — or you never leave.
+              <br />When the trained died and the flow slowed to a trickle, they
+              turned to the desperate: criminals, outcasts, the reckless driven
+              by greed. But the breach didn’t care. Most never returned — and
+              the rest learned not to try. <br />Now they have ships. They have
+              tech. But they have no one left willing to cross. <br />Behind the
+              scenes, factions within the Prosperity Group and hidden dynasties
+              war for control — each stone means power, and the power to hoard
+              more.
+            </p>
+          </div>
 
-                <div class="slide">
-                    <h2 class="chapter-title">The Captain</h2><br>
-                    <img src="Images/chap4.png" alt="The Captain"><br>
-                    <p class="chapter-description">
-                    You were never meant for this — until you chose it.
-                    <br>A highly decorated Captain — trusted to carry secrets between stars while palaces rose above lines of the forgotten.
-                    <br>You gave your life to your career — years lost in deep space and black contracts. In the end, it cost you everything real. Your wife stopped waiting and chose a lord behind the tower walls — a life of warmth you’d never share. She took your son with her, sealing him in a world you’d never see again.
-                    <br>You lost having something to live for long ago. But here, at the edge of the breach, you’ve found something worth dying for.
-                    <br>When the last crews failed and the stones stopped flowing, you made your stand.
-                    <br>You volunteered — on one condition: If you somehow survive, every stone you drag back goes to the people who sleep under plastic tarps while the palaces hoard the dawn.
-                    <br>They agreed — not from mercy, but because your ship’s sensors and your crew’s eyes are their last chance to map the breach — data for their future plans and runs to capture more stones and feed their obscene wealth.
+          <div class="slide">
+            <h2 class="chapter-title">The Captain</h2>
+            <br />
+            <img src="Images/chap4.png" alt="The Captain" /><br />
+            <p class="chapter-description">
+              You were never meant for this — until you chose it.
+              <br />A highly decorated Captain — trusted to carry secrets
+              between stars while palaces rose above lines of the forgotten.
+              <br />You gave your life to your career — years lost in deep space
+              and black contracts. In the end, it cost you everything real. Your
+              wife stopped waiting and chose a lord behind the tower walls — a
+              life of warmth you’d never share. She took your son with her,
+              sealing him in a world you’d never see again. <br />You lost
+              having something to live for long ago. But here, at the edge of
+              the breach, you’ve found something worth dying for. <br />When the
+              last crews failed and the stones stopped flowing, you made your
+              stand. <br />You volunteered — on one condition: If you somehow
+              survive, every stone you drag back goes to the people who sleep
+              under plastic tarps while the palaces hoard the dawn. <br />They
+              agreed — not from mercy, but because your ship’s sensors and your
+              crew’s eyes are their last chance to map the breach — data for
+              their future plans and runs to capture more stones and feed their
+              obscene wealth.
+            </p>
+          </div>
+
+          <div class="slide">
+            <h2 class="chapter-title">Bound for the Breach</h2>
+            <br />
+
+            <p class="chapter-description">
+              Your ship — <strong>The Shardchaser</strong> — is a coffin
+              stitched from wrecks, socketed with smaller stones to power
+              weapons, shields, and spells.
+            </p>
+            <p><strong>Your crews:</strong></p>
+            <div class="character-gallery">
+              <div class="character-card">
+                <img src="Images/first_officer.png" alt="First Officer" />
+                <p>
+                  <strong>First Officer</strong><br /><br />Keeps your mind
+                  whole when the dimension claws at your sanity.
                 </p>
-
-                </div>
-
-           <div class="slide">
-                    <h2 class="chapter-title">Bound for the Breach</h2><br>
-                    
-                    <p class="chapter-description">
-                    Your ship — <strong>The Shardchaser</strong> — is a coffin stitched from wrecks, socketed with smaller stones to power weapons, shields, and spells.
-                    </p>
-                    <p><strong>Your crews:</strong></p>
-                    <div class="character-gallery">
-                        <div class="character-card">
-                            <img src="Images/first_officer.png" alt="First Officer">
-                            <p><strong>First Officer</strong><br><br>Keeps your mind whole when the dimension claws at your sanity.</p>
-                        </div>
-                        <div class="character-card">
-                            <img src="Images/tactical_officer.png" alt="Tactical Officer">
-                            <p><strong>Tactical Officer</strong><br><br>The blade between survival and oblivion.</p>
-                        </div>
-                        <div class="character-card">
-                            <img src="Images/weapons_officer.png" alt="Weapons Officer">
-                            <p><strong>Weapons Officer</strong><br><br>Scarred from old wars, ready when the breach bares its teeth.</p>
-                        </div>
-                        <div class="character-card">
-                            <img src="Images/science_officer.png" alt="Science Officer">
-                            <p><strong>Science Officer</strong><br><br>Master of atmospheres, anomalies, and reading the breach’s twisted moods.</p>
-                        </div>
-                        <div class="character-card">
-                            <img src="Images/dr_larth.png" alt="Dr. Arimus Larth">
-                            <p><strong>Dr. Arimus Larth, Chief Gemologist</strong><br><br>Vanished inside a fracture for four years and returned certain the stones don’t just wait — they choose.</p>
-                        </div>
-                    </div>
-                    <p class="chapter-description">
-                    </p>
-                </div>
-
-                  <div class="slide">
-                    <h2 class="chapter-title">A Great Sacrifice</h2><br>
-                    <img src="Images/chap5.png" alt="Shards of Creation"><br>
-                    <p class="chapter-description">
-                    Each run begins the same: the breach flares open. Through its haze, you glimpse the dimension’s core — fire, ice, thunder — a temporary realm built to test and destroy those who dare to cross.
-                    <br>You prepare to step through, knowing it exists only while you observe it — and ends the moment you tear its heart out.
-                    <br>One Dimension Stone at a time — warmth for the freezing, fusion power to light cities, water for those that haven’t tasted it in a century. Enough stones could drag billions out from under the boots of the palaces — and ignite a light of hope fierce enough to break the chains that keep them trapped in darkness.
-                    <br><br><strong>GEM FIGHTER: FRACTURED ORIGINS.</strong><br>
-                    <strong>Risk the breach. Bring hope to billions. Find something worth dying for</strong>
+              </div>
+              <div class="character-card">
+                <img src="Images/tactical_officer.png" alt="Tactical Officer" />
+                <p>
+                  <strong>Tactical Officer</strong><br /><br />The blade between
+                  survival and oblivion.
                 </p>
-                </div>
+              </div>
+              <div class="character-card">
+                <img src="Images/weapons_officer.png" alt="Weapons Officer" />
+                <p>
+                  <strong>Weapons Officer</strong><br /><br />Scarred from old
+                  wars, ready when the breach bares its teeth.
+                </p>
+              </div>
+              <div class="character-card">
+                <img src="Images/science_officer.png" alt="Science Officer" />
+                <p>
+                  <strong>Science Officer</strong><br /><br />Master of
+                  atmospheres, anomalies, and reading the breach’s twisted
+                  moods.
+                </p>
+              </div>
+              <div class="character-card">
+                <img src="Images/dr_larth.png" alt="Dr. Arimus Larth" />
+                <p>
+                  <strong>Dr. Arimus Larth, Chief Gemologist</strong
+                  ><br /><br />Vanished inside a fracture for four years and
+                  returned certain the stones don’t just wait — they choose.
+                </p>
+              </div>
             </div>
-        </div>
+            <p class="chapter-description"></p>
+          </div>
 
-        <div class="chapter-indicator">
-            <div class="gemstone-track">
-                <div class="gemstone-dot active" data-chapter="0"></div>
-                <div class="gemstone-dot" data-chapter="1"></div>
-                <div class="gemstone-dot" data-chapter="2"></div>
-                <div class="gemstone-dot" data-chapter="3"></div>
-                <div class="gemstone-dot" data-chapter="4"></div>
-                <div class="gemstone-dot" data-chapter="5"></div>
-                <div class="gemstone-dot" data-chapter="6"></div>
-            </div>
-            <span class="chapter-label">Pages <span id="current-chapter-num">1</span> of <span id="total-chapters-num">7</span></span>
+          <div class="slide">
+            <h2 class="chapter-title">A Great Sacrifice</h2>
+            <br />
+            <img src="Images/chap5.png" alt="Shards of Creation" /><br />
+            <p class="chapter-description">
+              Each run begins the same: the breach flares open. Through its
+              haze, you glimpse the dimension’s core — fire, ice, thunder — a
+              temporary realm built to test and destroy those who dare to cross.
+              <br />You prepare to step through, knowing it exists only while
+              you observe it — and ends the moment you tear its heart out.
+              <br />One Dimension Stone at a time — warmth for the freezing,
+              fusion power to light cities, water for those that haven’t tasted
+              it in a century. Enough stones could drag billions out from under
+              the boots of the palaces — and ignite a light of hope fierce
+              enough to break the chains that keep them trapped in darkness.
+              <br /><br /><strong>GEM FIGHTER: FRACTURED ORIGINS.</strong><br />
+              <strong
+                >Risk the breach. Bring hope to billions. Find something worth
+                dying for</strong
+              >
+            </p>
+          </div>
         </div>
+      </div>
 
-        <div class="slider-navigation">
-            <button class="slider-nav-btn" id="prev-slide-btn">Prev Page</button>
-            <button class="slider-nav-btn" id="next-slide-btn">Next Page</button>
+      <div class="chapter-indicator">
+        <div class="gemstone-track">
+          <div class="gemstone-dot active" data-chapter="0"></div>
+          <div class="gemstone-dot" data-chapter="1"></div>
+          <div class="gemstone-dot" data-chapter="2"></div>
+          <div class="gemstone-dot" data-chapter="3"></div>
+          <div class="gemstone-dot" data-chapter="4"></div>
+          <div class="gemstone-dot" data-chapter="5"></div>
+          <div class="gemstone-dot" data-chapter="6"></div>
         </div>
+        <span class="chapter-label"
+          >Pages <span id="current-chapter-num">1</span> of
+          <span id="total-chapters-num">7</span></span
+        >
+      </div>
+
+      <div class="slider-navigation">
+        <button class="slider-nav-btn" id="prev-slide-btn">Prev Page</button>
+        <button class="slider-nav-btn" id="next-slide-btn">Next Page</button>
+      </div>
     </section>
 
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="terms.html">Terms</a>
-                <span class="link-separator">⏺</span>
-                <a href="privacy.html">Privacy</a>
-                <span class="link-separator">⏺</span>
-                <a href="cookies.html">Cookies</a>
-                <span class="link-separator">⏺</span>
-                <a href="disclaimers.html">Disclaimers</a>
-            </div><br>
-
-            <div class="social-icons" style="margin: 1.5rem 0;">
-                <a href="https://x.com/GemFighterP2E" target="_blank" class="social-link">
-                    <i class="fab fa-x-twitter"></i>
-                </a>
-                <a href="https://t.me/GemFighterP2E" target="_blank" class="social-link">
-                    <i class="fab fa-telegram-plane"></i>
-                </a>
-            </div>
-
-            <p class="footer-text">
-                © 2025 GEM FIGHTER<br>
-                SURVIVE → EARN → HODL
-            </p>
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="terms.html">Terms</a>
+          <span class="link-separator">⏺</span>
+          <a href="privacy.html">Privacy</a>
+          <span class="link-separator">⏺</span>
+          <a href="cookies.html">Cookies</a>
+          <span class="link-separator">⏺</span>
+          <a href="disclaimers.html">Disclaimers</a>
+          <span class="link-separator">⏺</span>
+          <a href="support.html">Support</a>
         </div>
+        <br />
+
+        <div class="social-icons" style="margin: 1.5rem 0">
+          <a
+            href="https://x.com/GemFighterP2E"
+            target="_blank"
+            class="social-link"
+          >
+            <i class="fab fa-x-twitter"></i>
+          </a>
+          <a
+            href="https://t.me/GemFighterP2E"
+            target="_blank"
+            class="social-link"
+          >
+            <i class="fab fa-telegram-plane"></i>
+          </a>
+        </div>
+
+        <p class="footer-text">
+          © 2025 GEM FIGHTER<br />
+          SURVIVE → EARN → HODL
+        </p>
+      </div>
     </footer>
 
     <script>
-        let currentSlideIndex = 0;
-        const slider = document.getElementById('story-slider');
-        const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
+      let currentSlideIndex = 0;
+      const slider = document.getElementById('story-slider');
+      const slides = document.querySelectorAll('.slide');
+      const totalSlides = slides.length;
 
-        const chapterDots = document.querySelectorAll('.gemstone-dot');
-        const currentChapterNumSpan = document.getElementById('current-chapter-num');
-        const totalChaptersNumSpan = document.getElementById('total-chapters-num');
+      const chapterDots = document.querySelectorAll('.gemstone-dot');
+      const currentChapterNumSpan = document.getElementById(
+        'current-chapter-num'
+      );
+      const totalChaptersNumSpan =
+        document.getElementById('total-chapters-num');
 
-        // Function to show a specific slide with directional animation
-        function showSlide(index, direction = 'none') {
-            if (index === currentSlideIndex && direction === 'none') {
-                // If initializing or already on the slide, just ensure it's active
-                if (slides[index]) {
-                    slides[index].classList.add('active');
-                }
-                updateChapterIndicator(currentSlideIndex);
-                updateArrowVisibility();
-                return;
-            }
-
-            const oldSlide = slides[currentSlideIndex];
-            const newSlide = slides[index];
-
-            // Handle exiting slide
-            if (oldSlide) {
-                oldSlide.classList.remove('active');
-                if (direction === 'next') {
-                    oldSlide.classList.add('slide-exit-left');
-                } else if (direction === 'prev') {
-                    oldSlide.classList.add('slide-exit-right');
-                }
-                // Remove exit class after transition to prepare for next use
-                oldSlide.addEventListener('transitionend', function handler() {
-                    oldSlide.classList.remove('slide-exit-left', 'slide-exit-right');
-                    oldSlide.removeEventListener('transitionend', handler);
-                }, { once: true }); // Use { once: true } to automatically remove listener
-            }
-
-            // Handle entering slide
-            if (newSlide) {
-                // Set initial position for entering slide (off-screen)
-                if (direction === 'next') {
-                    newSlide.classList.add('slide-enter-right');
-                } else if (direction === 'prev') {
-                    newSlide.classList.add('slide-enter-left');
-                }
-
-                // Force reflow to ensure initial state is applied before transition
-                void newSlide.offsetWidth;
-
-                newSlide.classList.add('active'); // This will trigger the transition to opacity 1, transform X 0
-                newSlide.classList.remove('slide-enter-left', 'slide-enter-right'); // Remove initial entry position
-
-                currentSlideIndex = index;
-            }
-
-            updateChapterIndicator(currentSlideIndex);
-            updateArrowVisibility();
+      // Function to show a specific slide with directional animation
+      function showSlide(index, direction = 'none') {
+        if (index === currentSlideIndex && direction === 'none') {
+          // If initializing or already on the slide, just ensure it's active
+          if (slides[index]) {
+            slides[index].classList.add('active');
+          }
+          updateChapterIndicator(currentSlideIndex);
+          updateArrowVisibility();
+          return;
         }
 
-        // Function to update arrow visibility based on current slide index
-        function updateArrowVisibility() {
-            // Use 'display: none' to remove the button from the layout flow
-            document.getElementById('prev-slide-btn').style.display = (currentSlideIndex === 0) ? 'none' : 'block';
-            document.getElementById('next-slide-btn').style.display = (currentSlideIndex === totalSlides - 1) ? 'none' : 'block';
+        const oldSlide = slides[currentSlideIndex];
+        const newSlide = slides[index];
+
+        // Handle exiting slide
+        if (oldSlide) {
+          oldSlide.classList.remove('active');
+          if (direction === 'next') {
+            oldSlide.classList.add('slide-exit-left');
+          } else if (direction === 'prev') {
+            oldSlide.classList.add('slide-exit-right');
+          }
+          // Remove exit class after transition to prepare for next use
+          oldSlide.addEventListener(
+            'transitionend',
+            function handler() {
+              oldSlide.classList.remove('slide-exit-left', 'slide-exit-right');
+              oldSlide.removeEventListener('transitionend', handler);
+            },
+            { once: true }
+          ); // Use { once: true } to automatically remove listener
         }
 
-        // Function to scroll to the next slide
-        function scrollToNextSlide() {
-            if (currentSlideIndex < totalSlides - 1) {
-                showSlide(currentSlideIndex + 1, 'next');
-            }
+        // Handle entering slide
+        if (newSlide) {
+          // Set initial position for entering slide (off-screen)
+          if (direction === 'next') {
+            newSlide.classList.add('slide-enter-right');
+          } else if (direction === 'prev') {
+            newSlide.classList.add('slide-enter-left');
+          }
+
+          // Force reflow to ensure initial state is applied before transition
+          void newSlide.offsetWidth;
+
+          newSlide.classList.add('active'); // This will trigger the transition to opacity 1, transform X 0
+          newSlide.classList.remove('slide-enter-left', 'slide-enter-right'); // Remove initial entry position
+
+          currentSlideIndex = index;
         }
 
-        // Function to scroll to the previous slide
-        function scrollToPrevSlide() {
-            if (currentSlideIndex > 0) {
-                showSlide(currentSlideIndex - 1, 'prev');
-            }
+        updateChapterIndicator(currentSlideIndex);
+        updateArrowVisibility();
+      }
+
+      // Function to update arrow visibility based on current slide index
+      function updateArrowVisibility() {
+        // Use 'display: none' to remove the button from the layout flow
+        document.getElementById('prev-slide-btn').style.display =
+          currentSlideIndex === 0 ? 'none' : 'block';
+        document.getElementById('next-slide-btn').style.display =
+          currentSlideIndex === totalSlides - 1 ? 'none' : 'block';
+      }
+
+      // Function to scroll to the next slide
+      function scrollToNextSlide() {
+        if (currentSlideIndex < totalSlides - 1) {
+          showSlide(currentSlideIndex + 1, 'next');
         }
+      }
 
-        // Function to update the gemstone chapter indicator
-        function updateChapterIndicator(index) {
-            chapterDots.forEach((dot, i) => {
-                dot.classList.remove('active');
-                if (i === index) {
-                    dot.classList.add('active');
-                }
-            });
-            currentChapterNumSpan.textContent = index + 1;
-            totalChaptersNumSpan.textContent = totalSlides;
+      // Function to scroll to the previous slide
+      function scrollToPrevSlide() {
+        if (currentSlideIndex > 0) {
+          showSlide(currentSlideIndex - 1, 'prev');
         }
+      }
 
-        // Attach event listeners
-        document.getElementById('prev-slide-btn').addEventListener('click', scrollToPrevSlide);
-        document.getElementById('next-slide-btn').addEventListener('click', scrollToNextSlide);
-
-        // Add event listeners for direct navigation by clicking dots
-        chapterDots.forEach(dot => {
-            dot.addEventListener('click', (event) => {
-                const chapterIndex = parseInt(event.target.dataset.chapter);
-                if (chapterIndex !== currentSlideIndex) {
-                    const direction = chapterIndex > currentSlideIndex ? 'next' : 'prev';
-                    showSlide(chapterIndex, direction);
-                }
-            });
+      // Function to update the gemstone chapter indicator
+      function updateChapterIndicator(index) {
+        chapterDots.forEach((dot, i) => {
+          dot.classList.remove('active');
+          if (i === index) {
+            dot.classList.add('active');
+          }
         });
+        currentChapterNumSpan.textContent = index + 1;
+        totalChaptersNumSpan.textContent = totalSlides;
+      }
 
-        // Initialize with the first slide and its indicator on DOMContentLoaded
-        document.addEventListener('DOMContentLoaded', () => {
-            showSlide(0); // This will initialize the first slide and the indicator
+      // Attach event listeners
+      document
+        .getElementById('prev-slide-btn')
+        .addEventListener('click', scrollToPrevSlide);
+      document
+        .getElementById('next-slide-btn')
+        .addEventListener('click', scrollToNextSlide);
+
+      // Add event listeners for direct navigation by clicking dots
+      chapterDots.forEach((dot) => {
+        dot.addEventListener('click', (event) => {
+          const chapterIndex = parseInt(event.target.dataset.chapter);
+          if (chapterIndex !== currentSlideIndex) {
+            const direction =
+              chapterIndex > currentSlideIndex ? 'next' : 'prev';
+            showSlide(chapterIndex, direction);
+          }
         });
+      });
+
+      // Initialize with the first slide and its indicator on DOMContentLoaded
+      document.addEventListener('DOMContentLoaded', () => {
+        showSlide(0); // This will initialize the first slide and the indicator
+      });
     </script>
-</body>
+  </body>
+  <script src="script.js"></script>
 </html>

@@ -8,26 +8,30 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
         <link rel="stylesheet" href="styles.css" />
         <link rel="icon" href="Images/logo.png" type="image/png" />
+        <script src="https://cdn.jsdelivr.net/npm/ethers@6.10.0/dist/ethers.umd.min.js"></script>
     </head>
 <body>
     <nav class="navbar">
-        <ul class="nav-links">
+        <!-- Hamburger menu for mobile, hidden on desktop by CSS -->
+        <div class="hamburger-menu" id="hamburger-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <!-- Main navigation links -->
+        <ul class="nav-links" id="nav-links">
             <li><a href="#">Home</a></li>
             <li><a href="https://hodltoken.net/gem-fighter-p2e">Play & Earn</a></li>
             <li><a href="nfts.html">NFTs</a></li>
             <li><a href="story.html">Story</a></li>
         </ul>
+
+        <!-- Single "Connect" button and social icons.
+             Visibility and positioning controlled by CSS for desktop/mobile. -->
         <ul class="social-nav">
-            <li>
-                <a href="https://x.com/GemFighterP2E" target="_blank">
-                    <i class="fab fa-x-twitter"></i>
-                </a>
-            </li>
-            <li>
-                <a href="https://t.me/GemFighterP2E" target="_blank">
-                    <i class="fab fa-telegram-plane fa-lg"></i>
-                </a>
-            </li>
+            <li><button id="connectWallet" class="cta-button walletconnect">Connect Wallet</button></li>
+            
         </ul>
     </nav>
 
@@ -139,6 +143,8 @@
                 <a href="cookies.html">Cookies</a>
                 <span class="link-separator">⏺</span>
                 <a href="disclaimers.html">Disclaimers</a>
+				<span class="link-separator">⏺</span>
+                <a href="support.html">Support</a>
             </div><br />
 
             <!-- Add social icons -->
