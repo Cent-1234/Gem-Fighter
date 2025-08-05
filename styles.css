@@ -537,8 +537,12 @@ h1 {
   padding: 0;
 }
 
+.social-nav li { /* Ensure no default list item styling adds borders */
+    border: none;
+}
+
 .social-nav a {
-  color: #fff;
+  color: #00f3ff; /* Set the desired glowing cyan color */
   font-size: 1.3rem;
   transition: all 0.3s;
   position: relative;
@@ -546,24 +550,15 @@ h1 {
   transform-origin: center;
 }
 
-.social-nav a::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -5px;
-  left: 0;
-  background: #00f3ff;
-  transition: width 0.3s;
+/* Ensure the Font Awesome icon itself gets the color and glow */
+.social-nav a i {
+  color: #00f3ff; /* Explicitly set color for the icon */
+  text-shadow: 0 0 15px rgba(0, 243, 255, 0.5); /* Add glow similar to hover */
 }
 
-.social-nav a:hover::after {
-  width: 100%;
-}
-
-.social-nav a:hover {
-  color: #00f3ff;
-  text-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+.social-nav a:hover i {
+  color: #00f3ff; /* Maintain color on hover */
+  text-shadow: 0 0 25px rgba(0, 243, 255, 0.8), 0 0 45px rgba(0, 243, 255, 0.4); /* Enhanced glow on hover */
 }
 
 .logo-item img[alt='Epic Games'] {
@@ -636,6 +631,7 @@ h1 {
     font-size: 1.2rem; /* Larger font size for mobile links */
     display: inline-block; /* Change to inline-block to shrink width to content */
   }
+
 
   .nav-links a::after {
     left: 0; /* Align underline to the left of the link text */
@@ -884,20 +880,6 @@ h1 {
   .navbar {
     /* On desktop, center the content of the navbar */
     justify-content: center;
-  }
-
-  .nav-links {
-    /* Allow nav links to take up available space and center themselves */
-    flex: 1;
-  }
-
-  .social-nav {
-    /* Ensure social-nav is positioned correctly on desktop */
-    position: absolute;
-    right: 2.5rem;
-    top: 50%;
-    transform: translateY(-50%);
-    margin-left: 0; /* Remove margin-left: auto from mobile */
   }
 }
 
