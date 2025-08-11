@@ -14,8 +14,7 @@
   backdrop-filter: blur(10px);
   border-bottom: 1px solid #00f3ff33;
   display: flex;
-  justify-content: space-between; /* Default: space-between for mobile/smaller screens */
-  align-items: center;
+  justify-content: center;
 }
 
 /* Hamburger Menu Styles - Hidden by default on larger screens */
@@ -523,123 +522,91 @@ h1 {
   transform: scale(1.05);
 }
 
-/* Social Icons and Connect Button - Desktop Styling */
+/* Social Icons */
+.social-icons {
+  gap: 2rem; /* Increased from 1.5rem */
+  right: 2.5rem; /* Adjusted from 2rem */
+}
+
+.social-link {
+  color: #00f3ff;
+  font-size: 1.4rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  position: relative;
+}
+
+.social-link:hover {
+  color: #fff;
+  transform: translateY(-3px);
+  text-shadow: 0 0 15px rgba(0, 243, 255, 0.8);
+}
+
+.social-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -5px;
+  left: 0;
+  background: #00f3ff;
+  transition: width 0.3s;
+}
+
+.social-link:hover::after {
+  width: 100%;
+}
+
+/* Social Nav */
 .social-nav {
   display: flex;
   gap: 2rem;
   list-style: none;
-  align-items: center;
-  position: absolute; /* Positioned absolutely on desktop for alignment */
+  position: absolute;
   right: 2.5rem;
   top: 50%;
   transform: translateY(-50%);
   margin: 0;
   padding: 0;
-}
-
-.social-nav li { /* Ensure no default list item styling adds borders */
-    border: none;
+  align-items: center;
 }
 
 .social-nav a {
-  color: #00f3ff; /* Set the desired glowing cyan color */
-  font-size: 1.3rem;
+  color: #fff;
+  font-size: 1.5rem; /* Increased from 1.2rem */
   transition: all 0.3s;
   position: relative;
   text-decoration: none;
-  transform-origin: center;
+  transform-origin: center; /* For smooth scaling */
 }
 
-/* Ensure the Font Awesome icon itself gets the color and glow */
-.social-nav a i {
-  color: #00f3ff; /* Explicitly set color for the icon */
-  text-shadow: 0 0 15px rgba(0, 243, 255, 0.5); /* Add glow similar to hover */
+.social-nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background: #00f3ff;
+  transition: width 0.3s;
 }
 
-.social-nav a:hover i {
-  color: #00f3ff; /* Maintain color on hover */
-  text-shadow: 0 0 25px rgba(0, 243, 255, 0.8), 0 0 45px rgba(0, 243, 255, 0.4); /* Enhanced glow on hover */
+.social-nav a:hover::after {
+  width: 100%;
+}
+
+.social-nav a:hover {
+  color: #00f3ff;
+  text-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
 }
 
 .logo-item img[alt='Epic Games'] {
-  height: 120px;
+  height: 120px; /* Adjust this value as needed */
   width: auto;
-  max-width: 180px;
+  max-width: 180px; /* Maintain aspect ratio */
 }
 
-/* Media Queries for Mobile (screens up to 768px wide) */
 @media (max-width: 768px) {
-  /* Navbar adjustments for mobile */
-  .navbar {
-    justify-content: space-between;
-    padding: 1rem 1.5rem;
-  }
-
-  /* Display hamburger menu on mobile */
-  .hamburger-menu {
-    display: block;
-    position: static; /* Let flexbox position it */
-    transform: none;
-    left: auto;
-  }
-
-  /* Social Nav on Mobile */
-  .social-nav {
-    position: static; /* Let flexbox position it */
-    transform: none;
-    right: auto;
-    top: auto;
-    margin-left: auto; /* Pushes it to the right */
-    gap: 0; /* Remove gap if only connect button is visible */
-  }
-
-  /* Hide social links on mobile, only show the connect button */
-  .social-nav li:not(:first-child) {
-    display: none;
-  }
-
-  /* Navigation links slide-in menu */
-  .nav-links {
-    position: fixed; /* Fixed position for slide-in effect */
-    left: -100%; /* Start off-screen to the left */
-    gap: 1.5rem;
-    top: 60px; /* Position below the navbar */
-    flex-direction: column; /* Stack links vertically */
-    background: rgba(10, 10, 10, 0.95);
-    width: 250px; /* Width of the sliding menu */
-    height: calc(100vh - 60px); /* Full height minus navbar */
-    transition: all 0.5s ease-in-out; /* Smooth slide transition */
-    backdrop-filter: blur(10px);
-    border-right: 1px solid #00f3ff33; /* Border for visual separation */
-    padding-top: 2rem; /* Padding at the top of the menu */
-    z-index: 999; /* Below hamburger, above main content */
-    align-items: flex-start; /* Aligns links to the top (left edge) */
-    justify-content: flex-start; /* Explicitly align content to the top */
-  }
-
-  .nav-links.active {
-    left: 0; /* Slide in when active */
-  }
-
-  .nav-links li {
-    text-align: left;
-    padding: 1rem 2rem; /* Padding for each link item */
-    width: 100%; /* Full width for clickable area */
-  }
-
-  .nav-links a {
-    font-size: 1.2rem; /* Larger font size for mobile links */
-    display: inline-block; /* Change to inline-block to shrink width to content */
-  }
-
-
-  .nav-links a::after {
-    left: 0; /* Align underline to the left of the link text */
-    /* Remove width: 100% here as it will be controlled by hover for desktop,
-       and we want it to be content-based for mobile */
-  }
-
-  /* Other mobile responsive adjustments */
   .header-content {
     display: flex;
     flex-direction: column;
@@ -673,7 +640,60 @@ h1 {
 
   .walletconnect {
     font-size: 0.9rem;
-    padding: 0.5rem 1.5rem;
+    padding: 0.3rem 1rem;
+  }
+
+  /* Display hamburger menu on mobile */
+  .hamburger-menu {
+    display: block;
+    position: static; /* Let flexbox position it */
+    transform: none;
+    left: auto;
+    margin-right: auto;
+  }
+
+  .navbar {
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+  }
+
+  .nav-links {
+    position: fixed; /* Fixed position for slide-in effect */
+    left: -100%; /* Start off-screen to the left */
+    gap: 1.5rem;
+    top: 60px; /* Position below the navbar */
+    flex-direction: column; /* Stack links vertically */
+    background: rgba(10, 10, 10, 0.95);
+    width: 250px; /* Width of the sliding menu */
+    height: calc(100vh - 60px); /* Full height minus navbar */
+    transition: all 0.5s ease-in-out; /* Smooth slide transition */
+    backdrop-filter: blur(10px);
+    border-right: 1px solid #00f3ff33; /* Border for visual separation */
+    padding-top: 2rem; /* Padding at the top of the menu */
+    z-index: 999; /* Below hamburger, above main content */
+    align-items: flex-start; /* Aligns links to the top (left edge) */
+    justify-content: flex-start; /* Explicitly align content to the top */
+  }
+
+  .nav-links.active {
+    left: 0; /* Slide in when active */
+  }
+
+  .nav-links li {
+    text-align: left;
+    padding: 1rem 2rem; /* Padding for each link item */
+    width: 100%; /* Full width for clickable area */
+  }
+
+  .nav-links a {
+    font-size: 1.5rem; /* Larger font size for mobile links */
+    display: inline-block; /* Change to inline-block to shrink width to content */
+  }
+
+  .nav-links a::after {
+    left: 0; /* Align underline to the left of the link text */
+    /* Remove width: 100% here as it will be controlled by hover for desktop,
+       and we want it to be content-based for mobile */
   }
 
   .cta-button1 {
@@ -681,6 +701,7 @@ h1 {
     font-size: 1rem;
   }
 
+  /* Adjust text sizes */
   .glowing-text {
     font-size: 1.8rem;
     margin-bottom: 1rem;
@@ -691,25 +712,40 @@ h1 {
     line-height: 1.6;
   }
 
+  /* Stack grid elements vertically */
   .grid {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
 
+  /* Adjust video container height */
   .video-container {
     padding-top: 80%; /* More square aspect ratio for mobile */
     order: -1; /* Move video above text on mobile */
   }
+}
 
-  .logo-grid {
-    gap: 1.5rem;
-    padding: 0 1rem;
-  }
+.logo-grid {
+  gap: 1.5rem;
+  padding: 0 1rem;
+}
 
-  .logo-item {
-    max-width: 140px;
-    padding: 0.8rem;
-  }
+.logo-item {
+  max-width: 140px;
+  padding: 0.8rem;
+}
+
+.social-nav {
+  right: 1rem;
+  gap: 1rem;
+}
+
+.social-nav a {
+  font-size: 1rem;
+}
+
+.nav-links {
+  gap: 1.5rem;
 }
 
 @media (max-width: 580px) {
@@ -773,8 +809,9 @@ h1 {
     font-size: 1.2rem;
   }
 
-  /* Social nav links are hidden on very small screens, only connect button visible */
-  /* This rule is now handled by the more general .social-nav li:not(:first-child) rule above */
+  .social-nav a {
+    display: none;
+  }
 
   .featured-logos .logo-grid {
     display: flex;
@@ -810,7 +847,7 @@ h1 {
   }
 
   .featured-logos .logo-item img[alt='Epic Games'] {
-    height: 100px;
+    height: 100px; /* Slightly smaller for mobile */
     max-width: 150px;
   }
 
@@ -875,14 +912,6 @@ h1 {
   }
 }
 
-/* Desktop-specific media query for navbar centering */
-@media (min-width: 769px) {
-  .navbar {
-    /* On desktop, center the content of the navbar */
-    justify-content: center;
-  }
-}
-
 #supportSection {
   background: #111;
   border-top: 1px solid #00f3ff33;
@@ -925,3 +954,52 @@ h1 {
   padding: 2rem 1rem;
   box-sizing: border-box;
 }
+
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+.toast {
+  background: #333;
+  color: #fff;
+  padding: 10px 16px;
+  margin-top: 10px;
+  border-radius: 6px;
+  min-width: 200px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  animation: fadeInOut 4s forwards;
+}
+.toast.error {
+  background: #c0392b;
+}
+.toast.success {
+  background: #27ae60;
+}
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+
+.nft-card .cta-button {
+  font-size: clamp(1.05rem, 1.1vw + 0.6rem, 1.25rem);
+  padding: clamp(0.7rem, 0.6vw, 0.95rem) clamp(1.6rem, 1.2vw + 1rem, 2.3rem);
+}
+
+

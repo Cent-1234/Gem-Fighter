@@ -14,7 +14,7 @@
     />
     <script src="https://cdn.jsdelivr.net/npm/ethers@6.10.0/dist/ethers.umd.min.js"></script>
     <link rel="stylesheet" href="styles.css" />
-    <script src="script.js"></script>
+     <script src="script.js"></script>
     <style>
       /* Inherit all main styles */
       * {
@@ -28,6 +28,27 @@
         color: #ffffff;
         font-family: 'Jost', sans-serif;
         overflow-x: hidden;
+      }
+
+      .footer {
+        background: linear-gradient(45deg, #001a1a, #000a1a);
+        padding: 2rem;
+        text-align: center;
+        border-top: 1px solid #00f3ff33;
+        position: relative;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        font-family: 'Jost', sans-serif;
+      }
+
+      .footer-text {
+        color: #00f3ff;
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+        animation: textGlow 2s ease-in-out infinite;
       }
 
       @keyframes textGlow {
@@ -162,9 +183,7 @@
       }
 
       @media (max-width: 480px) {
-        .nav-links a {
-          font-size: 1.2rem;
-        }
+       
 
         .terms-section h2 {
           font-size: 1.2rem;
@@ -187,7 +206,7 @@
     </style>
   </head>
   <body>
-    <nav class="navbar">
+     <nav class="navbar">
         <!-- Hamburger menu for mobile, hidden on desktop by CSS -->
         <div class="hamburger-menu" id="hamburger-menu">
             <span class="bar"></span>
@@ -198,15 +217,16 @@
         <!-- Main navigation links -->
         <ul class="nav-links" id="nav-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="https://hodltoken.net/gem-fighter-p2e">Play & Earn</a></li>
+            <li><a href="play-earn.html">Play & Earn</a></li>
             <li><a href="nfts.html">NFTs</a></li>
             <li><a href="story.html">Story</a></li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
         </ul>
 
         <!-- Single "Connect" button and social icons.
              Visibility and positioning controlled by CSS for desktop/mobile. -->
         <ul class="social-nav">
-            <li><button id="connectWallet" class="cta-button walletconnect">Connect</button></li>
+            <li><button id="connectWallet" class="cta-button walletconnect">Connect Wallet</button></li>
             
         </ul>
     </nav>

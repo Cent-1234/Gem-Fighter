@@ -296,31 +296,7 @@ body {
   box-shadow: 0 0 15px rgba(0, 243, 255, 0.6);
 }
 
-/* Footer */
-.footer {
-  background: linear-gradient(45deg, #001a1a, #000a1a);
-  padding: 2rem;
-  text-align: center;
-  border-top: 1px solid #00f3ff33;
-}
 
-.footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.footer-links a {
-  color: #00f3ff;
-  text-decoration: none;
-  font-size: 0.8rem;
-  letter-spacing: 1px;
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.footer-links a:hover {
-  text-shadow: 0 0 15px rgba(0, 243, 255, 0.6);
-}
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
@@ -371,10 +347,6 @@ body {
 
   .slide img {
     max-width: 100%; /* Ensure full width on smaller screens */
-  }
-
-  .footer-content {
-    padding: 0 1rem;
   }
 
   .gemstone-dot {
@@ -430,13 +402,10 @@ body {
   }
 
   .cta-button {
-    font-size: 1rem;
-    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+    padding: 0.3rem 1rem;
   }
 
-  .footer-content {
-    padding: 0 1rem;
-  }
 
   .gemstone-dot {
     width: 10px;

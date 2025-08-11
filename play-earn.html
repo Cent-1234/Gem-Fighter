@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Gem Fighter: Play & Earn</title>
+        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="nfts.css" />
+        <link rel="icon" href="Images/logo.png" type="image/png" />
+        <script src="https://cdn.jsdelivr.net/npm/ethers@6.10.0/dist/ethers.umd.min.js"></script>
+        <style>
+            /* Custom styling for this page to make buttons smaller and responsive */
+            .play-earn-button {
+                padding: 0.8rem 2.5rem;
+                font-size: 1rem;
+            }
+
+            .play-earn-button-group {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1.5rem;
+                margin-top: 2.5rem;
+            }
+
+            /* Responsive adjustments for mobile */
+            @media (max-width: 768px) {
+                .play-earn-button-group {
+                    flex-direction: column;
+                    align-items: center;
+                }
+                .play-earn-button {
+                    width: 100%;
+                    max-width: 300px;
+                }
+
+                .grid .image-container {
+                    margin-top: 2rem; /* Increased space on mobile */
+                }
+
+                /* Mobile-specific centering for the 'Discover a New Adventure' section */
+                .grid > div {
+                    text-align: center;
+                }
+                .play-earn-button-group.flex-start-mobile {
+                    justify-content: center;
+                }
+            }
+
+            /* New heading size for the main title */
+            @media (min-width: 769px) {
+                #hero-play-earn h1.glowing-text {
+                    font-size: 4rem; /* Larger font size for desktop */
+                }
+            }
+
+            @media (max-width: 768px) {
+                #hero-play-earn h1.glowing-text {
+                    font-size: 2.5rem; /* Slightly larger on mobile as well */
+                }
+            }
+
+            /* NFT section styling */
+            .nft-showcase {
+                text-align: center;
+            }
+
+            .nft-showcase h2.glowing-text {
+                margin-bottom: 1rem;
+            }
+
+            .nft-showcase p {
+                max-width: 800px;
+                margin: 0 auto 2rem;
+                font-size: 1.1rem;
+                color: #ddd;
+            }
+            
+            .nft-image-container {
+                max-width: 1200px;
+                margin: 0 auto 2rem;
+                overflow: hidden;
+                border-radius: 15px;
+                border: 1px solid #00f3ff33;
+                box-shadow: 0 0 25px rgba(0, 243, 255, 0.4);
+            }
+
+            .nft-image {
+                width: 100%;
+                height: auto;
+                display: block;
+                object-fit: cover;
+                object-position: center;
+            }
+
+            @media (max-width: 768px) {
+                .nft-image-container {
+                    border: none;
+                    box-shadow: none;
+                    border-radius: 0;
+                }
+                .nft-image {
+                    object-fit: cover;
+                    height: 200px; /* fixed height for cropping on mobile */
+                }
+            }
+        </style>
+    </head>
+<body>
+    <div class="toast-container" id="toastContainer"></div>
+
+    <nav class="navbar">
+        <div class="hamburger-menu" id="hamburger-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="play-earn.html">Play & Earn</a></li>
+            <li><a href="nfts.html">NFTs</a></li>
+            <li><a href="story.html">Story</a></li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
+        </ul>
+
+        <ul class="social-nav">
+            <li><button id="connectWallet" class="cta-button walletconnect">Connect Wallet</button></li>
+        </ul>
+    </nav>
+
+    <main style="margin-top: 60px;">
+        <section id="hero-play-earn" class="section" style="text-align: center; padding: 5rem 1rem;">
+            <h1 class="glowing-text">Gem Fighter: Survival pays</h1>
+            <p style="font-size: 1.3rem; color: #ddd; margin-top: 1.5rem;">Conquer Worlds, Boost Powers, Earn $HODL!</p>
+            <div class="play-earn-button-group">
+                <a href="https://drive.google.com/file/d/1yD_RSuBDUvFDJ4xo6_35oJ-2N-A5h7aN/view" target="_blank">
+                    <button class="cta-button play-earn-button">Play on Windows</button>
+                </a>
+                <a href="https://drive.google.com/file/d/1uH-aBa7XQMNpUKqgeEMGBLN1j5oeJxBn/view" target="_blank">
+                    <button class="cta-button play-earn-button">Play on Mac</button>
+                </a>
+                <a href="nfts.html" target="_blank">
+                    <button class="cta-button1 play-earn-button">Gem Fighter NFTs</button>
+                </a>
+            </div>
+        </section>
+
+        <section class="section" style="padding-top: 0; text-align: center;">
+            <div class="video-container" style="max-width: 1200px; margin: 0 auto; border-radius: 15px;">
+                <iframe
+                    src="https://www.youtube.com/embed/-UQ_GFdokO8?autoplay=1&mute=1&loop=1&playlist=-UQ_GFdokO8&rel=0&modestbranding=1&playsinline=1"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                ></iframe>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="grid">
+                <div>
+                    <h2 class="glowing-text">Discover a New Adventure in Every Battle!</h2>
+                    <div class="description">
+                        <p>
+                            Dive into Gem Fighter's action-packed universe! Maneuver your spaceship in thrilling side-scrolling battles, collecting gemstones to boost your ship's powers. Each level brings challenging enemies and bosses, with rewards tied to your skill and strategy. Earn $HODL as you climb the leaderboards, with added benefits from NFT sales buybacks. Customize your ship between levels to suit your style. Ready for an adventure where skill pays off? Join Gem Fighter and conquer the galaxy!
+                        </p>
+                    </div>
+                    <div class="play-earn-button-group flex-start-mobile" style="justify-content: flex-start;">
+                        <a href="https://drive.google.com/file/d/1yD_RSuBDUvFDJ4xo6_35oJ-2N-A5h7aN/view" target="_blank">
+                            <button class="cta-button play-earn-button">Play on Windows</button>
+                        </a>
+                        <a href="https://drive.google.com/file/d/1uH-aBa7XQMNpUKqgeEMGBLN1j5oeJxBn/view" target="_blank">
+                            <button class="cta-button play-earn-button">Play on Mac</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="image-container">
+                    <img src="Images/gameplay.png" alt="Gem Fighter Gameplay" style="width: 100%; height: auto; border-radius: 15px;">
+                </div>
+            </div>
+        </section>
+
+        <!--nfts-->
+
+
+        <section class="section nft-showcase">
+            <h2 class="glowing-text">Elevate Gameplay and Earnings</h2>
+            <p>
+                Unlock the power of Gem Fighter NFTs and enhance your spaceship's
+                abilities for higher scores, bigger rewards, and endless adventures!
+            </p>
+            <div class="nft-image-container">
+                <img src="Images/NFT.png" alt="Gem Fighter NFT Preview" class="nft-image">
+            </div>
+            <a href="nfts.html" target="_blank">
+                <button class="cta-button play-earn-button" style="margin-top: 1rem;">Buy Now</button>
+            </a>
+        </section>
+    </main>
+
+<!--FAQs-->
+
+    <section class="faq-section" aria-label="Frequently Asked Questions">
+      <h3>FAQs</h3>
+
+      <div class="accordion">
+        <div class="accordion-header" tabindex="0">
+          How do I start playing Gem Fighter?
+        </div>
+        <div class="accordion-content">
+          <p>
+            Start your Gem Fighter journey by clicking 'Play the Beta' on the Gem Fighter page to play directly in your browser for free! Compete to earn rewards by surviving as long as possible. To boost your chances, mint Gem Fighter NFTs and enter each level with power-ups.
+          </p>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" tabindex="0">What is Play-To-Earn?</div>
+        <div class="accordion-content">
+          <p>
+            Play-to-Earn is a gaming model that allows players to earn rewards, typically in the form of cryptocurrency or digital assets, by actively participating in a game. It flips the traditional gaming paradigm by allowing players to generate real-world value from their in-game activities.
+          </p>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" tabindex="0">Is Gem Fighter Free to Play?</div>
+        <div class="accordion-content">
+          <p>
+            Yes! Gem Fighter is entirely free to play. Enhancing your gameplay with Gem Fighter NFTs is optional. All players have a chance to earn rewards by achieving high scores and ranking on the leaderboard.
+          </p>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" tabindex="0">Can I Play Without NFTs?</div>
+        <div class="accordion-content">
+          <p>
+            Absolutely! Enjoy Gem Fighter without NFTs. Using NFTs offers a strategic advantage by enhancing your spaceship's powers. In addition, Gem Fighter NFTs offer additional perks such as staking to earn various digital assets!
+          </p>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" tabindex="0">How Do I Earn In-Game Rewards?</div>
+        <div class="accordion-content">
+          <p>
+           Earn rewards by scoring high and climbing the leaderboards. The better your performance, the greater your rewards! Track your score and claim earnings anytime.
+          </p>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" tabindex="0">What Makes Each Game Level Unique?</div>
+        <div class="accordion-content">
+          <p>
+          Each level in Gem Fighter is procedurally generated, ensuring a new and unique challenge and environment with every playthrough.          </p>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" tabindex="0">What is procedural generation?</div>
+        <div class="accordion-content">
+          <p>
+            Procedural generation in Gem Fighter creates unique levels and enemies for each playthrough, ensuring a fresh, unpredictable gaming experience. This technology uses algorithms to dynamically generate game environments, enhancing replay value and challenge. It diverges from traditional static designs, offering an evolving, engaging adventure where no two sessions are alike. This approach keeps gameplay exciting, making every journey through Gem Fighter a distinct adventure that always feels new.          </p>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" tabindex="0">How Do I Use NFTs in the Game?</div>
+        <div class="accordion-content">
+          <p>
+        Socket Gem Fighter NFTs into your spaceship for enhanced attack, defense, or spell abilities, depending on the properties of each NFT. Simply connect your software wallet and pick which NFT to use for each power!          </p>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" tabindex="0">Where Do the Earnings Come From?</div>
+        <div class="accordion-content">
+          <p>
+        The earnings in Gem Fighter come from the proceeds of Gem Fighter NFT sales. 50% of these proceeds go towards buying $HODL, which is distributed as player rewards. Additionally, 12% of proceeds contribute to the $HODL BNB reward pool, claimable by $HODL token holders.          </p>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" tabindex="0">What Are the Benefits of Ranking High on the Leaderboard?</div>
+        <div class="accordion-content">
+          <p>
+        Achieving high rankings on the Gem Fighter leaderboard brings bragging rights and rewards in $HODL. 50% of NFT sale proceeds are used for buying back these tokens for player rewards.
+          </p>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" tabindex="0">How Do I Earn In-Game Rewards?</div>
+        <div class="accordion-content">
+          <p>
+           Earn rewards by scoring high and climbing the leaderboards. The better your performance, the greater your rewards! Track your score and claim earnings anytime.
+          </p>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" tabindex="0">Is There a Community or Support Forum for Players?</div>
+        <div class="accordion-content">
+          <p>
+        Yes, join our active community on Telegram and Discord for tips, sharing experiences, and connecting with fellow players! Click the community tab on the HODL website to find those or the links in the footer.
+          </p>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" tabindex="0">Are Updates and New Features Planned?</div>
+        <div class="accordion-content">
+          <p>
+        Certainly! We aim to release a new level every month. With each release, leaderboards reset, giving everyone a fresh chance to play Gem Fighter and earn rewards.
+          </p>
+        </div>
+      </div>
+    </section>
+
+<!--FOOTER-->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="terms.html">Terms</a>
+                <span class="link-separator">⏺</span>
+                <a href="privacy.html">Privacy</a>
+                <span class="link-separator">⏺</span>
+                <a href="cookies.html">Cookies</a>
+                <span class="link-separator">⏺</span>
+                <a href="disclaimers.html">Disclaimers</a>
+                <span class="link-separator">⏺</span>
+                <a href="support.html">Support</a>
+            </div><br />
+
+            <div class="social-icons" style="margin: 1.5rem 0;">
+                <a href="https://x.com/GemFighterP2E" target="_blank" class="social-link">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+                <a href="https://t.me/GemFighterP2E" target="_blank" class="social-link">
+                    <i class="fab fa-telegram-plane"></i>
+                </a>
+            </div>
+
+            <p class="footer-text">
+                © 2025 GEM FIGHTER<br />
+                SURVIVE → EARN → HODL
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

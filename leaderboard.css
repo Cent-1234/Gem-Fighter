@@ -1,0 +1,94 @@
+/* ==========================================================================
+   Leaderboard page-only styles (keeps dark space look from styles.css)
+   ========================================================================== */
+
+main .glowing-text {
+  font-size: clamp(2.6rem, 5.5vw, 3.4rem); /* grow on large screens */
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+}
+
+
+/* A11y helper */
+.lb-visually-hidden {
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden; clip: rect(1px, 1px, 1px, 1px);
+}
+
+/* Container under title */
+.lb-container { padding-top: .5rem; padding-bottom: 2.25rem; }
+
+/* --- Season bar --- */
+.lb-season {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  background: #0b0f14; border: 1px solid rgba(0, 243, 255, .25);
+  border-radius: 12px; padding: .85rem 1rem; box-shadow: 0 0 24px rgba(0, 243, 255, 0.12);
+  max-width: 1100px; margin: 0 auto 1rem;
+}
+.lb-season__left { font-family: 'Orbitron', sans-serif; letter-spacing: 1px; }
+.lb-pill { display:inline-block; padding:.35rem .7rem; border-radius:999px; border:1px solid rgba(0,243,255,.4); background:rgba(0,243,255,.07); }
+.lb-season__right { display:flex; align-items:center; gap:.9rem; color:#bffaff; }
+.lb-season__switcher { display:inline-flex; align-items:center; gap:.5rem; }
+.lb-season__btn { background:#0b0b0b; border:1px solid rgba(0,243,255,.4); color:#bffaff; padding:.25rem .5rem; border-radius:6px; cursor:pointer; }
+.lb-season__select { background:#0b0b0b; color:#bffaff; border:1px solid rgba(0,243,255,.4); padding:.25rem .5rem; border-radius:6px; }
+
+/* --- Table --- */
+.lb-table-wrap { max-width:1100px; margin:0 auto; overflow-x:auto; }
+.lb-table { width:100%; border-collapse:separate; border-spacing:0 10px; }
+.lb-table th, .lb-table td { padding:.75rem 1rem; }
+.lb-table thead th { text-align:left; border-bottom:1px solid rgba(0,243,255,.35); font-family:'Orbitron',sans-serif; }
+.lb-align-right { text-align:right; }
+
+.lb-table tbody tr {
+  background: linear-gradient(180deg, rgba(6,12,16,.75), rgba(6,12,18,.55));
+  border: 1px solid rgba(0, 243, 255, .2);
+  box-shadow: 0 0 24px rgba(0, 243, 255, .12);
+}
+.lb-table tbody td:first-child { border-top-left-radius:12px; border-bottom-left-radius:12px; }
+.lb-table tbody td:last-child  { border-top-right-radius:12px; border-bottom-right-radius:12px; }
+.lb-table tbody tr:hover { background: rgba(0,243,255,.05); }
+
+/* --- Rewards --- */
+.lb-rewards-cell { position:relative; }
+.lb-rewards {
+  display:flex; align-items:center; justify-content:flex-end;
+  gap: 1rem;                     /* a little more breathing room */
+  font-variant-numeric: tabular-nums;
+}
+.lb-reward { display:inline-flex; align-items:center; gap:.3rem; }
+.lb-reward i { font-size:.95rem; }
+
+/* $HODL round logo (SVG image) – size + baseline alignment */
+.lb-reward .lb-token {
+  width: 20px;
+  height: 20px;
+  vertical-align: -2px;
+  object-fit: contain;
+  display: inline-block;
+}
+
+/* Info button */
+.lb-info-btn {
+  display:inline-flex; align-items:center; justify-content:center;
+  width:28px; height:28px; border-radius:6px; margin-left:.35rem;
+  border:1px solid rgba(0,243,255,.35); background:#0b0f14; color:#bffaff; cursor:pointer;
+}
+
+/* --- Per-rank modal (works with your JS) --- */
+.lb-modal {
+  position:absolute; right:0; top:100%; margin-top:.5rem; min-width:280px;
+  background:#0b0f14; color:#fff; border:1px solid rgba(0,243,255,.35);
+  border-radius:10px; padding:1rem; display:none; z-index:10; box-shadow:0 0 24px rgba(0,243,255,.22);
+}
+.lb-modal.active { display:block; }
+.lb-modal h4 { margin:0 0 .5rem; font-size:1rem; }
+.lb-modal p, .lb-modal li { font-size:.92rem; line-height:1.3; }
+.lb-links { display:flex; gap:.75rem; margin-top:.5rem; }
+.lb-links a { color:#00f3ff; text-decoration:none; }
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .lb-table th, .lb-table td { padding:.65rem .75rem; }
+  .lb-rewards { gap:.8rem; }
+}

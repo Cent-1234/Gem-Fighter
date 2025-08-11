@@ -33,7 +33,7 @@ document.querySelectorAll('.section').forEach((section) => {
   observer.observe(section);
 });
 
-// Mobile social menu toggle (existing code, ensure it doesn't conflict)
+// Mobile social menu toggle
 const mobileToggle = document.querySelector('.mobile-social-toggle');
 const socialDropdown = document.querySelector('.social-dropdown');
 
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Close nav menu when a link is clicked (optional, but good UX)
-    navLinks.querySelectorAll('a').forEach(link => {
+    navLinks.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', () => {
         navLinks.classList.remove('active');
       });
@@ -77,13 +77,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Close nav menu when clicking outside of it
     document.addEventListener('click', (event) => {
-      if (!navLinks.contains(event.target) && !hamburgerMenu.contains(event.target) && navLinks.classList.contains('active')) {
+      if (
+        !navLinks.contains(event.target) &&
+        !hamburgerMenu.contains(event.target) &&
+        navLinks.classList.contains('active')
+      ) {
         navLinks.classList.remove('active');
       }
     });
   }
 });
-
 
 // Toggle ALL Minting Probability Dropdowns open/close together
 // Responsive Dropdown Logic
@@ -178,7 +181,7 @@ mintButtons.forEach((mintBtn) => {
       } else if (window.wcProvider) {
         provider = new ethers.BrowserProvider(window.wcProvider);
       } else {
-        alert('❌ No Wallet connected');
+        showToast('No Wallet connected', 'error');
         mintButtons.forEach((mintBtn) => {
           mintBtn.textContent = 'Connect Wallet & Mint';
         });
@@ -186,6 +189,8 @@ mintButtons.forEach((mintBtn) => {
       }
 
       const signer = await provider.getSigner();
+      const address = await signer.getAddress();
+
       const contract = new ethers.Contract(
         '0x1dc59c50d21514895a88d10f17af8fb1017e6a37',
         [
@@ -196,15 +201,32 @@ mintButtons.forEach((mintBtn) => {
       );
 
       const priceInWei = await contract.getPrice();
+      const balance = await provider.getBalance(address);
+      if (balance < priceInWei) {
+        showToast('Not enough BNB in the wallet', 'error');
+        return;
+      }
       const tx = await contract.purchase(1, {
-        value: priceInWei,
+        value: priceInWei.toString(),
       });
       await tx.wait();
     } catch (err) {
+      // if (err.Message.includes('insufficient funds'))
+      //   showToast('Not enough BNB in the wallet', 'error');
       console.error('❌ Mint-Error:', err);
     }
   });
 });
+
+function showToast(message, type = 'success') {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  toast.textContent = message;
+  container.appendChild(toast);
+
+  setTimeout(() => toast.remove(), 4000);
+}
 
 loadWalletConnect(() => {
   const connectBtn = document.getElementById('connectWallet');
@@ -228,11 +250,46 @@ loadWalletConnect(() => {
     localStorage.removeItem('walletAddress');
     localStorage.removeItem('walletProvider');
     connectBtn.textContent = 'Connect';
-    mintBtn.textContent = 'Connect Wallet & Mint';
+    mintButtons.forEach((mintBtn) => {
+      mintBtn.textContent = 'Connect Wallet & Mint';
+    });
+  };
+
+  const switchToBSC = async (provider) => {
+    try {
+      await provider.request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: '0x38' }], // 56 in hex
+      });
+    } catch (err) {
+      if (err.code === 4902) {
+        // Chain hinzufügen
+        await provider.request({
+          method: 'wallet_addEthereumChain',
+          params: [
+            {
+              chainId: '0x38',
+              chainName: 'Binance Smart Chain Mainnet',
+              nativeCurrency: {
+                name: 'Binance Coin',
+                symbol: 'BNB',
+                decimals: 18,
+              },
+              rpcUrls: ['https://bsc-dataseed.binance.org'],
+              blockExplorerUrls: ['https://bscscan.com'],
+            },
+          ],
+        });
+      } else {
+        console.error('Chain switch failed:', err);
+        throw err;
+      }
+    }
   };
 
   const connectWithMetaMask = async () => {
     await window.ethereum.request({ method: 'eth_requestAccounts' });
+    await switchToBSC(window.ethereum);
     const ethersProvider = new ethers.BrowserProvider(window.ethereum);
     const signer = await ethersProvider.getSigner();
     const address = await signer.getAddress();
@@ -260,6 +317,7 @@ loadWalletConnect(() => {
     window.wcProvider = wcProvider;
 
     await wcProvider.connect();
+    await switchToBSC(wcProvider);
     const ethersProvider = new ethers.BrowserProvider(wcProvider);
     const signer = await ethersProvider.getSigner();
     const address = await signer.getAddress();
@@ -279,6 +337,7 @@ loadWalletConnect(() => {
           method: 'eth_accounts',
         });
         if (accounts.length > 0) {
+          await switchToBSC(window.ethereum);
           setConnected(accounts[0]);
         }
       } catch (err) {
@@ -306,6 +365,7 @@ loadWalletConnect(() => {
 
         if (await wcProvider.isAuthorized()) {
           await wcProvider.connect();
+          await switchToBSC(wcProvider);
           const ethersProvider = new ethers.BrowserProvider(wcProvider);
           const signer = await ethersProvider.getSigner();
           const address = await signer.getAddress();
@@ -326,18 +386,63 @@ loadWalletConnect(() => {
 
   // 🔘 Button-Klick für Connect
   connectBtn.addEventListener('click', async () => {
-    if (window.ethereum?.isMetaMask) {
-      try {
-        await connectWithMetaMask();
-      } catch (err) {
-        console.error('MetaMask Error:', err);
-      }
+    if (
+      localStorage.getItem('walletProvider') &&
+      localStorage.getItem('walletAddress')
+    ) {
+      await clearConnection();
     } else {
-      try {
-        await connectWithWalletConnect();
-      } catch (err) {
-        console.error('WalletConnect Error:', err);
+      if (window.ethereum?.isMetaMask) {
+        try {
+          await connectWithMetaMask();
+        } catch (err) {
+          console.error('MetaMask Error:', err);
+        }
+      } else {
+        try {
+          await connectWithWalletConnect();
+        } catch (err) {
+          console.error('WalletConnect Error:', err);
+        }
       }
     }
   });
 });
+
+const contractAbi = [
+  'function totalSupply() view returns (uint256)',
+  'function getPrice() view returns (uint256)',
+];
+
+async function updateMintInfo() {
+  try {
+    const mintCounter = document.getElementById('mintCounter');
+    if (mintCounter) {
+      const provider = new ethers.JsonRpcProvider(
+        'https://bsc-dataseed.binance.org'
+      );
+      const contract = new ethers.Contract(
+        '0x1DC59c50d21514895A88D10F17Af8fB1017E6A37',
+        contractAbi,
+        provider
+      );
+
+      const total = await contract.totalSupply();
+      const priceWei = await contract.getPrice();
+
+      const priceBNB = Number(ethers.formatEther(priceWei)).toFixed(3);
+
+      document.getElementById('mintCounter').textContent = `Minted: ${Number(
+        total
+      ).toLocaleString()} / 50,000`;
+      document.getElementById(
+        'mintPrice'
+      ).textContent = `Price: ${priceBNB} BNB`;
+    }
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+updateMintInfo();
+setInterval(updateMintInfo, 30000);
