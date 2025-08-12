@@ -663,6 +663,23 @@ probabilities-section {
     transform: scale(1.04);
 }
 
+
+/* Replace font icons with image icons */
+.attr-icon {
+  width: 60px;          /* Adjust as needed */
+  height: 60px;         /* Keeps them square */
+  object-fit: contain;  /* Maintain aspect ratio */
+  margin-bottom: 0.3rem;
+  filter: drop-shadow(0 0 6px rgba(0, 243, 255, 0.6)); /* Glow effect like old icons */
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.attr:hover .attr-icon {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 8px rgba(102, 255, 255, 1));
+}
+
+
 /* FAQ Section */
 .faq-section {
     max-width: 1200px;
