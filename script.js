@@ -446,3 +446,64 @@ async function updateMintInfo() {
 
 updateMintInfo();
 setInterval(updateMintInfo, 30000);
+
+
+// ===== Play Modal logic =====
+(function () {
+  const playBtn = document.getElementById('playNowBtn');
+  const modal = document.getElementById('playModal');
+  if (!playBtn || !modal) return;
+
+  const closeSelectors = '[data-close]';
+  const focusableSel = [
+    'a[href]',
+    'button:not([disabled])',
+    '[tabindex]:not([tabindex="-1"])',
+  ].join(',');
+
+  let lastFocused = null;
+
+  const openModal = () => {
+    lastFocused = document.activeElement;
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    // Focus first focusable in dialog
+    const first = modal.querySelector(focusableSel);
+    if (first) first.focus();
+  };
+
+  const closeModal = () => {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lastFocused) lastFocused.focus();
+  };
+
+  playBtn.addEventListener('click', openModal);
+
+  // Close via backdrop or X
+  modal.addEventListener('click', (e) => {
+    if (e.target.matches(closeSelectors) || e.target.closest(closeSelectors)) {
+      closeModal();
+    }
+  });
+
+  // Esc to close
+  document.addEventListener('keydown', (e) => {
+    if (modal.classList.contains('is-open') && e.key === 'Escape') {
+      closeModal();
+    }
+  });
+
+  // Optional: small toast confirmation when a download starts
+  modal.querySelectorAll('a[download]').forEach((a) => {
+    a.addEventListener('click', () => {
+      if (typeof showToast === 'function') {
+        showToast('Starting download…', 'success');
+      }
+      // close after a short delay
+      setTimeout(closeModal, 300);
+    });
+  });
+})();

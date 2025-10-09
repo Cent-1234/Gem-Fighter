@@ -1003,3 +1003,109 @@ h1 {
 }
 
 
+/* ===== Modal (Play Now) ===== */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 2000;
+}
+
+.modal.is-open { display: block; }
+
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(6px);
+}
+
+.modal__dialog {
+  position: relative;
+  max-width: 640px;
+  margin: 8vh auto;
+  background: #0e0e0f;
+  border: 1px solid #00f3ff33;
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(0, 243, 255, 0.25);
+  padding: 1.75rem;
+  animation: fadeInUp 0.25s ease-out;
+}
+
+.modal__title {
+  font-family: 'Orbitron', sans-serif;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 10px #00f3ff;
+}
+
+.modal__actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.modal__note {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #b7eaff;
+  opacity: 0.9;
+}
+
+/* Close button */
+.modal__close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.6rem;
+  cursor: pointer;
+  line-height: 1;
+  transition: transform 0.15s ease;
+}
+.modal__close:hover { transform: scale(1.1); }
+
+/* Modal buttons - reusing your vibe */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  
+  padding: 0.9rem 1.1rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-family: 'Jost', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.btn:active { transform: scale(0.98); }
+
+.btn--primary {
+  background: linear-gradient(45deg, #00f3ff, #0066ff);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.35);
+}
+.btn--primary:hover {
+  box-shadow: 0 0 35px rgba(0, 243, 255, 0.9), 0 0 55px rgba(0, 243, 255, 0.6);
+}
+
+.btn--outline {
+  border: 1px solid #00f3ff66;
+  color: #e7fbff;
+  background: #0a0a0a;
+}
+.btn--outline:hover {
+  border-color: #00f3ff;
+  box-shadow: 0 0 18px rgba(0, 243, 255, 0.35);
+}
+
+/* Small screens */
+@media (max-width: 520px) {
+  .modal__dialog { margin: 6vh 1rem; padding: 1.25rem; }
+  .modal__actions { gap: 0.6rem; }
+}
+

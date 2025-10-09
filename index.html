@@ -48,11 +48,47 @@
                 <img src="Images/logo.png" alt="GemFighter Logo" />
             </div>
             <h1>Where Survival Pays!</h1><br />
-            <a href="https://hodltoken.net/gem-fighter-p2e" target="_blank">
-                <button class="cta-button">Play Now!</button>
-            </a>
+            <button id="playNowBtn" class="cta-button" aria-haspopup="dialog" aria-controls="playModal">
+            Play Now!
+            </button>
+
         </div>
     </header>
+
+    <!-- Play Modal -->
+    <div id="playModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="playModalTitle">
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__dialog" role="document">
+        <button class="modal__close" aria-label="Close" data-close>&times;</button>
+        <h3 id="playModalTitle" class="modal__title">Play Gem Fighter</h3>
+
+        <div class="modal__actions">
+        <!-- Open Epic Games in a new tab -->
+        <a class="btn btn--primary" href="https://store.epicgames.com/en-US/p/gem-fighter-c706ec/" target="_blank" rel="noopener">
+            <i class="fa-brands fa-epic-games"></i> Play on Epic Games
+        </a>
+
+        <!-- Direct downloads from Google Drive -->
+        <a class="btn btn--outline"
+        href="https://drive.google.com/uc?export=download&id=1R4IO8P0x6xL5FEEHZBILu22XADGNLqtX"
+        download>
+        <i class="fa-brands fa-apple"></i> Download for Mac
+        </a>
+
+        <a class="btn btn--outline"
+        href="https://drive.google.com/uc?export=download&id=1_Qu6a7ukzUtIeYzDFRwTW-CwC6TFT8xy"
+        download>
+        <i class="fa-brands fa-windows"></i> Download for Windows
+        </a>
+
+        </div>
+
+        <p class="modal__note">
+        Downloads start immediately on click—no extra pages. If nothing happens, your browser may be blocking popups or downloads.
+        </p>
+    </div>
+    </div>
+
 
     <section id="play-earn-section" class="section">
         <div class="grid">
@@ -105,6 +141,33 @@
         </div>
     </section>
 
+   <!-- Story Video Section -->
+<section class="section" style="padding-top: 4rem; text-align: center;">
+  <h2 class="glowing-text" style="margin-bottom: 1rem;">Gem Fighter: Fractured Origins</h2>
+  <p style="max-width: 800px; margin: 0 auto 2.5rem; color: #ccc; font-size: 1.1rem;">
+    Discover the story that forged the Gem Fighters — step into the breach — where every Dimension Stone can save billions of lives back home..
+  </p>
+
+  <div class="video-container" style="max-width: 1200px; margin: 0 auto; border-radius: 15px; overflow: hidden;">
+    <iframe
+      src="https://www.youtube.com/embed/TfvO6JxJTsM?autoplay=1&mute=1&loop=1&playlist=TfvO6JxJTsM&controls=1&playsinline=1&modestbranding=1&rel=0&showinfo=0"
+      title="Gem Fighter Story Trailer"
+      frameborder="0"
+      allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+      allowfullscreen
+      style="width: 100%; aspect-ratio: 16/9; border: none;"
+    ></iframe>
+  </div>
+
+  <a href="story.html" target="_blank">
+    <button class="cta-button" style="margin-top: 2rem; padding: 0.8rem 2.2rem; font-size: 1.2rem;">
+      Read the Full Story
+    </button>
+  </a>
+</section>
+
+
+
     <section class="section">
         <div class="grid">
             <div>
@@ -132,6 +195,8 @@
             </div>
         </div>
     </section>
+
+    
 
     <footer class="footer">
         <div class="footer-content">
