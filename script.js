@@ -169,13 +169,40 @@ function loadWalletConnect(callback) {
   document.body.appendChild(script);
 }
 
+async function showWalletModalAndWait() {
+  return new Promise((resolve, reject) => {
+    walletModal.classList.add('show');
+  });
+}
+
 const mintButtons = document.querySelectorAll('.mintBtn');
 
 mintButtons.forEach((mintBtn) => {
   mintBtn.addEventListener('click', async () => {
     try {
-      let provider;
+      if (
+        !(
+          localStorage.getItem('walletProvider') &&
+          localStorage.getItem('walletAddress')
+        )
+      ) {
+        if (window.ethereum?.isMetaMask) {
+          try {
+            await showWalletModalAndWait(); //walletModal.classList.add('show');
+            // await connectWithMetaMask();
+          } catch (err) {
+            console.error('MetaMask Error:', err);
+          }
+        } else {
+          try {
+            await connectWithWalletConnect();
+          } catch (err) {
+            console.error('WalletConnect Error:', err);
+          }
+        }
+      }
 
+      let provider;
       if (window.ethereum?.isMetaMask) {
         provider = new ethers.BrowserProvider(window.ethereum);
       } else if (window.wcProvider) {
@@ -203,7 +230,13 @@ mintButtons.forEach((mintBtn) => {
       const priceInWei = await contract.getPrice();
       const balance = await provider.getBalance(address);
       if (balance < priceInWei) {
-        showToast('Not enough BNB in the wallet', 'error');
+        showToast(
+          `Not enough BNB. You need at least ${(
+            (Number(priceInWei) + 50000000000000) /
+            10 ** 18
+          ).toFixed(4)} BNB in the wallet.`,
+          'error'
+        );
         return;
       }
       const tx = await contract.purchase(1, {
@@ -228,109 +261,117 @@ function showToast(message, type = 'success') {
   setTimeout(() => toast.remove(), 4000);
 }
 
-loadWalletConnect(() => {
-  const connectBtn = document.getElementById('connectWallet');
-
-  const truncateRegex = /^(0x[a-zA-Z0-9]{4})[a-zA-Z0-9]+([a-zA-Z0-9]{4})$/;
-  const truncateEthAddress = (address) => {
-    const match = address && address.match(truncateRegex);
-    if (!match) return address;
-    return `${match[1]}…${match[2]}`;
-  };
-
-  const setConnected = (address) => {
-    connectBtn.textContent = truncateEthAddress(address);
-    mintButtons.forEach((mintBtn) => {
-      mintBtn.textContent = 'Mint Now';
-    });
-    localStorage.setItem('walletAddress', address);
-  };
-
-  const clearConnection = () => {
-    localStorage.removeItem('walletAddress');
-    localStorage.removeItem('walletProvider');
-    connectBtn.textContent = 'Connect';
-    mintButtons.forEach((mintBtn) => {
-      mintBtn.textContent = 'Connect Wallet & Mint';
-    });
-  };
-
-  const switchToBSC = async (provider) => {
+const connectWithMetaMask = async () => {
+  return new Promise(async (resolve, reject) => {
     try {
-      await provider.request({
-        method: 'wallet_switchEthereumChain',
-        params: [{ chainId: '0x38' }], // 56 in hex
-      });
+      await window.ethereum.request({ method: 'eth_requestAccounts' });
+      await switchToBSC(window.ethereum);
+      const ethersProvider = new ethers.BrowserProvider(window.ethereum);
+      const signer = await ethersProvider.getSigner();
+      const address = await signer.getAddress();
+      setConnected(address);
+      localStorage.setItem('walletProvider', 'metamask');
+      resolve();
     } catch (err) {
-      if (err.code === 4902) {
-        // Chain hinzufügen
-        await provider.request({
-          method: 'wallet_addEthereumChain',
-          params: [
-            {
-              chainId: '0x38',
-              chainName: 'Binance Smart Chain Mainnet',
-              nativeCurrency: {
-                name: 'Binance Coin',
-                symbol: 'BNB',
-                decimals: 18,
-              },
-              rpcUrls: ['https://bsc-dataseed.binance.org'],
-              blockExplorerUrls: ['https://bscscan.com'],
-            },
-          ],
-        });
-      } else {
-        console.error('Chain switch failed:', err);
-        throw err;
-      }
+      reject(err);
     }
-  };
+  });
+};
 
-  const connectWithMetaMask = async () => {
-    await window.ethereum.request({ method: 'eth_requestAccounts' });
-    await switchToBSC(window.ethereum);
-    const ethersProvider = new ethers.BrowserProvider(window.ethereum);
-    const signer = await ethersProvider.getSigner();
-    const address = await signer.getAddress();
-    setConnected(address);
-    localStorage.setItem('walletProvider', 'metamask');
-  };
+const connectWithWalletConnect = async () => {
+  const EthereumProvider =
+    globalThis['@walletconnect/ethereum-provider'].EthereumProvider;
 
-  const connectWithWalletConnect = async () => {
-    const EthereumProvider =
-      globalThis['@walletconnect/ethereum-provider'].EthereumProvider;
+  const wcProvider = await EthereumProvider.init({
+    projectId: '083305249ab43e78f20f52ad13fa95cb',
+    chains: [56],
+    showQrModal: true,
+    metadata: {
+      name: 'HODL',
+      description:
+        '$HODL: THE ULTIMATE REWARD TOKEN!\n\nEarn maximum passive income with $HODL on Binance Smart Chain! Its innovative contract incurs a 5% tax on every transaction, with a sell bot generating BNB rewards for all holders. Claim your share every 7 days.',
+      url: 'https://hodltoken.net/',
+      icons: ['https://hodltoken.net/icons/icon-96x96.png'],
+    },
+  });
 
-    const wcProvider = await EthereumProvider.init({
-      projectId: '083305249ab43e78f20f52ad13fa95cb',
-      chains: [56],
-      showQrModal: true,
-      metadata: {
-        name: 'HODL',
-        description:
-          '$HODL: THE ULTIMATE REWARD TOKEN!\n\nEarn maximum passive income with $HODL on Binance Smart Chain! Its innovative contract incurs a 5% tax on every transaction, with a sell bot generating BNB rewards for all holders. Claim your share every 7 days.',
-        url: 'https://hodltoken.net/',
-        icons: ['https://hodltoken.net/icons/icon-96x96.png'],
-      },
+  window.wcProvider = wcProvider;
+
+  await wcProvider.connect();
+  await switchToBSC(wcProvider);
+  const ethersProvider = new ethers.BrowserProvider(wcProvider);
+  const signer = await ethersProvider.getSigner();
+  const address = await signer.getAddress();
+  setConnected(address);
+  localStorage.setItem('walletProvider', 'walletconnect');
+
+  wcProvider.on('disconnect', () => {
+    clearConnection();
+  });
+};
+
+const switchToBSC = async (provider) => {
+  try {
+    await provider.request({
+      method: 'wallet_switchEthereumChain',
+      params: [{ chainId: '0x38' }], // 56 in hex
     });
+  } catch (err) {
+    if (err.code === 4902) {
+      // Chain hinzufügen
+      await provider.request({
+        method: 'wallet_addEthereumChain',
+        params: [
+          {
+            chainId: '0x38',
+            chainName: 'Binance Smart Chain Mainnet',
+            nativeCurrency: {
+              name: 'Binance Coin',
+              symbol: 'BNB',
+              decimals: 18,
+            },
+            rpcUrls: ['https://bsc-dataseed.binance.org'],
+            blockExplorerUrls: ['https://bscscan.com'],
+          },
+        ],
+      });
+    } else {
+      console.error('Chain switch failed:', err);
+      throw err;
+    }
+  }
+};
 
-    window.wcProvider = wcProvider;
+const connectBtn = document.getElementById('connectWallet');
 
-    await wcProvider.connect();
-    await switchToBSC(wcProvider);
-    const ethersProvider = new ethers.BrowserProvider(wcProvider);
-    const signer = await ethersProvider.getSigner();
-    const address = await signer.getAddress();
-    setConnected(address);
-    localStorage.setItem('walletProvider', 'walletconnect');
+const truncateRegex = /^(0x[a-zA-Z0-9]{4})[a-zA-Z0-9]+([a-zA-Z0-9]{4})$/;
+const truncateEthAddress = (address) => {
+  const match = address && address.match(truncateRegex);
+  if (!match) return address;
+  return `${match[1]}…${match[2]}`;
+};
 
-    wcProvider.on('disconnect', () => {
-      clearConnection();
-    });
-  };
+const setConnected = (address) => {
+  connectBtn.textContent = truncateEthAddress(address);
+  mintButtons.forEach((mintBtn) => {
+    mintBtn.textContent = 'Mint Now';
+  });
+  localStorage.setItem('walletAddress', address);
+};
 
+const clearConnection = () => {
+  localStorage.removeItem('walletAddress');
+  localStorage.removeItem('walletProvider');
+  connectBtn.textContent = 'Connect';
+  mintButtons.forEach((mintBtn) => {
+    mintBtn.textContent = 'Connect Wallet & Mint';
+  });
+};
+
+loadWalletConnect(() => {
   (async () => {
     const savedProvider = localStorage.getItem('walletProvider');
+
     if (savedProvider === 'metamask' && window.ethereum?.isMetaMask) {
       try {
         const accounts = await window.ethereum.request({
@@ -394,7 +435,8 @@ loadWalletConnect(() => {
     } else {
       if (window.ethereum?.isMetaMask) {
         try {
-          await connectWithMetaMask();
+          walletModal.classList.add('show');
+          // await connectWithMetaMask();
         } catch (err) {
           console.error('MetaMask Error:', err);
         }
@@ -431,13 +473,31 @@ async function updateMintInfo() {
       const priceWei = await contract.getPrice();
 
       const priceBNB = Number(ethers.formatEther(priceWei)).toFixed(3);
+      var priceUSDT = 0;
+
+      const res = await fetch(
+        'https://www.binance.com/api/v3/ticker/price?symbol=BNBUSDT'
+      );
+      if (res.ok) {
+        const data = await res.json();
+        priceUSDT = (
+          Number(data.price) * Number(ethers.formatEther(priceWei))
+        ).toFixed(2);
+      }
 
       document.getElementById('mintCounter').textContent = `Minted: ${Number(
         total
       ).toLocaleString()} / 50,000`;
       document.getElementById(
         'mintPrice'
-      ).textContent = `Price: ${priceBNB} BNB`;
+      ).textContent = `Price: ${priceBNB} BNB${
+        priceUSDT != 0 ? ` / $${priceUSDT}` : ''
+      }`;
+
+      document.getElementById(
+        'nftprice'
+      ).textContent = `The mint price is currently at $${priceUSDT} worth of BNB per NFTs. The
+            exact BNB amount is auto-converted based on current market rates.`;
     }
   } catch (err) {
     console.error(err);
@@ -447,6 +507,53 @@ async function updateMintInfo() {
 updateMintInfo();
 setInterval(updateMintInfo, 30000);
 
+async function loadWalletModal() {
+  if (document.getElementById('walletModal')) return;
+
+  try {
+    const response = await fetch('wallet-modal.html');
+    const html = await response.text();
+    document.body.insertAdjacentHTML('beforeend', html);
+    initWalletModal();
+  } catch (err) {
+    console.error('❌ Fehler beim Laden des Modals:', err);
+  }
+}
+
+function initWalletModal() {
+  const walletModal = document.getElementById('walletModal');
+  const closeModal = document.getElementById('closeModal');
+
+  // Modal schließen
+  closeModal.addEventListener('click', () => {
+    walletModal.classList.remove('show');
+  });
+  window.addEventListener('click', (e) => {
+    if (e.target === walletModal) {
+      walletModal.classList.remove('show');
+    }
+  });
+
+  // Wallet Auswahl
+  document.getElementById('connectMetaMask').onclick = async () => {
+    walletModal.classList.remove('show');
+    await connectWithMetaMask();
+  };
+  document.getElementById('connectTrust').onclick = async () => {
+    walletModal.classList.remove('show');
+    await connectWithMetaMask(); // Trust Wallet funktioniert im Browser auch über window.ethereum
+  };
+  document.getElementById('connectSafePal').onclick = async () => {
+    walletModal.classList.remove('show');
+    await connectWithMetaMask(); // SafePal Extension nutzt ebenfalls window.ethereum
+  };
+  document.getElementById('connectWalletConnect').onclick = async () => {
+    walletModal.classList.remove('show');
+    await connectWithWalletConnect();
+  };
+}
+
+document.addEventListener('DOMContentLoaded', loadWalletModal);
 
 // ===== Play Modal logic =====
 (function () {

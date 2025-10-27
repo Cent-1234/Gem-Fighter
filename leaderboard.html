@@ -6,8 +6,14 @@
     <title>Gem Fighter: Leaderboard</title>
 
     <!-- Same stack as other pages -->
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="leaderboard.css" />
     <link rel="icon" href="Images/logo.png" type="image/png" />
@@ -20,7 +26,8 @@
     <!-- ===== NAVBAR (copied from index.html for consistency) ===== -->
     <nav class="navbar">
       <div class="hamburger-menu" id="hamburger-menu">
-        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        <span class="bar"></span><span class="bar"></span
+        ><span class="bar"></span>
       </div>
 
       <ul class="nav-links" id="nav-links">
@@ -32,32 +39,77 @@
       </ul>
 
       <ul class="social-nav">
-        <li><button id="connectWallet" class="cta-button walletconnect">Connect Wallet</button></li>
+        <li>
+          <button id="connectWallet" class="cta-button walletconnect">
+            Connect Wallet
+          </button>
+        </li>
       </ul>
     </nav>
 
     <!-- ===== PAGE CONTENT ===== -->
-    <main style="margin-top: 60px;">
+    <main style="margin-top: 60px">
       <!-- Title styled like other sections -->
-      <section class="section" style="text-align:center; padding: 3.25rem 1rem 1.25rem;">
-        <h1 class="glowing-text" >Leaderboard</h1>
+      <section
+        class="section"
+        style="text-align: center; padding: 3.25rem 1rem 1.25rem"
+      >
+        <h1 class="glowing-text">Leaderboard</h1>
       </section>
 
       <!-- Season bar -->
       <section class="section lb-container">
-        <div class="lb-season" id="lbSeasonInfo" data-end="2025-08-23T23:59:59Z">
+        <div
+          class="lb-season"
+          id="lbSeasonInfo"
+          data-end="2025-08-23T23:59:59Z"
+        >
           <div class="lb-season__left">
-            <span class="lb-pill">Season <strong id="lbSeasonNo">1</strong></span>
+            <span class="lb-pill"><strong id="lbSeasonNo">1</strong></span>
+            <div class="lb-season__end_mobile">
+              Ends in <strong id="lbCountdown" class="lbCountdown">11d</strong>
+            </div>
           </div>
           <div class="lb-season__right">
-            Ends in <strong id="lbCountdown">11d</strong>
+            <div class="lb-season__end">
+              Ends in <strong id="lbCountdown" class="lbCountdown">11d</strong>
+            </div>
             <div class="lb-season__switcher">
-              <button class="lb-season__btn" id="lbPrevSeason" aria-label="Previous season">◀</button>
-              <label class="lb-visually-hidden" for="lbSeasonSelect">Select season</label>
-              <select class="lb-season__select" id="lbSeasonSelect" aria-label="Select season">
+              <button
+                class="lb-season__btn"
+                id="lbPrevSeason"
+                aria-label="Previous season"
+              >
+                ◀
+              </button>
+              <label class="lb-visually-hidden" for="lbSeasonSelect"
+                >Select season</label
+              >
+              <select
+                class="lb-season__select"
+                id="lbSeasonSelect"
+                aria-label="Select season"
+              >
                 <option value="1" selected>Season 1</option>
               </select>
-              <button class="lb-season__btn" id="lbNextSeason" aria-label="Next season">▶</button>
+              <button
+                class="lb-season__btn"
+                id="lbNextSeason"
+                aria-label="Next season"
+              >
+                ▶
+              </button>
+
+              <select
+                class="lb-season__select"
+                id="lbDifficultySelect"
+                aria-label="Select difficulty"
+              >
+                <option value="1">Free</option>
+                <option value="2" selected>Easy</option>
+                <option value="3" disabled>Difficult</option>
+                <option value="4" disabled>Masterclass</option>
+              </select>
             </div>
           </div>
         </div>
@@ -80,21 +132,45 @@
                 <td>0</td>
                 <td class="lb-rewards-cell">
                   <div class="lb-rewards">
-                    <span class="lb-reward" title="Gem Fighter NFT"><span>1</span><i class="fas fa-gem"></i></span>
-                    <span class="lb-reward" title="HODL Hands NFT"><span>1</span><i class="fas fa-hand"></i></span>
-                    <span class="lb-reward" title="$HODL"><span>1M</span><img src="Images/hodl-logo.svg" alt="$HODL" class="lb-token" /></span>
-                    <button class="lb-info-btn" aria-label="Show reward details for rank 1" aria-controls="lbReward-1" aria-expanded="false">
+                    <span class="lb-reward" title="Gem Fighter NFT"
+                      ><span>1</span><i class="fas fa-gem"></i
+                    ></span>
+                    <span class="lb-reward" title="HODL Hands NFT"
+                      ><span>1</span><i class="fas fa-hand"></i
+                    ></span>
+                    <span class="lb-reward" title="$HODL"
+                      ><span>1M</span
+                      ><img
+                        src="Images/hodl-logo.svg"
+                        alt="$HODL"
+                        class="lb-token"
+                    /></span>
+                    <button
+                      class="lb-info-btn"
+                      aria-label="Show reward details for rank 1"
+                      aria-controls="lbReward-1"
+                      aria-expanded="false"
+                    >
                       <i class="fas fa-info-circle"></i>
                     </button>
                   </div>
-                  <div class="lb-modal" id="lbReward-1" role="dialog" aria-modal="true" aria-labelledby="lbReward-1-title">
+                  <div
+                    class="lb-modal"
+                    id="lbReward-1"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="lbReward-1-title"
+                  >
                     <h4 id="lbReward-1-title">Rank #1 — Prize Breakdown</h4>
                     <ul>
                       <li>1 × Gem Fighter NFT</li>
                       <li>1 × HODL Hands NFT</li>
                       <li>1,000,000 × $HODL tokens</li>
                     </ul>
-                    <div class="lb-links"><a href="#">Gem Fighter</a><a href="#">HODL Hands</a><a href="#">$HODL</a></div>
+                    <div class="lb-links">
+                      <a href="#">Gem Fighter</a><a href="#">HODL Hands</a
+                      ><a href="#">$HODL</a>
+                    </div>
                   </div>
                 </td>
               </tr>
@@ -105,17 +181,45 @@
                 <td>0</td>
                 <td class="lb-rewards-cell">
                   <div class="lb-rewards">
-                    <span class="lb-reward"><span>1</span><i class="fas fa-gem"></i></span>
-                    <span class="lb-reward"><span>1</span><i class="fas fa-hand"></i></span>
-                    <span class="lb-reward"><span>500k</span><img src="Images/hodl-logo.svg" alt="$HODL" class="lb-token" /></span>
-                    <button class="lb-info-btn" aria-label="Show reward details for rank 2" aria-controls="lbReward-2" aria-expanded="false">
+                    <span class="lb-reward"
+                      ><span>1</span><i class="fas fa-gem"></i
+                    ></span>
+                    <span class="lb-reward"
+                      ><span>1</span><i class="fas fa-hand"></i
+                    ></span>
+                    <span class="lb-reward"
+                      ><span>500k</span
+                      ><img
+                        src="Images/hodl-logo.svg"
+                        alt="$HODL"
+                        class="lb-token"
+                    /></span>
+                    <button
+                      class="lb-info-btn"
+                      aria-label="Show reward details for rank 2"
+                      aria-controls="lbReward-2"
+                      aria-expanded="false"
+                    >
                       <i class="fas fa-info-circle"></i>
                     </button>
                   </div>
-                  <div class="lb-modal" id="lbReward-2" role="dialog" aria-modal="true" aria-labelledby="lbReward-2-title">
+                  <div
+                    class="lb-modal"
+                    id="lbReward-2"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="lbReward-2-title"
+                  >
                     <h4 id="lbReward-2-title">Rank #2 — Prize Breakdown</h4>
-                    <ul><li>1 × Gem Fighter NFT</li><li>1 × HODL Hands NFT</li><li>500,000 × $HODL tokens</li></ul>
-                    <div class="lb-links"><a href="#">Gem Fighter</a><a href="#">HODL Hands</a><a href="#">$HODL</a></div>
+                    <ul>
+                      <li>1 × Gem Fighter NFT</li>
+                      <li>1 × HODL Hands NFT</li>
+                      <li>500,000 × $HODL tokens</li>
+                    </ul>
+                    <div class="lb-links">
+                      <a href="#">Gem Fighter</a><a href="#">HODL Hands</a
+                      ><a href="#">$HODL</a>
+                    </div>
                   </div>
                 </td>
               </tr>
@@ -126,17 +230,45 @@
                 <td>0</td>
                 <td class="lb-rewards-cell">
                   <div class="lb-rewards">
-                    <span class="lb-reward"><span>1</span><i class="fas fa-gem"></i></span>
-                    <span class="lb-reward"><span>1</span><i class="fas fa-hand"></i></span>
-                    <span class="lb-reward"><span>250k</span><img src="Images/hodl-logo.svg" alt="$HODL" class="lb-token" /></span>
-                    <button class="lb-info-btn" aria-label="Show reward details for rank 3" aria-controls="lbReward-3" aria-expanded="false">
+                    <span class="lb-reward"
+                      ><span>1</span><i class="fas fa-gem"></i
+                    ></span>
+                    <span class="lb-reward"
+                      ><span>1</span><i class="fas fa-hand"></i
+                    ></span>
+                    <span class="lb-reward"
+                      ><span>250k</span
+                      ><img
+                        src="Images/hodl-logo.svg"
+                        alt="$HODL"
+                        class="lb-token"
+                    /></span>
+                    <button
+                      class="lb-info-btn"
+                      aria-label="Show reward details for rank 3"
+                      aria-controls="lbReward-3"
+                      aria-expanded="false"
+                    >
                       <i class="fas fa-info-circle"></i>
                     </button>
                   </div>
-                  <div class="lb-modal" id="lbReward-3" role="dialog" aria-modal="true" aria-labelledby="lbReward-3-title">
+                  <div
+                    class="lb-modal"
+                    id="lbReward-3"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="lbReward-3-title"
+                  >
                     <h4 id="lbReward-3-title">Rank #3 — Prize Breakdown</h4>
-                    <ul><li>1 × Gem Fighter NFT</li><li>1 × HODL Hands NFT</li><li>250,000 × $HODL tokens</li></ul>
-                    <div class="lb-links"><a href="#">Gem Fighter</a><a href="#">HODL Hands</a><a href="#">$HODL</a></div>
+                    <ul>
+                      <li>1 × Gem Fighter NFT</li>
+                      <li>1 × HODL Hands NFT</li>
+                      <li>250,000 × $HODL tokens</li>
+                    </ul>
+                    <div class="lb-links">
+                      <a href="#">Gem Fighter</a><a href="#">HODL Hands</a
+                      ><a href="#">$HODL</a>
+                    </div>
                   </div>
                 </td>
               </tr>
@@ -147,16 +279,41 @@
                 <td>0</td>
                 <td class="lb-rewards-cell">
                   <div class="lb-rewards">
-                    <span class="lb-reward"><span>0</span><i class="fas fa-gem"></i></span>
-                    <span class="lb-reward"><span>0</span><i class="fas fa-hand"></i></span>
-                    <span class="lb-reward"><span>100k</span><img src="Images/hodl-logo.svg" alt="$HODL" class="lb-token" /></span>
-                    <button class="lb-info-btn" aria-label="Show reward details for rank 4" aria-controls="lbReward-4" aria-expanded="false">
+                    <span class="lb-reward"
+                      ><span>0</span><i class="fas fa-gem"></i
+                    ></span>
+                    <span class="lb-reward"
+                      ><span>0</span><i class="fas fa-hand"></i
+                    ></span>
+                    <span class="lb-reward"
+                      ><span>100k</span
+                      ><img
+                        src="Images/hodl-logo.svg"
+                        alt="$HODL"
+                        class="lb-token"
+                    /></span>
+                    <button
+                      class="lb-info-btn"
+                      aria-label="Show reward details for rank 4"
+                      aria-controls="lbReward-4"
+                      aria-expanded="false"
+                    >
                       <i class="fas fa-info-circle"></i>
                     </button>
                   </div>
-                  <div class="lb-modal" id="lbReward-4" role="dialog" aria-modal="true" aria-labelledby="lbReward-4-title">
+                  <div
+                    class="lb-modal"
+                    id="lbReward-4"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="lbReward-4-title"
+                  >
                     <h4 id="lbReward-4-title">Rank #4 — Prize Breakdown</h4>
-                    <ul><li>—</li><li>—</li><li>100,000 × $HODL tokens</li></ul>
+                    <ul>
+                      <li>—</li>
+                      <li>—</li>
+                      <li>100,000 × $HODL tokens</li>
+                    </ul>
                     <div class="lb-links"><a href="#">$HODL</a></div>
                   </div>
                 </td>
@@ -168,16 +325,41 @@
                 <td>0</td>
                 <td class="lb-rewards-cell">
                   <div class="lb-rewards">
-                    <span class="lb-reward"><span>0</span><i class="fas fa-gem"></i></span>
-                    <span class="lb-reward"><span>0</span><i class="fas fa-hand"></i></span>
-                    <span class="lb-reward"><span>50k</span><img src="Images/hodl-logo.svg" alt="$HODL" class="lb-token" /></span>
-                    <button class="lb-info-btn" aria-label="Show reward details for rank 5" aria-controls="lbReward-5" aria-expanded="false">
+                    <span class="lb-reward"
+                      ><span>0</span><i class="fas fa-gem"></i
+                    ></span>
+                    <span class="lb-reward"
+                      ><span>0</span><i class="fas fa-hand"></i
+                    ></span>
+                    <span class="lb-reward"
+                      ><span>50k</span
+                      ><img
+                        src="Images/hodl-logo.svg"
+                        alt="$HODL"
+                        class="lb-token"
+                    /></span>
+                    <button
+                      class="lb-info-btn"
+                      aria-label="Show reward details for rank 5"
+                      aria-controls="lbReward-5"
+                      aria-expanded="false"
+                    >
                       <i class="fas fa-info-circle"></i>
                     </button>
                   </div>
-                  <div class="lb-modal" id="lbReward-5" role="dialog" aria-modal="true" aria-labelledby="lbReward-5-title">
+                  <div
+                    class="lb-modal"
+                    id="lbReward-5"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="lbReward-5-title"
+                  >
                     <h4 id="lbReward-5-title">Rank #5 — Prize Breakdown</h4>
-                    <ul><li>—</li><li>—</li><li>50,000 × $HODL tokens</li></ul>
+                    <ul>
+                      <li>—</li>
+                      <li>—</li>
+                      <li>50,000 × $HODL tokens</li>
+                    </ul>
                     <div class="lb-links"><a href="#">$HODL</a></div>
                   </div>
                 </td>
@@ -188,7 +370,7 @@
       </section>
     </main>
 
-    <!-- ===== FOOTER (copied from index.html) ===== -->
+    <!-- ===== FOOTER ===== -->
     <footer class="footer">
       <div class="footer-content">
         <div class="footer-links">
@@ -201,20 +383,33 @@
           <a href="disclaimers.html">Disclaimers</a>
           <span class="link-separator">⏺</span>
           <a href="support.html">Support</a>
-        </div><br />
+          <span class="link-separator">⏺</span>
+          <a href="security.html">Security</a>
+        </div>
+        <br />
 
-        <div class="social-icons" style="margin: 1.5rem 0;">
-          <a href="https://x.com/GemFighterP2E" target="_blank" class="social-link"><i class="fab fa-x-twitter"></i></a>
-          <a href="https://t.me/GemFighterP2E" target="_blank" class="social-link"><i class="fab fa-telegram-plane"></i></a>
+        <div class="social-icons" style="margin: 1.5rem 0">
+          <a
+            href="https://x.com/GemFighterP2E"
+            target="_blank"
+            class="social-link"
+            ><i class="fab fa-x-twitter"></i
+          ></a>
+          <a
+            href="https://t.me/GemFighterP2E"
+            target="_blank"
+            class="social-link"
+            ><i class="fab fa-telegram-plane"></i
+          ></a>
         </div>
 
-        <p class="footer-text">© 2025 GEM FIGHTER<br />SURVIVE → EARN → HODL</p>
+        <p class="footer-text">© 2025 GEM FIGHTER<br />SURVIVE → EARN → HODL to SURVIVE → EARN</p>
       </div>
     </footer>
 
-    <!-- Your global site JS (hamburger, wallet, etc.) -->
+    <!-- Global site JS -->
     <script src="script.js"></script>
-    <!-- Optional: your existing leaderboard.js if you’re using it -->
+    <!--  leaderboard.js  -->
     <script src="leaderboard.js"></script>
   </body>
 </html>

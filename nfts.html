@@ -56,16 +56,12 @@
       <p>Enhance your power. Earn rewards. Own a piece of the fight.</p>
       <button class="mintBtn btn">Connect Wallet & Mint</button>
       <br /><br />
-      <div class="preview" aria-label="Gem Fighter NFT video preview">
-        <iframe
-          width="100%"
-          src="https://www.youtube.com/embed/vhlsXtXmjDE?autoplay=1&mute=1&playsinline=1&loop=1&playlist=vhlsXtXmjDE"
-          title="Gem Fighter NFT Preview"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          style="border-radius: 12px"
-        ></iframe>
+      <div class="video-container">
+      <video preload="auto" autoplay muted loop controls playsinline style="width: 100%; max-width: 1200px; display: block; margin: 0 auto; border-radius: 15px;">
+    <source src="Images/nfts.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
       </div>
     </section>
 
@@ -336,59 +332,72 @@
       </div>
       <br />
       <div class="attributes" aria-label="NFT attribute descriptions">
-  <div
-    class="attr"
-    tabindex="0"
-    title="Attack increases your damage output."
-  >
-    <img src="Images/attack.png" alt="Attack Icon" class="attr-icon" />
-    <span>Attack</span>
-  </div>
-  <div class="attr" tabindex="0" title="Defense reduces damage taken.">
-    <img src="Images/defense.png" alt="Defense Icon" class="attr-icon" />
-    <span>Defense</span>
-  </div>
-  <div
-    class="attr"
-    tabindex="0"
-    title="Spell Boost enhances your special abilities."
-  >
-    <img src="Images/spell.png" alt="Spell Boost Icon" class="attr-icon" />
-    <span>Spell Boost</span>
-  </div>
-</div>
-
+        <div
+          class="attr"
+          tabindex="0"
+          title="Attack increases your damage output."
+        >
+          <img src="Images/attack.png" alt="Attack Icon" class="attr-icon" />
+          <span>Attack</span>
+        </div>
+        <div class="attr" tabindex="0" title="Defense reduces damage taken.">
+          <img src="Images/defense.png" alt="Defense Icon" class="attr-icon" />
+          <span>Defense</span>
+        </div>
+        <div
+          class="attr"
+          tabindex="0"
+          title="Spell Boost enhances your special abilities."
+        >
+          <img
+            src="Images/spell.png"
+            alt="Spell Boost Icon"
+            class="attr-icon"
+          />
+          <span>Spell Boost</span>
+        </div>
+      </div>
     </section>
 
     <!-- Elements / Affinities -->
-<section class="elements-section" id="elements">
-  <div class="elements-flex">
-    <figure class="elements-img">
-      <img src="Images/elements.png"
-           alt="Elemental affinities chart showing Fire, Ice, Wind, Earth, Thunder, Water, and the Light/Darkness opposition."
-           loading="lazy" />
-    </figure>
+    <section class="elements-section" id="elements">
+      <div class="elements-flex">
+        <figure class="elements-img">
+          <img
+            src="Images/elements.png"
+            alt="Elemental affinities chart showing Fire, Ice, Wind, Earth, Thunder, Water, and the Light/Darkness opposition."
+            loading="lazy"
+          />
+        </figure>
 
-    <div class="elements-copy">
-      <h3 class="section-title">Elemental Affinities</h3>
-      <p class="elements-blurb">
-        Every Gem Fighter color maps to an element. Elements interact through
-        <strong>Ascendant</strong> (advantage) and <strong>Opposed</strong> (disadvantage)
-        relationships. Follow the orange arrows on the chart: the element at the tail is
-        <em>ascendant</em> over the one it points to (bonus damage/effectiveness). 
-        <strong>Light</strong> and <strong>Darkness</strong> directly oppose each other.
-        Build your loadout to target enemies you’re ascendant over, and avoid fights where
-        you’re opposed.
-      </p>
+        <div class="elements-copy">
+          <h3 class="section-title">Elemental Affinities</h3>
+          <p class="elements-blurb">
+            Every Gem Fighter color maps to an element. Elements interact
+            through
+            <strong>Ascendant</strong> (advantage) and
+            <strong>Opposed</strong> (disadvantage) relationships. Follow the
+            orange arrows on the chart: the element at the tail is
+            <em>ascendant</em> over the one it points to (bonus
+            damage/effectiveness). <strong>Light</strong> and
+            <strong>Darkness</strong> directly oppose each other. Build your
+            loadout to target enemies you’re ascendant over, and avoid fights
+            where you’re opposed.
+          </p>
 
-      <ul class="elements-legend" aria-label="Legend">
-        <li><span class="legend-chip asc"></span> Ascendant — advantage following arrow direction</li>
-        <li><span class="legend-chip opp"></span> Opposed — direct opposites (e.g., Light ↔ Darkness)</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
+          <ul class="elements-legend" aria-label="Legend">
+            <li>
+              <span class="legend-chip asc"></span> Ascendant — advantage
+              following arrow direction
+            </li>
+            <li>
+              <span class="legend-chip opp"></span> Opposed — direct opposites
+              (e.g., Light ↔ Darkness)
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
     <div class="container">
       <section class="use-cases" id="use-cases">
@@ -416,7 +425,7 @@
         <!-- Fire Round -->
         <div class="nft">
           <img
-            src="Images/HODLGemstone_Preview_Fire_Round_FL_Excellent_VeryBig_0.png"
+            src="Images/HODLGemstone_Preview_Fire_Round_FL_Excellent_VeryBig_0.webp"
             alt="Fire Round Gem"
           />
           <p class="nft-caption">Fire Round – Excellent Cut</p>
@@ -426,7 +435,7 @@
         <!-- Fire Trillion -->
         <div class="nft">
           <img
-            src="Images/HODLGemstone_Preview_Fire_Trillon_I_Excellent_Medium_0.png"
+            src="Images/HODLGemstone_Preview_Fire_Trillon_I_Excellent_Medium_0.webp"
             alt="Fire Trillion Gem"
           />
           <p class="nft-caption">Fire Trillion – Excellent Cut</p>
@@ -436,7 +445,7 @@
         <!-- Ice Round -->
         <div class="nft">
           <img
-            src="Images/HODLGemstone_Preview_Ice_Round_VVSI_Excellent_Big_0.png"
+            src="Images/HODLGemstone_Preview_Ice_Round_VVSI_Excellent_Big_0.webp"
             alt="Ice Round Gem"
           />
           <p class="nft-caption">Ice Round – Excellent Cut</p>
@@ -446,7 +455,7 @@
         <!-- Thunder Princess -->
         <div class="nft">
           <img
-            src="Images/HODLGemstone_Preview_Thunder_Princess_FL_Excellent_VeryBig_0.png"
+            src="Images/HODLGemstone_Preview_Thunder_Princess_FL_Excellent_VeryBig_0.webp"
             alt="Thunder Princess Gem"
           />
           <p class="nft-caption">Thunder Princess – Excellent Cut</p>
@@ -456,7 +465,7 @@
         <!-- Water Princess -->
         <div class="nft">
           <img
-            src="Images/HODLGemstone_Preview_Water_Princess_FL_Fair_Big_0.png"
+            src="Images/HODLGemstone_Preview_Water_Princess_FL_Fair_Big_0.webp"
             alt="Water Princess Gem"
           />
           <p class="nft-caption">Water Princess – Fair Cut</p>
@@ -466,7 +475,7 @@
         <!-- Water Trillon -->
         <div class="nft">
           <img
-            src="Images/HODLGemstone_Preview_Water_Trillon_FL_Excellent_VeryBig_0.png"
+            src="Images/HODLGemstone_Preview_Water_Trillon_FL_Excellent_VeryBig_0.webp"
             alt="Water Trillon Gem"
           />
           <p class="nft-caption">Water Trillon – Excellent Cut</p>
@@ -494,7 +503,7 @@
       <div class="accordion">
         <div class="accordion-header" tabindex="0">What’s the mint price?</div>
         <div class="accordion-content">
-          <p>
+          <p id="nftprice">
             The mint price is currently fixed at $36 worth of BNB per NFTs. The
             exact BNB amount is auto-converted based on current market rates.
           </p>
@@ -545,6 +554,8 @@
           <a href="disclaimers.html">Disclaimers</a>
           <span class="link-separator">⏺</span>
           <a href="support.html">Support</a>
+          <span class="link-separator">⏺</span>
+          <a href="security.html">Security</a>
         </div>
         <br />
 
@@ -567,7 +578,7 @@
 
         <p class="footer-text">
           © 2025 GEM FIGHTER<br />
-          SURVIVE → EARN → HODL
+          SURVIVE → EARN → HODL to SURVIVE → EARN
         </p>
       </div>
     </footer>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gem Fighter - Security</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="icon" href="Images/logo.png" type="image/png" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .security-hero {
+        margin-top: 80px;
+        padding: 3.5rem 1rem 2rem;
+        text-align: center;
+        background: linear-gradient(45deg, #001a1a, #000a1a);
+        border-bottom: 1px solid #00f3ff33;
+      }
+      .security-hero h1 {
+        font-family: 'Orbitron', sans-serif;
+        text-shadow: 0 0 15px #00f3ff;
+        margin-bottom: 0.75rem;
+      }
+      .security-hero p { color: #cfefff; max-width: 900px; margin: 0.5rem auto 0; }
+      .content-wrap { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+      .panel {
+        background: #111;
+        border: 1px solid #00f3ff33;
+        border-radius: 14px;
+        padding: 1.25rem 1.25rem;
+        margin-bottom: 1rem;
+      }
+      .panel h3 { font-family: 'Orbitron', sans-serif; margin-bottom: 0.4rem; color: #00f3ff; }
+      .panel p, .panel li { line-height: 1.7; color: #e6f7ff; }
+      .panel ul { padding-left: 1.2rem; }
+      .kbd { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background:#0b2030; border:1px solid #00f3ff55; padding:0.1rem 0.35rem; border-radius:6px; }
+      .tags { display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.5rem; }
+      .tag { border:1px solid #00f3ff55; padding:.2rem .5rem; border-radius:999px; font-size:.8rem; color:#9ce7ff; }
+      .contact-box {
+        display: grid;
+        gap: 0.8rem;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        margin-top: .75rem;
+      }
+      .contact-card { background:#0c0e13; border:1px solid #00f3ff22; border-radius:10px; padding:0.9rem; }
+      .contact-card a { color:#00f3ff; text-decoration:none; }
+      .muted { color:#8fbfd1; font-size:.9rem; }
+
+      /* Simple accordion */
+      .accordion-header {
+        width: 100%;
+        text-align: left;
+        background: #0f1116;
+        border: 1px solid #00f3ff33;
+        border-radius: 10px;
+        padding: 0.9rem 1rem;
+        margin-top: 0.8rem;
+        cursor: pointer;
+        font-family: 'Orbitron', sans-serif;
+        color: #00e6ff;
+      }
+      .accordion-header.active { box-shadow: 0 0 18px rgba(0,243,255,0.25); }
+      .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        background: #0c0e13;
+        border: 1px solid #00f3ff22;
+        border-top: none;
+        border-radius: 0 0 10px 10px;
+        padding: 0 1rem;
+      }
+      .accordion-content p, .accordion-content li { color: #e8f9ff; }
+    </style>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="hamburger-menu" id="hamburger-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="play-earn.html">Play & Earn</a></li>
+        <li><a href="nfts.html">NFTs</a></li>
+        <li><a href="story.html">Story</a></li>
+        <li><a href="leaderboard.html">Leaderboard</a></li>
+      </ul>
+      <ul class="social-nav">
+        <li><button id="connectWallet" class="cta-button walletconnect">Connect Wallet</button></li>
+      </ul>
+    </nav>
+
+    <header class="security-hero">
+  <h1>Security</h1>
+  <p>We treat player safety like a legendary drop. Here is how we protect wallets, accounts, and game integrity, plus how to report vulnerabilities responsibly.</p>
+  <div class="tags" style="display:flex; justify-content:center; gap:10px; margin-top:10px;">
+    <span class="tag">Wallet Safety</span>
+    <span class="tag">Bug Bounty</span>
+    <span class="tag">Disclosure</span>
+    <span class="tag">Compliance</span>
+  </div>
+</header>
+
+
+    <main class="content-wrap">
+      <section class="panel">
+        <h3>Our Security Principles</h3>
+        <p>Security is a continuous quest. We apply least privilege to services, keep keys out of code, pin dependencies when possible, and monitor for suspicious activity. Smart contract interactions are explicit and require user confirmation in the wallet.</p>
+        <ul>
+          <li>Private keys are never requested, stored, or transmitted by us.</li>
+          <li>Transactions require explicit confirmation in your wallet UI.</li>
+          <li>We use HTTPS everywhere and restrict third party scripts to vetted sources.</li>
+        </ul>
+      </section>
+
+      <section class="panel">
+        <h3>Protect Your Wallet</h3>
+        <ul>
+          <li>Only use wallets from official sources. Bookmark the Gem Fighter domain to avoid lookalikes.</li>
+          <li>Verify contract addresses before approving. For NFTs and tokens, check our official channels.</li>
+          <li>Review approvals regularly and revoke anything you do not recognize.</li>
+          <li>Use hardware wallets for larger holdings. Enable biometric or PIN locks on mobile.</li>
+        </ul>
+        <p class="muted">Tip: In your wallet, prefer <span class="kbd">Sign</span> over <span class="kbd">Sign and Send</span> unless you intend to broadcast a transaction.</p>
+      </section>
+
+      <section class="panel">
+        <h3>Vulnerability Disclosure and Bug Bounty</h3>
+        <p>If you discover a security issue, report it privately so we can fix it before it is publicly known.</p>
+        <div class="contact-box">
+          <div class="contact-card">
+            <strong>Email</strong>
+            <p><a href="mailto:securitemfighter.game">support@hodltoken.net</a></p>
+          </div>
+          <div class="contact-card">
+            <strong>PGP</strong>
+            <p>Request our PGP key via the security email to exchange encrypted reports.</p>
+          </div>
+          <div class="contact-card">
+            <strong>Scope</strong>
+            <p>App front end, APIs, authentication, smart contract integrations, and game servers.</p>
+          </div>
+        </div>
+        <p class="muted">We may recognize impactful, original reports with swag, credits, or bounties at our discretion.</p>
+      </section>
+
+      <section class="panel">
+        <h3>Responsible Disclosure Policy</h3>
+        <ul>
+          <li>Give us reasonable time to remediate before public disclosure.</li>
+          <li>Avoid privacy violations, data destruction, service degradation, or access to non public data beyond what is necessary to demonstrate the issue.</li>
+          <li>No social engineering, denial of service, or spam testing.</li>
+        </ul>
+      </section>
+
+      <section class="panel">
+        <h3>Security FAQ</h3>
+        <button class="accordion-header" aria-expanded="false">Do you ever ask for my seed phrase</button>
+        <div class="accordion-content"><div style="padding:0.9rem 0 1rem;">
+          <p>Never. No member of Gem Fighter will ever ask for your seed phrase or private key. If anyone does, treat it as malicious.</p>
+        </div></div>
+
+        <button class="accordion-header" aria-expanded="false">How do I verify official contract addresses</button>
+        <div class="accordion-content"><div style="padding:0.9rem 0 1rem;">
+          <p>We publish addresses on official pages and socials. Always cross check multiple official sources before interacting.</p>
+        </div></div>
+
+        <button class="accordion-header" aria-expanded="false">What data does the site collect</button>
+        <div class="accordion-content"><div style="padding:0.9rem 0 1rem;">
+          <p>We collect only what is necessary for site functionality, analytics, and fraud prevention. See the Privacy and Cookies pages for details.</p>
+        </div></div>
+      </section>
+
+      <section class="panel">
+        <h3>Report an Incident</h3>
+        <p>If your account or wallet may be compromised, cut connection immediately, rotate keys if possible, and contact us with:</p>
+        <ul>
+          <li>Timeframe and nature of the incident</li>
+          <li>Wallet addresses involved</li>
+          <li>Steps to reproduce or suspicious links</li>
+          <li>Any relevant logs or screenshots</li>
+        </ul>
+      </section>
+    </main>
+
+   <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="terms.html">Terms</a>
+                <span class="link-separator">⏺</span>
+                <a href="privacy.html">Privacy</a>
+                <span class="link-separator">⏺</span>
+                <a href="cookies.html">Cookies</a>
+                <span class="link-separator">⏺</span>
+                <a href="disclaimers.html">Disclaimers</a>
+				<span class="link-separator">⏺</span>
+                <a href="support.html">Support</a>
+                <span class="link-separator">⏺</span>
+                <a href="security.html">Security</a>
+            </div><br />
+
+            <!-- Add social icons -->
+            <div class="social-icons" style="margin: 1.5rem 0;">
+                <a href="https://x.com/GemFighterP2E" target="_blank" class="social-link">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+                <a href="https://t.me/GemFighterP2E" target="_blank" class="social-link">
+                    <i class="fab fa-telegram-plane"></i>
+                </a>
+            </div>
+
+            <p class="footer-text">
+                © 2025 GEM FIGHTER<br />
+                SURVIVE → EARN → HODL to SURVIVE → EARN
+            </p>
+        </div>
+    </footer>
+
+
+      <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Minimal accordion behavior if not already handled in script.js
+        document.querySelectorAll('.accordion-header').forEach(btn => {
+          btn.addEventListener('click', () => {
+            btn.classList.toggle('active');
+            const content = btn.nextElementSibling;
+            const expanded = btn.getAttribute('aria-expanded') === 'true';
+            btn.setAttribute('aria-expanded', String(!expanded));
+            if (content.style.maxHeight) {
+              content.style.maxHeight = null;
+            } else {
+              content.style.maxHeight = content.scrollHeight + 'px';
+            }
+          });
+        });
+      </script>
+    </footer>
+  </body>
+</html>
